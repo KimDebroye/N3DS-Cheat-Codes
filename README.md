@@ -7,8 +7,8 @@
 ### New Super Mario Bros. 2 - Gold Edition (USA)
 **************************************************
 
-Cheats Overview:
-- Character Modifier:
+**Cheats Overview**
+- Character Modifier
 	- **Play as Mario**
 	- **Play as Luigi**
 		- *Note: Even when game not beaten.*

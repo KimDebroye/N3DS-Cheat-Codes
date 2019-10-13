@@ -1,0 +1,4867 @@
+New Super Mario Bros. 2 - Special Edition (Europe)
+By KDb
+----------------------------------------------------
+
+[Update 2019/10/13]
+
+[Midair Jump USA -> EUR Port]
+
+[Midair Jump (USA)]
+D3000000 00000000
+0056A520 E2841A01
+0056A524 E28110E0
+0056A528 E591100C
+0056A52C E2111001
+0056A530 159F100C
+0056A534 15801010
+0056A538 E1A01000
+0056A53C E1A00000
+0056A540 E12FFF1E
+0056A544 40600000
+001F6188 EB0DD0E4
+D2000000 00000000
+
+Found this code on:
+https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/New%20Super%20Mario%20Bros.%202%20(Gold%20Edition)%20(USA)/0004000000137E00.txt
+
+The address/value I'm interested in, is:
+001F6188 EB0DD0E4
+
+Did some testings before and saw a video afterwards:
+https://www.youtube.com/watch?v=cIr6l1FariU
+
+So:
+- I opened 3DS ARM Assembly Cheat Creator.
+- I opened HxD and loaded 2 of my previously made RAM dumps from different regions:
+	-> nohat_ingame_1-1
+	-> nohat_ingame_1-1_USA
+	
+- In RAM dump nohat_ingame_1-1_USA I went to the address 0056A520.
+  It was an empty area right below game code with the intent to write own codes.
+  Meaning: all the 005 codes in this cheat code are custom instructions, added by the original cheat creator.
+  The values do not need to change, at least not in this case
+  (learned that in some previous testings with this code).
+  The addresses do need to change, since if we use the same addresses in the EUR version,
+  it tries to overwrite filled addresses (so not in empty area due to region difference)
+  and crashes with a write error.
+- Looked for the similar empty area in RAM dump nohat_ingame_1-1,
+  found address: 0056A560 (I placed it on the start of a new line, just to look "pretty").
+  The location doesn't really matter, as long as it's placed in an empty area.
+  Changed the addresses to their new location for the EUR region (from 0056A560 to 0056A584).
+  (Each custom code instruction counting 4 bytes,
+  so 0056A560, 0056A560+0x4, 0056A560+0x8, 0056A560+0xC and so on.)
+  
+- In RAM dump nohat_ingame_1-1_USA I went to the address 001F6188 and selected some hex values around it.
+- Looked for those in RAM dump nohat_ingame_1-1, found address: 001F61B8
+	-> Note: searching like this doesn't always work. It did in this case.
+	   Sometimes it is better to find a text string, look for that in both regions and calculate the offset,
+	   using Windows calculator. Using that offset, it's possible to port a code to different region as well.
+	-> Made sure the address wasn't far from the address location in the USA RAM dump,
+	   meaning it shouldn't have been a 16XXXXXX address f.e.
+	   
+- In 3DS ARM Assembly Cheat Creator, I entered:
+	- Base Address:		1F61B8	(Important Note: zeroes in front have to be trimmed, else it doesn't calculate.)
+	- Target Address:	56A560
+	-> Calculate
+		-> Result: EB0DD0E8
+
+- Done.
+
+[Midair Jump (Europe)]
+D3000000 00000000
+0056A560 E2841A01
+0056A564 E28110E0
+0056A568 E591100C
+0056A56C E2111001
+0056A570 159F100C
+0056A574 15801010
+0056A578 E1A01000
+0056A57C E1A00000
+0056A580 E12FFF1E
+0056A584 40600000
+001F61B8 EB0DD0E8
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Golden Enemies]
+2-2:
+17308CD8 00000250
+
+3-1:
+17308CE4 00000250
+
+Pointer version:
+	 - goldenenemies_2-2
+	 - goldenenemies_3-1
+       -> Tried fixed address search with current values at the time of dumping. Doesn't find any.
+	   -> Doesn't find a pointer when combined.
+	      When doing separately, finds same pointer addresses though with different offsets
+		  (like f.e. 1108 [offset] 1114 = offset C). A bit like the [No Hat] code.
+		  Not in the mood for this... Enough ways to get coins :p.
+
+[Golden Enemies]
+Nada yet.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=========
+IGNORING:
+=========
+Level identifier:
+Could this address be it? :
+14B64C6C
+
+When on World Map:	2E5D305B
+
+1-Rainbow:	2E5D305B
+1-1:		36000006
+1-2:		3E43AF03
+1-Mushroom:	3F4E79A2
+1-3:		3F800000
+1-Castle:	3F6A2F83
+1-4:		409F8716
+1-A:		4A424F53
+1-5:		C1AA7D22	(Double checked... Strange value...)
+1-Castle:	40973333
+
+2-Rainbow:	43AFD312	(Double checked... Strange value...)
+2-1:		415CDD2F
+2-2:		DEDDD33C	(Double checked... Strange value...)
+2-3:		3F345D43	(Double checked... Strange value...)
+
+3-Rainbow:	39F67002	(Double checked... Strange value...)
+3-1:		726F6F43	(Double checked... Strange value...)
+
+6-1:		BCE3CD8A
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+===================
+FINDING USA OFFSET.
+===================
+
+NOTE: I used HxD a lot to find manually.
+Offsets in RAM Dumps between different regions can differ
+depending on the address location in the dump.
+So this is merely a temp guideline for when I was converting.
+Manual comparing (like searching for similar Hex strings between region dumps, ...) was,
+in my opinion, the way to go.
+
+- Comparing RAW Dumps mario & mario_usa.
+- Play as Mario/Luigi code as an example.
+
+Original EUR address: 16773949
+Landmark: 16779DD3 (below)
+Difference: B6E4
+
+USA:
+Landmark: 1676E6EF
+Landmark - EUR difference: 16768265 -> OK.
+
+================================
+So:
+USA address + B6E4 = EUR address
+EUR address - B6E4‬ = USA address
+================================
+
+Exceptions:
+- For the Rapid Fireballs code,
+I had to compare RAM dumps by finding a
+close by hex string that equaled both.
+Came up with a different offset for these values:
+USA address + 30‬ = EUR address
+EUR address - 30 = USA address
+
+-----------------------------
+
+- For the Midair Jump code:
+USA address + 40‬ = EUR address (to start first address on empty line)
+EUR address - 40 = USA address
+Except for the 001FXXXX instruction, which has an offset of 30.
+& European YYYYYYYY value: all values that don't start with E should be converted
+using the difference of +B6E4 (else read type error, since it'll try overwriting a
+non-writeable value).
+
+USA VERSION (working):
+
+[Midair Jump]
+D3000000 00000000
+0056A520 E2841A01
+0056A524 E28110E0
+0056A528 E591100C
+0056A52C E2111001
+0056A530 159F100C
+0056A534 15801010
+0056A538 E1A01000
+0056A53C E1A00000
+0056A540 E12FFF1E
+0056A544 40600000
+001F6188 EB0DD0E4
+D2000000 00000000
+
+EUR VERSION (Edited, NOT working, all kind of errors)
+
+[Midair Jump]
+D3000000 00000000
+0056A560 E284D0E5
+0056A564 E281C7C4
+0056A568 E591C6F0
+0056A56C E211C6E5
+0056A570 159FC6F0
+0056A574 1580C6F4
+0056A578 E1A0C6E4
+0056A57C E1A0B6E4
+0056A580 E130B602
+0056A584 4060B6E4
+001F61B8 EB0E87C8
+D2000000 00000000
+
+Tryout 2:
+[Midair Jump]
+D3000000 00000000
+0056A560 E2841A01
+0056A564 E28110E0
+0056A568 E591100C
+0056A56C E2111001
+0056A570 159F100C
+0056A574 15801010
+0056A578 E1A01000
+0056A57C E1A00000
+0056A580 E12FFF1E
+0056A584 40600000
+001F61B8 EB0DD0E4
+D2000000 00000000
+
+================================================
+FINDING OFFSET FROM NSMB2 (ORIGINAL, NON SE/GE).
+================================================
+
+Comparing the Rapid Fireballs code:
+NSMB2-O (Europe) - 84 = NSMB2 Special Edition (Europe)
+-> Not working for the cheat I tried to convert. Could work for other cheats.
+(I noticed not all address offsets are the same.)
+-------------->
+
+::::::::::::::::::::::::::::::::::::::::::::::
+NSMB2-Original -> NSMB2-SE/GE Conversion Notes
+::::::::::::::::::::::::::::::::::::::::::::::
+* 001 addresses
+  -> NSMB2-O (Europe)	-> NSMB2-SE (Europe)	- 258
+  -> NSMB2-O (USA)	-> NSMB2-GE (USA)	- 258
+-> ?
+::::::::::::::::::::::::::::::::::::::::::::::
+* 002 addresses
+  -> NSMB2-O (Europe)	-> NSMB2-SE (Europe)	- 84
+  -> NSMB2-O (USA)	-> NSMB2-GE (USA)	- 84
+-> NOT ALWAYS THE CASE? Could be the internal workings are different...
+::::::::::::::::::::::::::::::::::::::::::::::
+* 005 addresses
+  -> NSMB2-O (Europe)	-> NSMB2-SE (Europe)	+ 1060
+  -> NSMB2-O (USA)	-> NSMB2-GE (USA)	+ 1060
+-> ?
+::::::::::::::::::::::::::::::::::::::::::::::
+* Patch code values (YYYYYY in patch codes)
+  -> NSMB2-O (Europe) = NSMB2-SE (Europe)	(not always the same)
+  -> NSMB2-O (USA) = NSMB2-SE (USA)		(not always the same)
+	-> f.e. 001XXXXX EB0DCC36 EB0DD0E4	(although, could have the same result,
+						 but finetuned)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Notes for:
+[Golden Enemies]
+
+- Look for a timer value.
+- Certainly needs a pointer:
+RAM DUMPS
+ge_1-4 -> 
+ge_2-2 -> 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Found the below code for NSMB2 USA (Non SE/Gold Edition):
+
+[(A) Moonjump]
+DD000000 00000001
+605E61E8 00000000
+B05E61E8 00000000
+D9000000 00000000
+D4000000 20000000
+D6000000 000001D4
+D2000000 00000000
+
+Using as a reference.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Looked for an always full Tanooki Pwing Gauge.
+Used UNKNOWN SEARCH -> BIGGER THAN, SMALLER THAN & EQUAL TO.
+Found the 1st address below, then I noticed in hex editor that 2 values close by
+changed as well: noted these and found out what they did.
+
+[Always Full Tanooki Pwing Gauge]
+D3000000 14000000
+2020787C 0000002A	// Sets the gauge to max.
+20207880 0000001E	// Both this and below value are updated by the game logic to
+20207884 000000F0	// increase or decrease the gauge meter.
+			// So if frozen: never decreases, always increased.
+			// Note: These values are the values I found
+			// when the pwing gauge is at max.
+D2000000 00000000
+
+Works only in level 1-4. So needs pointer.
+Only looking for the first address pointer offset, 2nd address will have an offset of (first address offset + 4) and 3rd will have an offset of (first address offset + 8).
+-> I was wrong on this one. Still learning. First pointer works, though it
+only shows the 6 red triangles in bottom left corner as full, not the pwing itself.
+Using the pointers behaves different than the above code, although I think I can
+make it work by testing a bit (trying a few other valid pointers and/or addresses above).
+
+
+RAM DUMPS:
+Pwing 1-1	-> 1416F47C
+		(-> 1416F480)
+		(-> 1416F484)
+
+Pwing_1-4	-> 1420787C
+		(-> 14207880)
+		(-> 14207884)
+--- RESULT ----------------------
+[Always Full Tanooki Pwing Gauge]
+D3000000 00000000
+B05E7210 00000000
+20004A20 0000002A
+20004A24 0000001E
+20004A28 000000F0
+D2000000 00000000
+---------------------------------
+-> Works. (FOR BOTH SPECIAL EDITION [EUROPE] AND GOLD EDITION [USA].)
+
+Note: Learned a lot from this cheat. Quite a good example to learn how to cheat.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Infinite Gold Block Head Coins]
+D3000000 14000000
+2016F4B0 000000AA
+D2000000 00000000
+
+-> Needs Pointer for different worlds.
+
+RAM Dump BH_SG2_1-1
+
+1416F4B0
+
+RAM Dump BH_SG2_2-1
+
+142078B0
+
+=>
+
+[Always Start As Gold Block Head]
+D3000000 00000000
+B05E7210 00000000
+20004A54 000000AA
+D2000000 00000000
+
+Note: Has unlimited coins as a bonus. Getting hit still loses it.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Max Infinite Lives (3 Crowns)]
+D3000000 16000000
+A0773944 FFF80456
+00773944 00000456
+D2000000 00000000
+
+ORIGINAL CODE:
+D3000000 00000000
+A0410725 FFFC0010
+20410725 00000010
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=INBETWEEN=====================================================
+8-bit Equal To (X=address/offset, mask=FFFC (only last byte), Y=value)
+D3000000 XXXXXXXX
+9XXXXXXX FFFC00YY	// If last byte of address at XXXXXXXX equals YY
+do something
+
+8-bit Not Equal To (X=address/offset, mask=FFFC (only last byte), Y=value)
+D3000000 XXXXXXXX
+AXXXXXXX FFFC00YY	// If last byte of address at XXXXXXXX does not equal YY
+do something
+
+This still uses 16bit conditional code,
+although it uses a mask to only check the last byte.
+Way of finding mask:
+- Mask in binary:
+1111 1100 (1=ignore, 0=do not ignore)
+- Converted to hex (using Windows Calculator):
+FFFC
+=INBETWEEN=====================================================
+
+[Star Power]
+
+First off, I needed to find a g*damn star! :p...
+Anyway: In world 5-2.
+So looking for a timer value. (Less than).
+
+FOR WORLD 5-2:
+141A0210 00000000	// No Star Power
+141A0210 0000028F	// Start Star Power Time (+/-)
+
+Good code (FOR WORLD 5-2):
+141A0210 000000BB	// Start Star Power (when disabled, remains active for +/- 1 sec)
+
+Doesn't work in world 1-1 for example.
+Need another world with star and look for pointer.
+
+Address World 2-3
+140A1208 0000XXXX
+
+~ Pointer lookup in TempAR using Raw RAM Dumps with the following addresses:
+140A1208 0000XXXX (2-3)
+141A0210 0000XXXX (5-2)
+Note: Increased the Maximum Offset to 0x10000
+(NSMB2 seems to store at least most of its values in the 0050 0000 range)
+
+Resulting in:
+
+[Always Star Mario/Luigi (Invincible)]
+D3000000 00000000
+B05E7210 00000000
+000017AC 000000BB
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+=INBETWEEN=====================================================
+CRASH IN SAVE GAME 1 -> Level 1-2 ?
+-> Indien geen cheats en entert level -> ok
+-> Back to Save select -> Instant crash
+-> Ballon save -> ok, tot een paar maal proberen, opnieuw crash.
+Niet steeds consistent.
+Possibly fixed (infinite time code issue, revised code.)
+Still a crash :/...
+=INBETWEEN=====================================================
+
+[No Hat]
+
+16773940 00000000
+
+Gevonden door in Hex Editor één lijn boven Play As Mario/Luigi code te kijken. Eigenschappen van karakters staan meestal dicht bij elkaar in hex code.
+=> Doesn't seem to be right, can't remember where I found it. It worked, but it isn't
+the same address. On this line (16773944), the # of lives can be set as well.
+
+[No Hat]
+16773940 00000000
+
+[No Hat]
+D3000000 16000000
+20773940 00000000
+D2000000 00000000
+
+[No Hat]
+B05E715C 00000000
+20000030 00000000
+D2000000 00000000
+
+Hmmm, werkt nog niet of crasht?
+Werkt nochtans in hex editor.
+
+Update: opnieuw gezocht, op basis van Equal ~ Not Equal (wist niet goed welke waarde in adres zou staan).
+
+Resultaat:
+14085634 00 01 00 01 (MET HOED) was 00 01 00 00 (ZONDER HOED) -> laatste byte verwijdert hoed-texture, byte middenin: niet zeker.
+140856BC 00 02 00 00 (MET HOED) was 00 02 00 01 (ZONDER HOED) -> laatste byte toont haar-texture, byte middenin: niet zeker.
+14086DCC 00 00 00 01 (MET HOED) was 00 00 00 00 (ZONDER HOED) -> vermoedelijk de controle-byte.
+
+-> ENKEL LAATSTE ADRES IS BENODIGD.
+-> 8bit value schrijven (=2XXXXXXX) is voldoende (ik vermoed dat het spel het als 16bit wegschrijft, maar maakt volgens mij niet uit.)
+
+[No Hat]
+D3000000 14000000
+20086DCC 00000000
+D2000000 00000000
+
+-> Werkt niet, vermoedelijk pointer nodig?
+Opnieuw zoeken naar 0 en 1 (enkel in hoofdmap op vakje van zelfde level en RAM dumpen in één wereld en daarna een andere.) Gezocht op DIFFERENT BY 1.
+
+(2-2)
+14080D54 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14080DDC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14085634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+140856BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+Met het wijzigen van de 2 laatste bovenstaande codes werkte het (in de wereldmap). Ingame gaan wijzigt deze waarden volledig naar:
+14085634 FFFFFFFF (ZONDER HOED)
+140856BC 000F0106 (ZONDER HOED)
+
+-> Opnieuw gezocht:
+- Save Game met 3 crowns en No Hat, NIET herladen!!! -> POINTER ADDRESS wijzigt bij herladen. Afwisselend levens pakken tot max en sterven.
+- Telkens in zelfde level gaan. Wisselen van wereld mag ook.
+- UNKNOWN SEARCH en zoeken op DIFFERENT BY 1 en EQUAL TO.
+
+(2-2) RAM DUMP: nohat_2-2
+14170D74 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14170DFC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14175634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+141756BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+(1-1) RAM DUMP: nohat_1-1
+14170D74 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14170DFC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14175634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+141756BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+2 pointers that look familiar (with a 005XXXXX base address).
+(+Many more other pointers.)
+
+IMPORTANT: NEED AT LEAST 2 POINTER ADDRESSES WITH A MATCHING BASE ADDRESS.
+MEANING: ONE SETS THE 0 AND ONE SETS THE 1 last byte value (see above).
+
+STEP 1) 14170D74 pointer search:  (WITHOUT HAT VALUE = 0)
+
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+D2000000 00000000
+
+OR
+
+D3000000 00000000
+B05EF9A8 00000000
+20006318 00000000
+D2000000 00000000
+
+STEP 2) 14170DFC pointer search: (WITHOUT HAT VALUE = 1)
+
+D3000000 00000000
+B05E7210 00000000
+200063A0 00000001
+D2000000 00000000
+
+OR
+
+D3000000 00000000
+B05EF9A8 00000000
+200063A0 00000001
+D2000000 00000000
+
+STEP 3) 14175634 pointer search: (WITHOUT HAT VALUE = 0)
+
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+D2000000 00000000
+
+OR
+
+D3000000 00000000
+B05EF9A8 00000000
+2000ABD8 00000000
+D2000000 00000000
+
+STEP 4) 141756BC pointer search: (WITHOUT HAT VALUE = 1)
+
+D3000000 00000000
+B05E7210 00000000
+2000AC60 00000001
+D2000000 00000000
+
+OR
+
+D3000000 00000000
+B05EF9A8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Inbetween: Aborted (I need two RAM Dumps with different addresses).
+Doing the above search again in World 1-1.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+(2-2) RAM DUMP: nohat_2-2
+14170D74 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14170DFC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14175634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+141756BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+(1-1) RAM DUMP: nohat_1-1_v2
+14080D54 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14080DDC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14085634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+140856BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+-> No pointers at all.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Inbetween: Reverted to RAM DUMP: nohat_1-1 (first version).
+Going to use the 005XXXXX pointers.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+[No Hat]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000	// 0 = no hat (world map? UPDATE: Nope. Ingame only. World map needs different address.)
+D3000000 00000000
+B05E7210 00000000
+200063A0 00000001	// 1 = no hat (world map? UPDATE: Nope. Ingame only. World map needs different address.)
+D3000000 00000000
+B05EF9A8 00000000
+20006318 00000000	// 0 = no hat (in game? UPDATE: Not needed.)
+D3000000 00000000
+B05EF9A8 00000000
+200063A0 00000001	// 1 = no hat (in game? UPDATE: Not needed.)
+D2000000 00000000
+
+-> WORKS! UPDATE: DOES NOT UPDATE ON WORLD MAP.
+But what if I can shorten it?
+(Remember: editing only last 2 codes worked as well.)
+I think 2 out of the 4 address edits are for the world map,
+while the other 2 addresses are for ingame (presumably the last 2).
+Trying.
+
+
+[No Hat Shortened Test 1]
+D3000000 00000000
+B05EF9A8 00000000
+20006318 00000000	// 0 = no hat (in game only? UPDATE: Nope.)
+D3000000 00000000
+B05EF9A8 00000000
+200063A0 00000001	// 1 = no hat (in game only? UPDATE: Nope.)
+D2000000 00000000
+
+-> CRASHES IMMEDIATELY
+
+Perhaps only the other 2 codes?
+
+[No Hat Shortened Test 2]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000	// 0 = no hat (in game only)
+D3000000 00000000
+B05E7210 00000000
+200063A0 00000001	// 1 = no hat (in game only)
+D2000000 00000000
+
+-> WORKS, doesn't update on world map though.
+
+=> Looking for the same values, but then only in World Map.
+
+(On World Map)
+USING UNKNOWN VALUE + EQUAL and NOT EQUAL
+
+Results: (SAME AS IN RAM DUMP NoHat_1-1_v2)
+14080D54 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14080DDC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14085634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+140856BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+Anyways, editing the last 2 addresses while on world map works.
+Calculating the offset (using Windows calculator).
+14085634 - 14080D54 = 48E0
+140856BC - 14080DDC = 48E0
+This should be the offset for the world map.
+
+UPDATE
+
+[No Hat World Map Test]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000	// 0 = no hat (in game only)
+DC000000 000048E0	// Adds value to the current offset
+20000000 00000000	// 0 = no hat (world map)
+D3000000 00000000	// Resets address/offset
+B05E7210 00000000
+200063A0 00000001	// 1 = no hat (in game only)
+DC000000 000048E0	// Adds value to the current offset
+20000000 00000001	// 1 = no hat (world map)
+D2000000 00000000
+
+-> Works the same as the non shortened version, should have noticed.
+So doesn't update on World Map. Needs a different address.
+Gonna look again, UNKNOWN SEARCH -> !ONLY! DIFFERENT BY 1 on world map.
+
+006A372C 00000001	// Hat? Nope.
+006A3730 00000001	// Hat? Nope.
+
+Gonna look again, UNKNOWN SEARCH -> !ONLY! EQUAL - NON EQUAL on world map.
+(Crashed while searching, battery almost dead.)
+
+== INBETWEEN ==================
+Found this particular code when
+rereading my comments from top.
+Gonna try adding it...
+[No Hat]
+D3000000 16000000
+20773940 00000000
+D2000000 00000000
+-> Doesn't change anything. Aborting.
+===============================
+
+== INBETWEEN ==================
+IDEA: switch between 2 save games, one WITH hat and one WITHOUT and look
+for different values on world map only.
+-> Doesn't seem to work (don't think it's a static address).
+== INBETWEEN ==================
+
+1 opened save game:
+combined searching in level (f.e. when knowing no hat because of max lives)
+and on world map, DIFFERENT BY 1, EQUAL TO, NOT EQUAL TO.
+KEPT 5 ADDRESSES:
+
+157619E0 00000000 (NO HAT) 00000001 (HAT)
+15761AA8 00000000 (NO HAT) 00000001 (HAT)
+15762650 00000000 (NO HAT) 00000001 (HAT)
+15762708 00000000 (NO HAT) 00000001 (HAT)
+
+15B84A18 000000 (NO HAT) FFFFFFF (HAT) -> Do not understand this value yet.
+-> Update: This is wether the flag is captured in current level. (FFFFFF=no, 000000=yes)
+RAM DUMPS:
+- 2-2_worldmap_nohat (NO HAT VALUES)
+- 2-2_worldmap_hat (HAT VALUES)
+- 2-2_ingame_nohat (NO HAT VALUES)
+- 2-2_ingame_hat (HAT VALUES)
+
+[No Hat Ingame+WM]
+D3000000 15000000
+B07448D8 00000000
+2000ABC8 00000000
+B07448D8 00000000
+2000AC90 00000000
+B07448D8 00000000
+2000B838 00000000
+B07448D8 00000000
+2000B8F0 00000000
+D2000000 00000000
+-> Doesn't work. Too many pointers.
+
+Perhaps Pointerless?
+[No Hat Ingame+WM]
+D3000000 150000
+207619E0 000000
+20761AA8 000000
+20762650 000000
+20762708 000000
+D2000000 000000
+-> Instant crash: READ.
+
+-> Trying logic
+
+[No Hat Ingame+WM Pointers v2]
+D3000000 15000000
+B07448D8 00000000
+2000ABC8 00000001
+B07448D8 00000000
+2000AC90 00000000
+B07448D8 00000000
+2000B838 00000001
+B07448D8 00000000
+2000B8F0 00000000
+D2000000 00000000
+-> Doesn't work.
+
+-> Trying second pointers
+
+[No Hat Ingame+WM Pointers v3]
+D3000000 15000000
+B0756E1C 00000000
+2000AAE0 00000000
+B0756E1C 00000000
+2000ABA8 00000000
+B0756E1C 00000000
+2000B750 00000000
+B0756E1C 00000000
+2000B808 00000000
+D2000000 00000000
+-> Doesn't work.
+
+IDEA: Add a no max lives to the cheats menu, toggle on and off and see what changes on world map regarding hat.
+
+[NO Max Infinite Lives (Three Crowns)]
+D3000000 00000000
+A0410725 FFFC0010
+20410725 00000000
+D2000000 00000000
+
+
+
+====================================
+====================================
+CREATING 2 SAVE GAMES WITH MAX LIVES
+(USING COPY BUTTON IN NSMB2)
+====================================
+====================================
+
+================================
+Save game 2 - level 1-1 - no hat
+================================
+
+1407C3B4 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+1407C43C 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14080C94 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14080D1C 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+================================
+Save game 3 - level 2-2 - no hat
+================================
+
+14080D54 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+14080DDC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+14085634 00010001 (MET HOED) was 00010000 (ZONDER HOED)
+140856BC 00020000 (MET HOED) was 00020001 (ZONDER HOED)
+
+================================
+Found another interesting value:
+1416AADC 00000455 or less (MET HOED) was 00000456 (ZONDER HOED)
+==> CONSTANTLY SETS LIVE COUNTER TO MAX WHEN LOSING LIFE (ONLY IN SAVE GAME 2).
+-> ignoring.
+================================
+
+Found 4 valid pointers for addresses, picking first one:
+
+[No Hat Pointer Edition]
+D3000000 00000000
+BFFFF968 00000000
+200012C4 00000000
+D3000000 00000000
+BFFFF968 00000000
+2000134C 00000000
+D3000000 00000000
+BFFFF968 00000000
+2000134C 00000000
+D3000000 00000000
+BFFFF968 00000000
+20005C2C 00000000
+D2000000 00000000
+-> CRASHES IMMEDIATELY
+
+~~~ Food for thought ~~~
+TempAR address Value (if we just change the value over there, wouldn't it work?):
+1407B0F0 00000000 (not sure about value given)
+or
+1407B0F0 00000000 (not sure about value given)
+-> same reoccuring value address in all first pointers. Could this be where it gets it's value from?
+
+So tryout:
+
+[No Hat No Pointer Edition]
+D3000000 14000000
+2007B0C0 00000000
+2007B0F0 00000000
+2007D194 00000000
+2007E780 00000000
+D2000000 00000000
+-> Doesn't work.
+
+[No Hat No Pointer Edition v2]
+D3000000 14000000
+2007B0C0 00000000
+2007B0F0 00000001
+2007D194 00000000
+2007E780 00000001
+D2000000 00000000
+-> Doesn't work.
+
+Gave in the addresses from above in TempAR (1407XXXX), to find a pointer. Tryouting:
+[No Hat No Pointer Edition v3]
+D3000000 14000000
+B0047A08 00000000
+20007990 00000000
+B0047A08 00000000
+200079C0 00000000
+B0047A08 00000000
+20009A64 00000000
+B0047A08 00000000
+2000B050 00000000
+D2000000 00000000
+-> Doesn't work.
+
+[No Hat No Pointer Edition v4]
+D3000000 14000000
+B0047A08 00000000
+20007990 00000000
+B0047A08 00000000
+200079C0 00000001
+B0047A08 00000000
+20009A64 00000000
+B0047A08 00000000
+2000B050 00000001
+D2000000 00000000
+-> Doesn't work.
+
+===========================================================
+RETRYING FROM ABOVE RESULTS RAM DUMPS nohat_1-1 & nohat_2-2
+===========================================================
+
+[No Hat Test]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000	// Works
+B05EF9A8 00000000
+20006318 00000000	// ?
+B05E7210 00000000
+200063A0 00000001	// Works
+B05EF9A8 00000000
+200063A0 00000001	// ?
+B05E7210 00000000
+2000ABD8 00000000	// ?
+B05EF9A8 00000000
+2000ABD8 00000000	// ?
+B05E7210 00000000
+2000AC60 00000001	// ?
+B05EF9A8 00000000
+2000AC60 00000001	// ?
+D2000000 00000000
+-> Works ingame, although Mario now has no hair at all. Doesn't work in WM.
+
+-> Altering values:
+
+[No Hat Test 2]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000	// Works
+B05EF9A8 00000000
+20006318 00000001	// ?
+B05E7210 00000000
+200063A0 00000001	// Works
+B05EF9A8 00000000
+200063A0 00000000	// ?
+B05E7210 00000000
+2000ABD8 00000001	// ?
+B05EF9A8 00000000
+2000ABD8 00000001	// ?
+B05E7210 00000000
+2000AC60 00000000	// ?
+B05EF9A8 00000000
+2000AC60 00000000	// ?
+D2000000 00000000
+-> Works ingame, although Mario now has no hair at all. Doesn't work in WM.
+
+!!!!!!
+UPDATE
+!!!!!!
+
+When catching a powerup with "Working" No Hat code,
+Mario DOES get hat back. So, in general, this method
+doesn't work.
+Needs a better searching method.
+Giving up on this one for now.
+
+Perhaps searching for ONLY EQUAL & NOT EQUAL and !NOT! DIFFERENT BY!
+Taking into account mario size, just to be sure (so only equal on both small mario's etc.).
+
+If it's a texture hack, should work everywhere.
+Addresses could be different, so perhaps only 2 byte search?
+No clue for now. Just guessing. Could be wrong.
+
+When in level, gonna turn semi working code on and off and see what's different.
+
+If searched correctly:
+1677DAC0 3F800000 (No Hat?)
+172DD590 00000000 (No Hat?)
+-> Nope nope nope... Giving up.
+
+(2/10/2019)
+[No Hat Test 1]
+- 1 Byte
+- Different Game Save Files
+- Going ingame and on World Map
+- DIFFERENT BY 1 & EQUAL TO.
+
+5 addresses remain WITHOUT HAT (=NO HAT):
+0FFFFA80 00000001 	// seems irrelevant.
+15761AA8 00000000	// no hat, with hat was 00000001
+15762658 00000000	// no hat, with hat was 00000001
+16763A6F 00000001	// seems irrelevant. no hat, with hat was 00000002
+172DD590 00000000	// no hat, with hat was 00000001
+
+Trying to freeze some of the non irrelevant above.
+-> Doesn't work.
+
+[No Hat Test 2]
+- 1 Byte
+- One Game Save File with Max Lives (=No Hat)
+- Only on World Map
+- DIFFERENT BY 1 & EQUAL TO.
+
+Same results as previous:
+[World 2-2]
+14080D54 00000000 (ZONDER HOED)
+14080DDC 00000001 (ZONDER HOED)
+14085634 00000000 (ZONDER HOED)
+140856BC 00000001 (ZONDER HOED)
+-> These ones work even in World Map.
+-> It's the non pointer version though, so only for 2-2.
+
+Using RAM Dumps (first valid pointer)
+2-2_worldmap_hat	-> 14080D54
+2-2_worldmap_nohat	-> 14080D54
+[A]
+B060A634 00000000
+200146DC 00000000
+
+2-2_worldmap_hat	-> 14080DDC
+2-2_worldmap_nohat	-> 14080DDC
+[B]
+B060A634 00000000	// Note: Same offset as previous.
+20014764 00000001	// Note: Needs to be 1?
+
+2-2_worldmap_hat	-> 14085634
+2-2_worldmap_nohat	-> 14085634
+[C]
+B060A644 00000000
+2001384C 00000000
+
+2-2_worldmap_hat	-> 140856BC
+2-2_worldmap_nohat	-> 140856BC
+[D]
+B060A644 00000000	// Note: Same offset as previous.
+200138D4 00000001	// Note: Needs to be 1?
+
+So this would give:
+[No Hat]
+D3000000 00000000
+B060A634 00000000
+200146DC 00000000
+20014764 00000001
+B060A644 00000000
+2001384C 00000000
+200138D4 00000001
+D2000000 00000000
+-> Doesn't work (not even a minor visual change).
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Redumping:
+- nohat_wm_1-1
+- nohat_wm_2-2
+
+World Map @ (1-1) (LAST BYTE VALUE ONLY!)
+1407C3B4 00000000 (ZONDER HOED)
+1407C43C 00000001 (ZONDER HOED)
+14080C94 00000000 (ZONDER HOED)
+14080D1C 00000001 (ZONDER HOED)
+
+World Map @ (2-2) (LAST BYTE VALUE ONLY!)
+14080D54 00000000 (ZONDER HOED)
+14080DDC 00000001 (ZONDER HOED)
+14085634 00000000 (ZONDER HOED)
+140856BC 00000001 (ZONDER HOED)
+
+~~~
+Using RAM Dumps (first valid pointer (LOOK AT BOTTOM, didn't use the 0xFF... ones!))
+nohat_wm_1-1	-> 1407C3B4
+nohat_wm_2-2	-> 14080D54
+[A]
+B1729CAB0 00000000
+200019C8 00000000
+
+nohat_wm_1-1	-> 1407C43C
+nohat_wm_2-2	-> 14080DDC
+[B]
+B1729CAB0 00000000	// Same offset as previous
+20001A50 00000001
+
+nohat_wm_1-1	-> 14080C94
+nohat_wm_2-2	-> 14085634
+[C]
+B1729CAB0 00000000
+200062A8 00000000
+
+nohat_wm_1-1	-> 14080D1C
+nohat_wm_2-2	-> 140856BC
+[D]
+B1729CAB0 00000000	// Same offset as previous
+20006330 00000001
+
+Would give:
+[No Hat]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+-> WORKS, BUT ONLY FOR WORLD MAP.
+
+~~~
+
+REUSING RAM Dumps
+-> First valid pointer (ALMOST AT BOTTOM, didn't use the 0xFF... ones!).
+-> TYL Keep double clicking on first valid pointer to find subpointers
+   until it gives a lower based address (I found 006 or 003).
+-> Not sure if it'll work for when in level too.
+
+nohat_wm_1-1	-> 1407C3B4
+nohat_wm_2-2	-> 14080D54
+[A]
+B060A65C 00000000
+B0001640 00000000
+B00000A4 00000000
+200017DC 00000000
+
+nohat_wm_1-1	-> 1407C43C
+nohat_wm_2-2	-> 14080DDC
+[B]
+B060A65C 00000000	// Same offset as previous
+B0001640 00000000	// Same offset as previous
+B00000A4 00000000 	// Same offset as previous
+20001864 00000001
+
+nohat_wm_1-1	-> 14080C94
+nohat_wm_2-2	-> 14085634
+[C]
+B03A5730 00000000
+B000A0B0 00000000
+B000AD7C 00000000
+200017DC 00000000
+
+nohat_wm_1-1	-> 14080D1C
+nohat_wm_2-2	-> 140856BC
+[D]
+B03A5730 00000000 	// Same offset as previous
+B000A0B0 00000000 	// Same offset as previous
+B000AD7C 00000000 	// Same offset as previous
+20001864 00000001
+
+Would give:
+[No Hat]
+D3000000 00000000
+B060A65C 00000000
+B0001640 00000000
+B00000A4 00000000
+200017DC 00000000
+20001864 00000001
+B03A5730 00000000
+B000A0B0 00000000
+B000AD7C 00000000
+200017DC 00000000
+20001864 00000001
+D2000000 00000000
+-> Doesn't work. Revert to previous code (WM only for now).
+
+[No Hat (WM only)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+-> Semi-Working.
+-> UPDATE: when having died once, the no hat resets to hat on world map.
+
+Gonna look for changing values when in level.
+
+[No Hat Test 3 - Ingame]
+- 1 Byte
+- One Game Save File with Max Lives (=No Hat)
+- ONLY SEARCH in level 2-2 (change powerup, smaller, bigger, lose a life, gain lives to have no hat again). When max lives again, finish level to be sure, enter again and then search again.
+- DIFFERENT BY 1 & EQUAL TO.
+
+Ingame @ (2-2) (LAST BYTE VALUE ONLY!)
+14170D74 00000000 (ZONDER HOED)
+14170DFC 00000001 (ZONDER HOED)
+14175634 00000000 (ZONDER HOED)
+141756BC 00000001 (ZONDER HOED)
+
+-> Found these addresses way before, although
+didn't pay attention when I first found those,
+there are actually separate world map and ingame values.
+Must have been tired.
+-> Doing the same search for 1-1 and dumping RAM.
+-> Using already found cheats to quicken getting lives.
+
+Ingame @ (1-1) (LAST BYTE VALUE ONLY!)
+14170D74 00000000 (ZONDER HOED)
+14170DFC 00000001 (ZONDER HOED)
+14175634 00000000 (ZONDER HOED)
+141756BC 00000001 (ZONDER HOED)
+-> EXACTLY THE SAME RESULTS, SO PERHAPS NO POINTER NEEDED AT ALL?
+-> Dumping RAM first to be sure, then trying in different save file (also World 1-1 Ingame) -> Still the same. Won't be needing a pointer after all?
+
+RAM DUMPS (just to be sure, both do have no hat, so max lives)
+- nohat_ingame_1-1
+- nohat_ingame_2-2
+
+~~~
+First: the non pointer version:
+NOTE: I think the World Map still needs it's pointer, since there the values seem
+to differ each time (depending on world):
+
+[No Hat]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 14000000
+00170D74 00000000
+00170DFC 00000001
+00175634 00000000
+001756BC 00000001
+D2000000 00000000
+-> Doesn't seem to work. Trying pointers.
+-> Also, UPDATE: when having died once, the no hat resets to hat on world map.
+-> Perhaps it needs the pointers for the ingame values?
+-> Even if this doesn't work, I'm still a step closer to finding an answer.
+-> Additional idea should the pointers not work:
+   Trying to find lower based address using TempAR (keep double clicking) or
+   Gateway RAM Tools and insert the value directly?
+-> Additional idea #2: changing both 0x005 pointers (for below).
+
+~~~
+
+Pointer version:
+
+nohat_ingame_1-1	-> 14170D74
+nohat_ingame_2-2	-> 14170D74
+[A]
+B05E7210 00000000
+20006318 00000000
+
+nohat_ingame_1-1	-> 14170DFC
+nohat_ingame_2-2	-> 14170DFC
+[B]
+B05E7210 00000000	// Same offset as previous.
+200063A0 00000001
+
+nohat_ingame_1-1	-> 14175634
+nohat_ingame_2-2	-> 14175634
+[C]
+B05E7210 00000000
+2000ABD8 00000000
+
+nohat_ingame_1-1	-> 141756BC
+nohat_ingame_2-2	-> 141756BC
+[D]
+B05E7210 00000000	// Same offset as previous.
+2000AC60 00000001
+
+Would give:
+[No Hat (Ingame Only)]
+D3000000 00000000	// NOTE: Necessary, since WM version is D3... 17...
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+COMBINED WITH WM:
+
+[No Hat (Combined)]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+-> Doesn't work anymore on World Map and freezes in game (no error though, only black screen).
+
+~~~~~~
+-> Additional idea #1: changing values in above (f.e. zeroing all out)
+-> Additional idea #2: only keep first/last 2 address changes of each of the versions)?
+-> Additional idea #3: perhaps do try to add (IF NOT equals 0) before each address call? I don't think it's necessary AND it could be 0 (although not the entire address value (4 byte), so perhaps it wouldn't hurt).
+-> Additional idea #4 should the pointers not work:
+   Trying to find lower based address using TempAR (keep double clicking) or
+   Gateway RAM Tools and insert the value directly?
+-> Additional idea #5: changing both 0x005 pointers in RAM Dumps nohat_ingame_x-x.
+~~~~~~
+
+(#TODO -> Done 3/10/2019)
+
+[No Hat (WM only)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+-> Dropping the last 2 address codes, keeping only the first 2, works even when
+   returning to the World Map.
+   
+[No Hat (Ingame Only)]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+-> Dropping the last 2 address codes, keeping only the first 2, works.
+-> I also learned that a no hat Mario/Luigi
+   doesn't exist when having the following PowerUps:
+   - Tanooki
+   - White Tanooki
+   - Gold
+   It does work for Normal, Big, Fire, Mini & perhaps even Mega (didn't test).
+  
+COMBINED:
+
+[No Hat]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+-> Works. Still has an issue:
+When dying (Mario/Luigi becoming small): in World Map gets hat back.
+When reentering: still has hat back.
+When getting Powerup: No Hat.
+Perhaps I should try with the last 2 addresses?
+
+PS: No idea what the dropped addresses/values do.
+
+[No Hat (Combined first 2 addresses dropped)]
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+So basically I have
+
+[No Hat (Combined last 2 addresses dropped)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+[No Hat (Combined first 2 addresses dropped)]
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+Both combined work as previously (with the small Mario only issue).
+So, recombining:
+
+[No Hat]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+Was thinking, could it be the other 0x005 pointer I found earlier?
+Trying. UPDATE: IGNORED AND TRIED SOMETHING ELSE:
+
+~~~ MAJOR UPDATE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So, to explain, I tried all the below codes (I only changed the address order):
+
+[No Hat (Combined last 2 addresses dropped) A]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+[No Hat (Combined first 2 addresses dropped) A]
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+[No Hat (Combined last 2 addresses dropped) B]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+-> Works.
+
+[No Hat (Combined first 2 addresses dropped) B]
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Works.
+
+[No Hat (Combined last 2 addresses dropped) C]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+
+[No Hat (Combined first 2 addresses dropped) C]
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+[No Hat (The Original Combined One)]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+2000ABD8 00000000
+2000AC60 00000001
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+ONLY using a combination of the 2 toggled cheat codes, marked with B,
+it worked entirely as expected. Mario/Luigi always keeping No Hat.
+
+SO combining these two:
+
+[No Hat (With Extra D2)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Works but with small Mario/Luigi issue again??
+
+[No Hat (No Extra D2)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Instant crash when entering level.
+
+No idea a D2 instruction was so necessary...
+
+Trying to force the almost working code 2 times:
+
+[No Hat (2 times forced)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Nothing changes (still small M/L issue).
+
+=======
+Update:
+=======
+Toggled the codes separately on and off, seeing what changed and:
+
+[No Hat (Combined, dropped last 2 addresses) B]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+{WHEN BIG/FIRE/.?. MARIO/LUIGI.}
+
+[No Hat (Combined, dropped first 2 addresses) B]
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+{WHEN SMALL AND MINI MARIO/LUIGI.}
+
+So I should add a check on small(=0)/mini(=3) Mario/Luigi.
+Only one of these codes should be ran.
+Then the combination of both should finally work.
+Also todo: test Mega Mario/Luigi.
+
+[No Hat (Combined, With Size Check)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000	// If not Small Mario/Luigi (&)
+60000015 00000003	// If not Mini Mario/Luigi
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000	// Change to no hat value
+200063A0 00000001	// Change to no hat value
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000	// Change to no hat value
+20001A50 00000001	// Change to no hat value
+D2000000 00000000
+D3000000 00000000	// Continue here (These always write).
+B05E7210 00000000
+2000ABD8 00000000	// Change to no hat value
+2000AC60 00000001	// Change to no hat value
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000	// Change to no hat value
+20006330 00000001	// Change to no hat value
+D2000000 00000000
+-> Not in WM... Must have made some logical mistake somewhere...
+-> PS: I'm guessing logical mistake is I check if the entire address value
+   (containing more than 1 filled byte equals 0 or 3, which is never the case.)
+
+[UPDATE]
+=======================================
+[REDO FROM SCRATCH TO DIG A BIT DEEPER]
+=======================================
+All addresses:
+
+[No Hat (World Map Only)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+-> first 2 byte writes are for changing the hat textures
+   on Big, Fire & ... Mario/Luigi
+	- 1st byte write = 0 = don't show hat on big m/l
+	- 2nd byte write = 1 = show hair instead on big m/l
+-> last 2 byte writes are for changing the hat textures
+   on Small & Mini Mario/Luigi
+	- 1st byte write = 0 = don't show hat on small m/l
+	- 2nd byte write = 1 = show hair instead on small m/l
+
+[No Hat (Ingame Only)]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+-> first 2 byte writes are for changing the hat textures
+   on Big, Fire & ... Mario/Luigi
+	- 1st byte write = 0 = don't show hat on big m/l
+	- 2nd byte write = 1 = show hair instead on big m/l
+-> last 2 byte writes are for changing the hat textures
+   on Small & Mini Mario/Luigi
+	- 1st byte write = 0 = don't show hat on small m/l
+	- 2nd byte write = 1 = show hair instead on small m/l
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Splitting & testing to be sure:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[No Hat (World Map Only) - Big]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+
+-> 2 byte writes are for changing the hat textures
+   on Big, Fire & ... Mario/Luigi
+	- 1st byte write = 0 = don't show hat on big m/l
+	- 2nd byte write = 1 = show hair instead on big m/l
+	
+[No Hat (World Map Only) - Small]
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+-> 2 byte writes are for changing the hat textures
+   on Small & Mini Mario/Luigi
+	- 1st byte write = 0 = don't show hat on small m/l
+	- 2nd byte write = 1 = show hair instead on small m/l
+
+[No Hat (Ingame Only) - Big]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+-> 2 byte writes are for changing the hat textures
+   on Big, Fire & ... Mario/Luigi
+	- 1st byte write = 0 = don't show hat on big m/l
+	- 2nd byte write = 1 = show hair instead on big m/l
+
+[No Hat (Ingame Only) - Small]
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+-> 2 byte writes are for changing the hat textures
+   on Small & Mini Mario/Luigi
+	- 1st byte write = 0 = don't show hat on small m/l
+	- 2nd byte write = 1 = show hair instead on small m/l
+	
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Results:
+- Loaded saved game as Fire Mario (showing hat)
+	-> Enabling cheat [WM Only - Big] -> Works
+- Entered level as Fire Mario (showing hat)
+	-> Enabling cheat [Ingame Only - Big] -> Works
+- Dying in level. Entering World Map as Small Mario with hat (showing hat)
+	-> Enabling cheat [WM Only - Small] -> Works
+- Entered level as Small Mario with hat (showing hat)
+	-> Enabling cheat [Ingame Only - Small] -> Works
+- Exiting level -> Crashes
+	-> likely because it can't be small variant or big variant Mario/Luigi
+	   at the same time on World Map, so it needs a (better than above) check.
+	-> already wrote a 1 byte only check:
+	   AXXXXXXX FFFCIIYY
+		- A:		If not equal to (with mask).
+		- XXXXXXX:	The address.
+		- FFFC:		The mask, which equals to 1111 1111 1111 1100‬ in binary format.
+		- II:		Ignored values.
+		- YY:		The value to compare against.
+	-> From the Instant Powerup codes:
+	   With the following code the current (ingame?) size can be checked:
+	   D3000000 00000000
+	   605E7210 00000000
+	   B05E7210 00000000
+	   A0000015 FFFC0003	// When not Mini M/L for example.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So, with checks:
+
+[No Hat (World Map Only) - Big]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0000
+A0000015 FFFC0003
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+
+[No Hat (World Map Only) - Small]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+[No Hat (Ingame Only) - Big]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0000
+A0000015 FFFC0003
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+[No Hat (Ingame Only) - Small]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Results:
+- All on, only works when becoming small.
+- So... Should the big value always be written?
+	-> Removing the checks for the big variants.
+	-> Keeping the checks for the small variants.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So, with updated checks ((and no checks)):
+
+[No Hat (World Map Only) - Big]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+
+[No Hat (World Map Only) - Small]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+[No Hat (Ingame Only) - Big]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+[No Hat (Ingame Only) - Small]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Results:
+- All on, all work except for small on World Map.
+	-> Also remove the check over there?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So, with updated checks ((and no checks)):
+
+[No Hat (World Map Only) - Big]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+
+[No Hat (World Map Only) - Small]
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+[No Hat (Ingame Only) - Big]
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+
+[No Hat (Ingame Only) - Small]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Results:
+- Seems to work.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+So, combined (fingers crossed):
+
+[No Hat (not World 6)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+D2000000 00000000
+D3000000 17000000
+B029CAB0 00000000
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+D3000000 00000000
+B05E7210 00000000
+20006318 00000000
+200063A0 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 00000000
+B05E7210 00000000
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Results:
+- Works.
+- EXCEPT FOR:
+	A) Rainbow levels (INGAME, World Map=OK):
+	-> Mario/Luigi has no visible body,
+	   only a hat and eyes showing (with no hat code on).
+	-> Offset shouldn't be that big, since hat and body
+	   are probably close to each other (in real life and so I'm guessing in code too.)
+	B) World 6 (INGAME, World Map=OK):
+	-> Rainbow and other levels except Browser Castle:
+	   -> See (A)
+	-> 6-Browser Castle Ingame = INSTANT CRASH.
+	-> Seems to be the same as Instant Powerup codes.
+	-> Needs a check
+	   (Someone found this for the Instant Powerup Codes,
+	   could be different for the No Hat codes, but same logic):
+	   D3000000 00000000
+	   605E7210 00000000
+	   B05E7210 00000000
+	   60000015 00000000
+	   30000364 14000000	// If less than
+	   DO ALL THE ABOVE.
+	   D3000000 00000000
+	   605E7210 00000000
+	   B05E7210 00000000
+	   60000015 00000000
+	   40000364 14000000	// If greater than
+	   DO ALL THE ABOVE, THOUGH WITH DIFFERENT ADDRESSES/OFFSETS.
+	   -> [TODO] Still need to find those.
+	      (I COULD check for PointerInPointer codes... but pffrt...)
+	-> Gonna call it a day for now...
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[UPDATE 4/10/2019]
+
+Trying with Pointer In Pointer Codes first.
+Only needed for the Ingame values, since World Map is ok.
+-> Edit: aborting. Too many valid Pointer in Pointer values in this case.
+Going to do a search again for static addresses (like I found the previous addresses),
+then create a pointer version.
+
+[Rainbow Levels]
+- 1 Byte
+- One Game Save File with Max Lives (=No Hat)
+	-> Can reload when needed (to speed up)
+- SEARCHED IN MULTIPLE RAINBOW LEVELS. Die in other levels (since you can't in Rainbow levels).
+- DIFFERENT BY 1 & EQUAL TO.
+
+Found more values that were good candidates (was a more difficult search)...
+So I kept searching until I found a pattern of matching 0-1 values and small offsets
+between 1and2 and 3and4.
+(when having no hat):
+14041974 00000000
+140419FC 00000001
+14046254 00000000
+140462DC 00000001
+-> These must be the values. The one world that narrowed down the results most
+   was the Flower World. Handy tip.
+   
+RAM Dump: nohat_ingame_rainbowlvl_1-1
+
+Note inbetween... PERHAPS BY LOOKING FOR POINTER VALUES
+BY COMPARING THIS DUMP TO ONE FROM BEFORE, I COULD FIND BETTER POINTER THAT WORKS
+EVERYWHERE?
+
+RAM Dump: nohat_ingame_rainbowlvl_1-1
+14041974 00000000
+140419FC 00000001
+14046254 00000000
+140462DC 00000001
+
+nohat_ingame_1-1			-> 14170D74
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+[A] (picked first valid point, almost at bottom...)
+D3000000 17000000
+B0222EDC 00000000
+20006274 00000000
+D2000000 00000000
+
+nohat_ingame_1-1			-> 14170DFC
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+[B]
+D3000000 17000000	// Same offset as previous.
+B0222EDC 00000000	// Same offset as previous.
+200062FC 00000001
+D2000000 00000000
+
+nohat_ingame_1-1			-> 14175634
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+[C]
+D3000000 16000000
+B0F85224 00000000
+200004DC 00000000
+D2000000 00000000
+
+nohat_ingame_1-1			-> 141756BC
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+[D]
+D3000000 16000000	// Same offset as previous.
+B0F85224 00000000	// Same offset as previous.
+20000564 00000001
+D2000000 00000000
+-> Crashes (When getting shot by pipe for example in Rainbow levels or loading beforehand.)
+
+[D v2] // PICKED THE SECOND POINTER (CLOSEST OFFSET TO THE PREVIOUS)
+D3000000 16000000	// Same offset as previous.
+60F86264 00000000
+B0F86264 00000000
+20000564 00000001
+D2000000 00000000
+-> Crashes (When getting shot by pipe for example in Rainbow levels or loading beforehand.)
+
+So, this would give:
+
+[No Hat (Ingame Only) - Big]
+D3000000 17000000
+B0222EDC 00000000
+20006274 00000000
+200062FC 00000001
+D2000000 00000000
+-> Crashes (f.e. when reaching end level)
+
+[No Hat (Ingame Only) - Small]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+A0000015 FFFC0001
+A0000015 FFFC0002
+A0000015 FFFC0004
+A0000015 FFFC0005
+A0000015 FFFC0006
+A0000015 FFFC0007
+D3000000 16000000
+B0F85224 00000000
+200004DC 00000000
+B0F86264 00000000
+20000564 00000001
+D2000000 00000000
+-> Crashes (When getting shot by pipe for example in Rainbow levels or loading beforehand.)
+
+Conclusion: currently going nowhere with this.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Update 2019/10/06]
+
+PointerInPointer version (4 levels deep):
+
+nohat_ingame_1-1		-> 14170D74
+nohat_ingame_2-2		-> 14170D74
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+[A]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006318 00000000
+D2000000 00000000
+
+when in rainbow level (and world 6?):
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006408 00000000
+D2000000 00000000
+
+============================================
+
+nohat_ingame_1-1		-> 14170DFC
+nohat_ingame_2-2		-> 14170DFC
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+[B]
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+200063A0 00000001
+D2000000 00000000 //
+
+when in rainbow level (and world 6?):
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006490 00000001
+D2000000 00000000 //
+
+============================================
+
+nohat_ingame_1-1		-> 14175634
+nohat_ingame_2-2		-> 14175634
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+[C]
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000ABD8 00000000
+D2000000 00000000 //
+
+when in rainbow level (and world 6?):
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000ACE8 00000000
+D2000000 00000000 //
+
+============================================
+
+nohat_ingame_1-1		-> 141756BC
+nohat_ingame_2-2		-> 141756BC
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+[D]
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000AC60 00000001
+D2000000 00000000 //
+
+when in rainbow level (and world 6?):
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000AD70 00000001
+D2000000 00000000 //
+
+============================================
+
+So:
+
+[No Hat IG PiP - Normal Levels]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006318 00000000
+200063A0 00000001
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Works in normal levels.
+
+[No Hat IG PiP - Rainbow and Browser Levels]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006408 00000000
+20006490 00000001
+2000ACE8 00000000
+2000AD70 00000001
+D2000000 00000000
+-> Works in Rainbow and Browser levels up to 6-2.
+From then on it crashes.
+In 6-6 (Browser Castle) it doesn't crash, although it doesn't work (keeps hat).
+
+Now, for the check to see wether in normal or rainbow/browser levels:
+
+Trying the check found by someone for the Instant Powerups:
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000
+30000364 14000000	// If less than (Browser)
+DO
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000
+40000364 14000000	// If greater than (Normal)
+DO
+
+Gives:
+
+[No Hat IG Rev 2]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000
+30000364 14000000
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006408 00000000
+20006490 00000001
+2000ACE8 00000000
+2000AD70 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000
+40000364 14000000
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006318 00000000
+200063A0 00000001
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Doesn't seem to check properly for rainbow levels or worls 6-2 -> 6-5.
+6-6 keeps hat.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Update 2019/10/06]
+
+Comparing RAM Dumps nohat_ingame_1-1 & nohat_ingame_rainbowlvl_1-1
+PointerInPointer version (5 levels deep):
+ALSO NOTE:
+-> Ingame addresses in rainbow levels
+AFTER PIPE SHOT
+are also the same values.
+It may be the transition that crashes?
+
+nohat_ingame_1-1			-> 14170D74
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+[A]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B0008160 00000000
+B0000020 00000000
+20006274 00000000
+D2000000 00000000
+
+============================================
+
+nohat_ingame_1-1			-> 14170DFC
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+[B]
+D3000000 00000000 //
+60100850 00000000 //
+B0100850 00000000 //
+B0014CF5 00000000 //
+B0005FC8 00000000 //
+B0008160 00000000 //
+B0000020 00000000 //
+200062FC 00000001
+D2000000 00000000 //
+
+============================================
+
+nohat_ingame_1-1			-> 14175634
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+[C]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005F28 00000000
+B00027A4 00000000
+B00000B4 00000000
+200004DC 00000000
+D2000000 00000000
+
+============================================
+
+nohat_ingame_1-1			-> 141756BC
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+[D]
+D3000000 00000000 //
+60100850 00000000 //
+B0100850 00000000 //
+B0014CF5 00000000 //
+B0005F28 00000000 //
+B00027A4 00000000 //
+B00000B4 00000000 //
+20000564 00000001
+D2000000 00000000 //
+
+============================================
+
+So:
+
+[No Hat IG (6 levels PiP)]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B0008160 00000000
+B0000020 00000000
+20006274 00000000
+200062FC 00000001
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005F28 00000000
+B00027A4 00000000
+B00000B4 00000000
+200004DC 00000000
+20000564 00000001
+D2000000 00000000
+-> Crashes f.e. after pipe shot in rainbow levels.
+
+With 32 bit address value not equals 0:
+[No Hat IG (6 levels PiP)]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B0008160 00000000
+B0000020 00000000
+60006274 00000000
+20006274 00000000
+600062FC 00000000
+200062FC 00000001
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005F28 00000000
+B00027A4 00000000
+B00000B4 00000000
+600004DC 00000000
+200004DC 00000000
+60000564 00000000
+20000564 00000001
+D2000000 00000000
+-> No difference. Crashes f.e. after pipe shot in rainbow levels.
+
+It may be the transition that crashes?
+
+----------------------------------->
+
+Reverted to:
+PointerInPointer version (4 levels deep):
+
+nohat_ingame_1-1		-> 14170D74
+nohat_ingame_2-2		-> 14170D74
+
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+[A]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006318 00000000
+D2000000 00000000
+
+when in rainbow level (and world 6?):
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006408 00000000
+D2000000 00000000
+
+============================================
+
+nohat_ingame_1-1		-> 14170DFC
+nohat_ingame_2-2		-> 14170DFC
+
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+[B]
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+200063A0 00000001
+D2000000 00000000 //
+
+when in rainbow level (and world 6?):
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006490 00000001
+D2000000 00000000 //
+
+============================================
+
+nohat_ingame_1-1		-> 14175634
+nohat_ingame_2-2		-> 14175634
+
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+[C]
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000ABD8 00000000
+D2000000 00000000 //
+
+when in rainbow level (and world 6?):
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000ACE8 00000000
+D2000000 00000000 //
+
+============================================
+
+nohat_ingame_1-1		-> 141756BC
+nohat_ingame_2-2		-> 141756BC
+
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+[D]
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000AC60 00000001
+D2000000 00000000 //
+
+when in rainbow level (and world 6?):
+D3000000 00000000 //
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+2000AD70 00000001
+D2000000 00000000 //
+
+============================================
+
+So:
+
+[No Hat IG PiP - Normal Levels]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006318 00000000
+200063A0 00000001
+2000ABD8 00000000
+2000AC60 00000001
+D2000000 00000000
+-> Works in normal levels.
+
+[No Hat IG PiP - Rainbow and Browser Levels]
+D3000000 00000000
+60100850 00000000
+B0100850 00000000
+B0014CF5 00000000
+B0005FC8 00000000
+B000C658 00000000
+20006408 00000000
+20006490 00000001
+2000ACE8 00000000
+2000AD70 00000001
+D2000000 00000000
+-> Works in Rainbow and Browser levels up to 6-2.
+From then on it crashes.
+In 6-6 (Browser Castle) it doesn't crash, although it doesn't work (keeps hat).
+-> No crash after pipe shot.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[Update 2019/10/07]
+
+Looked for addresses in (6-Browser Castle):
+nohat_ingame_6-6
+140419B4 00000000
+14041A3C 00000001
+14046294 00000000
+1404631C 00000001
+
+Opening different TempAR instances and comparing different RAM dumps.
+Then I'm seeing which valid pointers lead to the same addresses/offset/values
+(also by double clicking and comparing pointers in pointers).
+
+When combining RAM dumps ingame_1-1 and ingame_6-6:
+-> Cranked the maximum offset to 0x2500000 and still can't find one valid pointer.
+
+-> Continuing with matching RAM Dumps:
+~ ingame_1-1 & ingame_1-2
+~ ingame_1-1 & ingame_rainbowlevel_1-1
+
+and then, separately:
+~ ingame_6-6 & ingame_6-6.
+
+Found match, went 2 levels deep (for not having to set another D3 offset):
+-> Address 0x17222EDC	(Values: 0x1416AB00) (Value 6-6: 0x1403B700)
+
+=======================================>
+
+nohat_ingame_1-1			-> 14170D74
+nohat_ingame_2-2			-> 14170D74
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+nohat_ingame_6-6			-> 140419B4
+[A]
+(All but Browser)
+D3000000 00000000
+605E2D18 00000000
+B05E2D18 00000000
+B0000020 00000000
+20006274 00000000
+D2000000 00000000
+
+(Browser)
+D3000000 00000000	//
+605E2D18 00000000	//
+B05E2D18 00000000	//
+B0000020 00000000	//
+200062B4 00000000	// Note the offset difference.
+D2000000 00000000	//
+
+============================================
+
+nohat_ingame_1-1			-> 14170DFC
+nohat_ingame_2-2			-> 14170DFC
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+nohat_ingame_6-6			-> 14041A3C
+[B]
+(All but Browser)
+D3000000 00000000 //
+605E2D18 00000000 //
+B05E2D18 00000000 //
+B0000020 00000000 //
+200062FC 00000001
+D2000000 00000000 //
+
+(Browser)
+D3000000 00000000	//
+605E2D18 00000000	//
+B05E2D18 00000000	//
+B0000020 00000000	//
+2000633C 00000001	// Note the offset difference.
+D2000000 00000000	//
+
+============================================
+
+nohat_ingame_1-1			-> 14175634
+nohat_ingame_2-2			-> 14175634
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+nohat_ingame_6-6			-> 14046294
+[C]
+(All but Browser)	??? (note: had an invalid pointer between 1-1 & 2-2 -> perhaps mario/luigi size difference? still taking the pointer that seems to match best. Could crash...)
+D3000000 00000000
+605EFB1C 00000000
+B05EFB1C 00000000
+B00000B4 00000000
+200004DC 00000000
+D2000000 00000000
+
+(Browser)
+D3000000 00000000
+
+
+============================================
+
+nohat_ingame_1-1			-> 141756BC
+nohat_ingame_2-2			-> 141756BC
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+nohat_ingame_6-6			-> 1404631C
+[D]
+(All but Browser)
+D3000000 00000000
+605EFB1C 00000000
+B05EFB1C 00000000
+B00000B4 00000000
+20000564 00000001
+D2000000 00000000
+
+(Browser)
+D3000000 00000000
+
+
+============================================
+
+So:
+
+[No Hat - All but Browser ?]
+D3000000 00000000
+605E2D18 00000000
+B05E2D18 00000000
+B0000020 00000000
+20006274 00000000
+200062FC 00000001
+605EFB1C 00000000
+B05EFB1C 00000000
+B00000B4 00000000
+200004DC 00000000
+20000564 00000001
+D2000000 00000000
+
+[No Hat - All but Browser - Big Only]
+D3000000 00000000
+605E2D18 00000000
+B05E2D18 00000000
+B0000020 00000000
+20006274 00000000
+200062FC 00000001
+D2000000 00000000
+
+[No Hat - All but Browser - Small Only ?]
+D3000000 00000000
+605EFB1C 00000000
+B05EFB1C 00000000
+B00000B4 00000000
+200004DC 00000000
+20000564 00000001
+D2000000 00000000
+
+Conclusion:
+- DOESN'T WORK (keeps hat when small or big + crashes after a while.)
+
+===============================================
+TRYING OTHER STUFFS:
+===============================================
+
+-> Continuing with matching RAM Dumps:
+~ ingame_1-1 & ingame_1-2
+~ ingame_rainbowlevel_1-1 & ingame_rainbowlevel_1-1
+~ ingame_6-6 & ingame_6-6
+
+Address 0x005E7210 can have (for what I found at least 3 different offsets/values):
+~ for 1-1 & 1-2		-> offset: 0x63A0 // value: 0x1416AA5C
+~ for 1-rb & 1-rb	-> offset: 0x6490 // value: 0x1403B56C
+~ for 6-6 & 6-6		-> offset: 0x6448 // value: 0x1403B56C
+
+PERHAPS do a check anyway?
+So, with the offsets:
+D3000000 00000000
+405E7210 14100000	// if greater than &
+605E7210 1403B56C	// not equal to rainbow/browser castle: normal levels
+B05E7210 00000000
+200063A0 00000000
+D3000000 00000000
+505E7210 1403B56C	// if equal to: rainbow levels
+B05E7210 00000000
+20006490 00000000
+D3000000 00000000
+305E7210 14100000	// if less than: castle level
+B05E7210 00000000
+20006448 00000000
+D2000000 00000000
+
+-> NEEDS REFINEMENT + TESTS...
+Check address 0x005E7210
+
+=======================================>
+
+nohat_ingame_1-1			-> 14170D74
+nohat_ingame_2-2			-> 14170D74
+nohat_ingame_rainbowlvl_1-1	-> 14041974
+nohat_ingame_6-6			-> 140419B4
+[A]
+
+
+============================================
+
+nohat_ingame_1-1			-> 14170DFC
+nohat_ingame_2-2			-> 14170DFC
+nohat_ingame_rainbowlvl_1-1	-> 140419FC
+nohat_ingame_6-6			-> 14041A3C
+[B]
+
+
+============================================
+
+nohat_ingame_1-1			-> 14175634
+nohat_ingame_2-2			-> 14175634
+nohat_ingame_rainbowlvl_1-1	-> 14046254
+nohat_ingame_6-6			-> 14046294
+[C]
+
+
+
+============================================
+
+nohat_ingame_1-1			-> 141756BC
+nohat_ingame_2-2			-> 141756BC
+nohat_ingame_rainbowlvl_1-1	-> 140462DC
+nohat_ingame_6-6			-> 1404631C
+[D]
+
+
+
+============================================
+
+So:
+
+
+-----
+[Update 2019-10-08]
+-----
+- 4 Bytes
+- Started as Small Mario, Small Mario & Big Mario (search doesn't matter).
+- Different by 1, Equal To & Not Equal To.
+
+==========
+Level 1-1, 1-2 (but not f.e. 1-3):
+&
+Level 2-2:
+==========
+Ingame (with hat)		IG (no hat)		// World Map (with hat)		// World Map (no hat)
+=================		===========		=======================		=====================
+14080C94 00010001		// 00010000
+--> Doesn't do it ingame, shows gap in head on World Map (no hair visible, no hat visible)...
+1416AADC 00000455		// 00000456
+--> Don't know by heart what I previously found as addresses for max lives, but this changes to max lives as well (ON THE FLY, WHEN IN GAME!). Gonna leave a TODO (#TODO)
+
+14170D74 00010001		// 00010000		// 14171018					// 3F0586B0
+14170DFC 00020000		// 00020001		// 00000000					// 00000000
+14175634 00010001		// 00010000		// 172263A4					// BE50A362
+141756BC 00020000		// 00020001		// 00000000					// 3E37EEB0
+										// WHEN LOADING GAME		// WHEN LOADING GAME
+										
+										// OR EQUAL VALUES			// OR EQUAL VALUES
+										// BEING 00010001			// BEING 00010000
+										// & 00020000				// & 00020000
+										// WHEN SET					// WHEN SET
+
+										=> game uses this to change mario/luigi when ingame.
+
+
+[Update 2019/10/09]
+
+Tryout:
+[No Hat IG (1-1 +)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D2000000 00000000
+-> Works.
+
+Others:
+
+[No Hat IG (Rainbow Levels)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D2000000 00000000
+
+[No Hat IG (Browser Castle)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D2000000 00000000
+
+Combined:
+[No Hat IG (WIP)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D2000000 00000000
+-> Works:
+
+TODO:
+3-1
+6-5
+
+[Update 2019/10/10]
+
+==========
+Level 3-1:
+==========
+14063F94
+1406401C
+14068854
+140688DC
+
+[No Hat IG (3-1)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D2000000 00000000
+
+==========
+Level 6-5:
+==========
+1410C974
+1410C9FC
+14111234
+141112BC
+
+[No Hat IG (6-5)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D2000000 00000000
+
+Combined:
+[No Hat IG (WIP)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D2000000 00000000
+
+TODO:
+6-B
+
+==========
+Level 6-B:
+==========
+140A5174
+140A51FC
+140A9A34
+140A9ABC
+
+[No Hat IG (6-B)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+
+Combined:
+[No Hat IG (WIP)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+
+Copied from above (found earlier):
+[No Hat (World Map Only)]
+D3000000 17000000
+B029CAB0 00000000
+200019C8 00000000
+20001A50 00000001
+200062A8 00000000
+20006330 00000001
+D2000000 00000000
+
+Combined with World Map Code:
+[No Hat]
+D3000000 17000000
+6029CAB0 00000000
+B029CAB0 00000000
+900019C8 FFFC0001
+200019C8 00000000
+D0000000 00000000
+90001A50 FFFC0000
+20001A50 00000001
+D0000000 00000000
+900062A8 FFFC0001
+200062A8 00000000
+D0000000 00000000
+90006330 FFFC0000
+20006330 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+
+-> Works. IMPORTANT: World Map code needs to come first in order to work on WM. (Don't know why).
+-> PS: Edited the World Map check with a mask, since returning from f.e. a Rainbow level can generate
+00000001 instead of 00010001.
+-> Doesn't work on USA for the moment. Probably needs one additional offset in order to work.
+
+[Update 2019/10/11]
+========
+USA PORT
+========
+Ram Dumps:
+-> nohat_ingame_1-1_USA
+14165694 00010000
+1416571C 00020001
+14169F54 00010000
+14169FDC 00020001
+
+-> nohat_worldmap_1-1_USA
+140743F4 00010000
+1407447C 00020001
+14078CD4 00010000
+14078D5C 00020001
+
+[No Hat (USA)]
+D3000000 00000000
+B060A634 00000000
+90014D84 FFFC0001
+20014D84 00000000
+D0000000 00000000
+90014E0C FFFC0000
+20014E0C 00000001
+D0000000 00000000
+90014058 FFFC0001
+20014058 00000000
+D0000000 00000000
+900140E0 FFFC0000
+200140E0 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+-> Crashes, need 1 more RAM dump in another world to find a better pointer.
+
+-> nohat_worldmap_1-1_USA
+140743F4 00010000
+1407447C 00020001
+14078CD4 00010000
+14078D5C 00020001
+
+-> nohat_worldmap_2-2_USA
+14075654 00010000
+140756DC 00020001
+14079F34 00010000
+14079FBC 00020001
+
+[No Hat (USA)]
+D3000000 17000000
+602D1EC0 00000000
+B02D1EC0 00000000
+900017DC FFFC0001
+200017DC 00000000
+D0000000 00000000
+90001864 FFFC0000
+20001864 00000001
+D0000000 00000000
+900060BC FFFC0001
+200060BC 00000000
+D0000000 00000000
+90006144 FFFC0000
+20006144 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+-> Works. UPDATE: Doesn't work. Was too quick on the results.
+-> Still a todo. World Map works though, just not IG.
+
+TODO:
+(USA port)
+
+[Update 2019/10/12]
+
+Ram Dumps:
+
+-> nohat_ingame_1-1_USA
+14165694 00010000
+1416571C 00020001
+14169F54 00010000
+14169FDC 00020001
+
+-> nohat_ingame_5-R_USA
+14036294 00010000
+1403631C 00020001
+1403AB74 00010000
+1403ABFC 00020001
+
+[No Hat WM (USA)]
+D3000000 17000000
+602D1EC0 00000000
+B02D1EC0 00000000
+900017DC FFFC0001
+200017DC 00000000
+D0000000 00000000
+90001864 FFFC0000
+20001864 00000001
+D0000000 00000000
+900060BC FFFC0001
+200060BC 00000000
+D0000000 00000000
+90006144 FFFC0000
+20006144 00000001
+D2000000 00000000
+
+[No Hat IG (USA) 1]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+-> Works. 5-R missing in this one though.
+
+[No Hat IG (USA) 2]
+D3000000 00000000
+605EF9A8 00000000
+B05EF9A8 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+-> Works too. 5-R missing in this one though.
+
+Combined:
+
+[No Hat (USA)]
+D3000000 17000000
+602D1EC0 00000000
+B02D1EC0 00000000
+900017DC FFFC0001
+200017DC 00000000
+D0000000 00000000
+90001864 FFFC0000
+20001864 00000001
+D0000000 00000000
+900060BC FFFC0001
+200060BC 00000000
+D0000000 00000000
+90006144 FFFC0000
+20006144 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+-> Doesn't work anymore? Strange...
+-> BTW, if 005E7210 is changed to 005EF9A8, straight up crashes when entering level.
+-> Must have something to do with World Map code interfering. Doesn't do that in Eur version though?
+
+As a tryout, inverting the WM and IG codes:
+
+[No Hat (USA)]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+D3000000 17000000
+602D1EC0 00000000
+B02D1EC0 00000000
+900017DC FFFC0001
+200017DC 00000000
+D0000000 00000000
+90001864 FFFC0000
+20001864 00000001
+D0000000 00000000
+900060BC FFFC0001
+200060BC 00000000
+D0000000 00000000
+90006144 FFFC0000
+20006144 00000001
+D2000000 00000000
+-> Now IG works (5-R still missing in here though),
+-> But WM doesn't.
+
+Trying other WM code (other valid pointer results):
+
+Reminder:
+-> nohat_worldmap_1-1_USA
+140743F4 00010000
+1407447C 00020001
+14078CD4 00010000
+14078D5C 00020001
+
+-> nohat_worldmap_2-2_USA
+14075654 00010000
+140756DC 00020001
+14079F34 00010000
+14079FBC 00020001
+
+[No Hat (USA)]
+D3000000 17000000
+602D2610 00000000
+B02D2610 00000000
+900017D8 FFFC0001
+200017D8 00000000
+D0000000 00000000
+90001860 FFFC0000
+20001860 00000001
+D0000000 00000000
+900060B8 FFFC0001
+200060B8 00000000
+D0000000 00000000
+90006140 FFFC0000
+20006140 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D2000000 00000000
+-> No change.
+
+[Update 2019/10/12]
+
+5-Rainbow:
+
+Ram Dumps:
+
+-> nohat_ingame_5-R_USA
+14036294 00010000
+1403631C 00020001
+1403AB74 00010000
+1403ABFC 00020001
+
+[No Hat IG Level 5-Rainbow]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+5000640C 00010001
+0000640C 00010000
+D0000000 00000000
+50006494 00020000
+00006494 00020001
+D0000000 00000000
+5000ACEC 00010001
+0000ACEC 00010000
+D0000000 00000000
+5000AD74 00020000
+0000AD74 00020001
+D2000000 00000000
+
+-------------------------
+
+-> nohat_worldmap_1-1_USA
+140743F4 00010000
+1407447C 00020001
+14078CD4 00010000
+14078D5C 00020001
+
+-> nohat_worldmap_2-2_USA
+14075654 00010000
+140756DC 00020001
+14079F34 00010000
+14079FBC 00020001
+
+[No Hat (World Map)]
+D3000000 17000000
+602913D0 00000000
+B02913D0 00000000
+500019C8 00010001
+000019C8 00010000
+D0000000 00000000
+50001A50 00020000
+00001A50 00020001
+D0000000 00000000
+500062A8 00010001
+000062A8 00010000
+D0000000 00000000
+50006330 00020000
+00006330 00020001
+D2000000 00000000
+-> Works. Took the valid pointer that was a little above the cluster of valid pointers.
+-> It did the trick. Tricky tricky though...
+-> With the previous code, perhaps a game instruction changed back the edited values after cheat had applied.
+-> Could be... Not sure. Possibility since the cheat most certainly isn't applied after every instruction.
+-> Anyway, works now... Code ported.
+
+Optimized code a bit (didn't change much):
+
+=========
+USA code:
+=========
+-> Changed pointer for World Map.
+-> Added 5-Rainbow level offsets.
+-> Can be optimized by removing all D0000000 and the D2000000 inbetween. Don't think they are necessary.
+
+[No Hat (USA)]
+D3000000 17000000
+602913D0 00000000
+B02913D0 00000000
+500019C8 00010001
+000019C8 00010000
+D0000000 00000000
+50001A50 00020000
+00001A50 00020001
+D0000000 00000000
+500062A8 00010001
+000062A8 00010000
+D0000000 00000000
+50006330 00020000
+00006330 00020001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D0000000 00000000
+5000640C 00010001
+0000640C 00010000
+D0000000 00000000
+50006494 00020000
+00006494 00020001
+D0000000 00000000
+5000ACEC 00010001
+0000ACEC 00010000
+D0000000 00000000
+5000AD74 00020000
+0000AD74 00020001
+D2000000 00000000
+-> Works.
+
+=========
+EUR code:
+=========
+-> Added 5-Rainbow level offsets found in USA. Perhaps those are used in a level I didn't test before.
+-> Can be optimized by removing all D0000000 and the D2000000 inbetween. Don't think they are necessary.
+
+[No Hat (Europe)]
+D3000000 17000000
+6029CAB0 00000000
+B029CAB0 00000000
+900019C8 FFFC0001
+200019C8 00000000
+D0000000 00000000
+90001A50 FFFC0000
+20001A50 00000001
+D0000000 00000000
+900062A8 FFFC0001
+200062A8 00000000
+D0000000 00000000
+90006330 FFFC0000
+20006330 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D0000000 00000000
+5000640C 00010001
+0000640C 00010000
+D0000000 00000000
+50006494 00020000
+00006494 00020001
+D0000000 00000000
+5000ACEC 00010001
+0000ACEC 00010000
+D0000000 00000000
+5000AD74 00020000
+0000AD74 00020001
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Play As Mario/Luigi]
+
+Tryouts 2)
+----------
+Save file waar beiden konden worden geselecteerd via de normale weg.
+Telkens gezocht op Not Equal wanneer ander character geladen en om te verfijnen Equal met zelfde character.
+Gevonden resultaten:
+[Play As Luigi]
+16773948 00000104
+
+[Play As Mario]
+16773948 00000004
+
+Logische gedachtengang:
+4 is huidige powerup (=Tanooki), 0 en 1 moet on-off switch zijn voor character.
+
+Vervolg cheatcode:
+Enkel character mag wijzigen, powerup niet.
+Voorbeeld: 00-00-01-04 moet 00-00-00-04 worden.
+Dus:
+Enkel adres 16773949 moet worden gewijzigd.
+
+
+
+8bit write = manipulate a single byte, thus:
+1) Offset address first (using D3)
+2) Add 2 in front of remainder address in order to write a single byte.
+3) Single byte: 1=Luigi, 0=Mario
+
+[Play As Mario]
+D3000000 16000000
+20773949 00000000
+D2000000 00000000
+
+[Play As Luigi]
+D3000000 16000000
+20773949 00000001
+D2000000 00000000
+
+POINTER EDITION:
+
+[Play As Mario]
+B05E7158 00000000
+00000039 00000000
+D2000000 00000000
+-> *
+[Play As Luigi]
+B05E7158 00000000
+00000039 00000001
+D2000000 00000000
+-> *
+* Still often crashes.
+Tried second pointer with same address value in TempAR.
+More success at first, still crashes, trying other pointers. ==>
+
+~~~~~~~~~~~~~~
+FINAL (STABLE)
+Note: experienced one crash, can't tell if it's from this code.
+PS: I THINK it's from the unlimited time code.
+When on, forced a crash in a rainbow level. (Update: Fixed time code.)
+~~~~~~~~~~~~~~
+[Play As Mario]
+D3000000 16000000
+A0773949 FFFC0000
+20773949 00000000
+D2000000 00000000
+
+[Play As Luigi]
+D3000000 16000000
+A0773949 FFFC0001
+20773949 00000001
+D2000000 00000000
+
+Pointer Edition:
+
+[Play As Mario]
+D3000000 0028CDEF
+60000000 00000000
+B0000000 00000000
+A00157A8 FFFC0001
+200157A8 00000001
+D2000000 00000000
+
+[Play As Luigi]
+D3000000 0028CDEF
+60000000 00000000
+B0000000 00000000
+A00157A8 FFFC0001
+200157A8 00000001
+D2000000 00000000
+
+-> (Works on EUR, not on USA)
+
+USA Port:
+
+[Play As Mario]
+D3000000 16000000
+A076D4BF FFFC0000
+2076D4BF 00000000
+D2000000 00000000
+
+[Play As Luigi]
+D3000000 16000000
+A076D4BF FFFC0001
+2076D4BF 00000001
+D2000000 00000000
+
+Note: Enabled code takes effect upon:
+- Title Screen:
+	- Loading one of three game saves (even when not completed).
+- World Map:
+	- After entering any level.
+	- Switching stage.
+- In Level:
+	- After exiting level.
+
+Search Enhancements I thought of afterwards:
+~ Perhaps look for a single byte, difference of 1.
+
+Tryouts 1)
+----------
+[A Play As Luigi]
+0FFFF67C 15BFE170
+-> Doesn't work.
+
+[A Play As Mario]
+0FFFF67C 15C03908
+-> Doesn't work.
+
+[B Play As Luigi]
+005F3984 00000989
+005F5CC4 00000061
+006BAE74 167AB000
+006BB318 167AAE20
+006BD088 167AAE78
+-> Crashes
+
+[B Play As Mario]
+005F3984 00000963
+005F5CC4 0000005F
+006BAE74 167AAA00
+006BB318 167AAC40
+006BD088 167AAC98
+-> Crashes
+
+[3 Star Coins Collected (Finish Level or Grab Flag)]
+============================
+9 adressen (level 1-1):
+1416AB14 00000000
+
+1416BD9C 44A40000
+1416BDA0 C3B00000
+157E65BC 3F4D0000
+157E65C4 3F650000
+157E68F4 3F4D0000
+157E68FC 3F650000
+16C3D4D4 3F4D0000
+16C3D4DC 3F650000
+
+
+Nota adres 1416AB14:
+Geen ster gepakt: 00FFFFFF
+1e ster gepakt: 00FFFF00
+1e en 2e ster gepakt: 00FF0000
+Alle sterren gepakt: 00000000
+
+- Eerste enkel gezocht binnen 1 level op Equal en Not Equal. 9 adressen.
+- Enkel de laatste 6 adressen blijven over in (2-1) wanneer verder gezocht zonder resetten, maar de waarden zijn anders (vermoedelijk andere adressen).
+
+
+Eerste adres werkt voor (1-1) en schrijft weg.
+1416AB14 00000000
+Bij herstart level, reset opnieuw naar 00FFFFFF.
+Wanneer gele munten reeds allen gepakt, wordt dit gebruikt om al dan niet gepakte blauwe munten bij te houden.
+Het wegschrijven en bijhouden per level van alle munten, gebeurt op een andere locatie (zie zoekresultaten hieronder).
+
+Gezocht in level 2-1 op waarden 00FFFFFF en (na eerste ster te hebben gepakt) 00FFFF00. Resultaat:
+(level 2-1)
+14202F14 00000000
+
+Dus:
+1416AB14 00000000
+en
+14202F14 00000000
+=> Pointer zoeken m.b.v. RAM dumps (ik doe ze in respectievelijk level zelf).
+--> (2 pointers, testen)
+~~~~~~~~~~
+RESULTAAT:
+~~~~~~~~~~
+[(A) 3 Star Coins Collected (Finish Level or Grab Flag)]
+605E7210 00000000
+B05E7210 00000000
+000000B8 00000000
+D2000000 00000000
+--> Works
+
+[(B) 3 Star Coins Collected (Finish Level or Grab Flag)]
+605EF9A8 00000000
+B05EF9A8 00000000
+000000B8 00000000
+D2000000 00000000
+--> Crashes
+
+============================
+Werkt niet (tenminste niet alleen? mogelijk combinaties??)
+Start met 0000000, registreert wel wanneer je een gele of blauwe ster pakt,
+maar schrijft niets weg.
+
+1416BDA0 C3B00000	(Alle sterren)
+1416BDA0 C3A20000	(1e ster)
+1416BDA0 C3A80000	(1e en 2e ster)
+
+
+Deze houdt het bij voor levels, maar bewaart het niet:
+Werkt niet, blijkt toeval te zijn?
+16AA31E6 00000007
+============================
+D3000000 16000000
+20AA31E6 00000007
+D2000000 00000000
+
+en
+
+D3000000 16000000
+00AA31E6 00000007
+D2000000 00000000
+
+freezen
+
+[All Star Coins Collected (stage 1 & level 2-1)]
+=============================
+Deze doet het voor level 1-1:
+16763740 00000007
+(RAM-Dump StarCoins_1)
+
+Deze doet het voor level 1-2:
+16763740 00000070
+
+Deze doet het voor level 2-1:
+1676374C 70000000
+(RAM-Dump StarCoins_2)
+=============================
+
+Pointer Searcher geeft geen resultaten.
+
+(?) 150E5EF8 00000007
+
+STANDAARD WAARDE:
+16763740 07700000
+16763744 00000000
+
+Werkende waarden: (?) iets met 32bit (4 byte) write of 16 bit (2 byte) write
+16763740 77777777
+16763744 77777777
+(?)
+16763740 00007777
+16763742 00007777
+16763744 00007777
+16763746 00007777
+(?)
+06763740 00007777
+06763744 00007777
+
+1XXXXXXX 0000YYYY – 16bit write to [XXXXXXX + offset]
+writes the 16-bit value we specify to the given address. This manipulates two bytes starting at the given address. Two 16-bit writes can replace a 32-bit write, however endianness has to be taken into account. See Note at the end of the tutorial about endianness.
+Endianness meaning:
+In Hex Editor, 00007777 looks like
+77 77 00 00
+
+Gezocht op:
+Unknown Search
+-> Start level - geen ster : scan
+-> Exit level
+-> Start level - pak een ster: NIET SCANNEN!
+-> Eindig level
+-> Start level - pak GEEN ster: Scannen op Bigger Than
+-> Pak een ster: NIET SCANNEN, eindig level eerst.
+-> Start level - Scannen op Bigger Than
+-> ...
+-> Zoek een paar maal op Equal To
+
+-> Ga door met zoeken tot 3 sterren zijn gepakt (waarde zou 7 moeten zijn)
+
+-> Herstart de save (van 1-1) waar geen ster is gepakt en zoek op Smaller Than
+
+!!!Bewaar na het succesvol scannen een dump om de pointer te zoeken.!!!
+De waarde reset steeds?
+
+ Tips:
+Geen ster = 0
+Enkel eerste ster = 1
+Enkel tweede ster = 2
+Eerste en tweede ster = 3
+Enkel derde ster = 4
+Eerste en derde ster = 5
+Tweede en derde ster = 6
+Alle sterren = 7
+
+Nota: zoeken op specifieke waarden geeft geen resultaten.
+
+[Max Infinite Lives (Three Crowns)]
+D3000000 00000000
+20410725 00000010
+D2000000 00000000
+
+[Infinite Time]
+D3000000 15000000
+00B83A8C 000001F4
+D3000000 16000000
+0049BDE8 000001F4
+D3000000 17000000
+00227350 001F4000
+D3000000 00000000
+
+When on, crashes in a rainbow level. Could be responsible for more crashes.
+
+Update:
+[Infinite Time]
+D3000000 15000000
+60B83A8C 00000000	// When not zero (title screen).
+60B83A8C 00000190	// When not in rainbow level or any level that has no time.
+6049BDE8 00000000	// When not on world map. (takes the below 16XXXXXX address, since it's the only one that seems to change when on world map.)
+00B83A8C 000001F4	// If all checks are ok, write 1F4.
+D0000000 00000000	// End if instruction.
+D3000000 16000000
+6049BDE8 00000000	// When not zero (title screen).
+6049BDE8 00000190	// When not in rainbow level or any level that has no time.
+6049BDE8 00000000	// When not on world map.
+0049BDE8 000001F4	// If all checks are ok, write 1F4.
+D0000000 00000000	// End if instruction.
+D3000000 17000000
+60227350 00000000	// When not zero (title screen).
+60227350 00190000	// When not in rainbow level or any level that has no time.
+6049BDE8 00000000	// When not on world map. (see note above)
+00227350 001F4000	// If all checks are ok, write 1F4.
+D2000000 00000000	// End code and if instruction.
+
+REVISION 2:
+(Fixed address issues.)
+
+[Infinite Time]
+D3000000 15000000
+60B83A8C 00000000
+60B83A8C 00000190
+D3000000 16000000
+6049BDE8 00000000
+D3000000 16000000
+00B83A8C 000001F4
+D0000000 00000000
+D3000000 16000000
+6049BDE8 00000000
+6049BDE8 00000190
+6049BDE8 00000000
+0049BDE8 000001F4
+D0000000 00000000
+D3000000 17000000
+60227350 00000000
+60227350 00190000
+D3000000 16000000
+6049BDE8 00000000
+D3000000 17000000
+00227350 001F4000
+D2000000 00000000
+
+[Rapid Fireballs]
+D3000000 00000000
+202E90BC 00000000
+202E90DC 00000000
+
+The below button codes can be used for instant powerup change
+in all levels (including Browser Castle).
+
+[======== Instant PowerUps ========]
+D3000000 00000000
+
+The above is a note and can be deleted.
+It also doesn't need to be activated in order for the
+cheat codes to work.
+
+[(L+Down) Small Mario]
+DD000000 00000280
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000
+30000364 14000000
+B00003B0 00000000
+20000015 00000000
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000000
+40000364 14000000
+B0000364 00000000
+20000015 00000000
+D2000000 00000000
+
+[(L+Up) Big Mario]
+DD000000 00000240
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000001
+30000364 14000000
+B00003B0 00000000
+20000015 00000001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000001
+40000364 14000000
+B0000364 00000000
+20000015 00000001
+D2000000 00000000
+
+[(L+Left) Fire Mario]
+DD000000 00000220
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000002
+30000364 14000000
+B00003B0 00000000
+20000015 00000002
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000002
+40000364 14000000
+B0000364 00000000
+20000015 00000002
+D2000000 00000000
+
+[(L+Right) Tanooki Mario]
+DD000000 00000210
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000004
+30000364 14000000
+B00003B0 00000000
+20000015 00000004
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000004
+40000364 14000000
+B0000364 00000000
+20000015 00000004
+D2000000 00000000
+
+[(R+Down) Mini Mario]
+DD000000 00000180
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000003
+30000364 14000000
+B00003B0 00000000
+20000015 00000003
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000003
+40000364 14000000
+B0000364 00000000
+20000015 00000003
+D2000000 00000000
+
+[(R+Up) White Tanooki Mario]
+DD000000 00000140
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000007
+30000364 14000000
+B00003B0 00000000
+20000015 00000007
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000007
+40000364 14000000
+B0000364 00000000
+20000015 00000007
+D2000000 00000000
+
+[(R+Left) Gold Mario]
+DD000000 00000120
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000006
+30000364 14000000
+B00003B0 00000000
+20000015 00000006
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000006
+40000364 14000000
+B0000364 00000000
+20000015 00000006
+D2000000 00000000
+
+[==================================]
+D3000000 00000000
+
+The above is a note and can be deleted.
+It also doesn't need to be activated in order for the
+cheat codes to work.
+
+[Always Play As White Tanooki Mario]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000007
+30000364 14000000
+B00003B0 00000000
+20000015 00000007
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+60000015 00000007
+40000364 14000000
+B0000364 00000000
+20000015 00000007
+D2000000 00000000
+
+[==================================]
+D3000000 00000000
+
+The above is a note and can be deleted.
+It also doesn't need to be activated in order for the
+cheat codes to work.
+
+[(L+R+Y) 219 Star Coins (exit level)]
+DD000000 00000302
+D3000000 16000000
+0076373C 000000DB
+D2000000 00000000
+
+[(L+R+A) + Million Coins (exit level)]
+DD000000 00000301
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+000000B0 000F4240
+D2000000 00000000
+
+[(L+R+B) Reset Coin Counter To Zero]
+DD000000 00000302
+D3000000 15000000
+00B89AAC 00000000
+00B89AB4 00000000
+D3000000 16000000
+00763A48 00000000
+D2000000 00000000

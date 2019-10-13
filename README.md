@@ -11,7 +11,7 @@ Cheats Overview:
 - Character Modifier:
 	- **Play as Mario**
 	- **Play as Luigi**
-    		- *Note: Even when game not beaten.*
+		- *Note: Even when game not beaten.*
 	- **No Hat**
 		- *Note: Doesn't require 1110 lives.*
 - Instant PowerUps

@@ -61,7 +61,7 @@ Cheats Overview:
   - Select the cheats you want to activate by pressing the A button.
     - Certain cheats need additional key combinations when in game. These cheats are marked with a * and also mention the key combinations to use in order to activate the cheat at any given time when in game.
   - Exit out of the Rosalina menu by pressing the B button until the game is back in focus.
-  - Happy cheating!
+- Happy cheating!
   
 **************************************************
 

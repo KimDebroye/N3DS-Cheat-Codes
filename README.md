@@ -77,8 +77,7 @@
 **************************************************
 
 ## Bugs/Issues
-- From time to time, I still had a crash at seemingly random moments when too many cheats where activated at the same time.
-- I did iron out most of the crashes though.
+- Although they work fine and I tried to iron out most crashes, I did encounter some crashes with the Instant PowerUp Change codes I ported and edited.
     
 **************************************************
 

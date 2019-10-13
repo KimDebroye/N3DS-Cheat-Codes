@@ -88,5 +88,6 @@ Learned quite a lot in the process, although I'm still not up to par with the be
 - I searched/created all codes by myself, except for:
   - Instant Powerup Change codes: merged and edited codes from [cheat contributor Optantic](https://www.max-cheats.com/view.php?ItemID=206) (or maybe even someone else).
   - Midair Jump: ported the USA region cheat code from the [CTRPF Cheat Code Database](https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/New%20Super%20Mario%20Bros.%202%20(Gold%20Edition)%20(USA)/0004000000137E00.txt) to European region.
+  - Rapid Fireballs
 - All codes I searched/created are RAM based (so no ASM codes).
 -  I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and also has a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.

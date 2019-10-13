@@ -77,7 +77,8 @@
 **************************************************
 
 ## Bugs/Issues
-- Although they work fine and I tried to iron out most crashes, I did encounter some crashes with the Instant PowerUp Change codes I ported and edited.
+- Although they work fine and I tried to iron out most crashes,
+I did encounter some seemingly random crashes depending on cheats used/circumstances.
     
 **************************************************
 

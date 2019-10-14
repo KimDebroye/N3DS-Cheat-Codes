@@ -92,7 +92,7 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
 - [TempAR](https://raing3.gshi.org/files/psp/tools/pointer_searcher.zip)
 - [Gateway RAM Tools](https://www.maxconsole.com/threads/tool-gateway-ram-tools.40776/)
 - [HxD: Freeware Hex Editor](https://mh-nexus.de/en/hxd/)
-- I searched/created (almost) all codes myself using the above software/tools and RAM Dump comparisons (so no ASM codes).
+- I searched/created (almost) all codes myself using the above software/tools and RAM Dump comparisons (no ASM).
 - Codes I reused/edited/ported from other cheat contributors
 @ [Max-Cheats](https://www.max-cheats.com/view.php?ItemID=206) / [GameHacking](https://gamehacking.org/game/116337) / [CTRPF Cheat Code Db](https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/New%20Super%20Mario%20Bros.%202%20(Gold%20Edition)%20(USA)/0004000000137E00.txt):
   - Instant Powerup Change codes: merged and edited existing codes.

@@ -88,9 +88,10 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
 - [TempAR](https://raing3.gshi.org/files/psp/tools/pointer_searcher.zip)
 - [Gateway RAM Tools](https://www.maxconsole.com/threads/tool-gateway-ram-tools.40776/)
 - [HxD: Freeware Hex Editor](https://mh-nexus.de/en/hxd/)
-- I searched/created all codes myself using the above software/tools and RAM Dump comparisons (so no ASM codes), except for:
-  - Instant Powerup Change codes: merged and edited codes from [cheat contributor Optantic](https://www.max-cheats.com/view.php?ItemID=206) (or maybe even someone else).
-  - Midair Jump: ported the USA region cheat code from the [CTRPF Cheat Code Database](https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/New%20Super%20Mario%20Bros.%202%20(Gold%20Edition)%20(USA)/0004000000137E00.txt) to European region.
+- I searched/created (almost) all codes myself using the above software/tools and RAM Dump comparisons (so no ASM codes).
+- Codes I reused/edited/ported from other cheat contributors @ [Max-Cheats](https://www.max-cheats.com/view.php?ItemID=206) / [GameHacking](https://gamehacking.org/game/116337) / [CTRPF Cheat Code Database](https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/New%20Super%20Mario%20Bros.%202%20(Gold%20Edition)%20(USA)/0004000000137E00.txt):
+  - Instant Powerup Change codes: merged and edited existing codes.
+  - Midair Jump: ported the USA region cheat code to European region.
   - Rapid Fireballs
 - I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and also has a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
 

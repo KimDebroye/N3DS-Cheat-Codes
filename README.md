@@ -25,6 +25,7 @@
 - **Always White Tanooki Suit (Invincible)**
 - **Always Full Tanooki Pwing Gauge**
 - **Always Star Power (Invincible+Speed)**
+  - *Note: Doesn't work in (6-6) Browser Castle. Please use one of the White Tanooki Suit codes in that level.*
 - **Start As Unlimited Gold Block Head**
   - *Note: Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it.*
 - **Midair Jump**

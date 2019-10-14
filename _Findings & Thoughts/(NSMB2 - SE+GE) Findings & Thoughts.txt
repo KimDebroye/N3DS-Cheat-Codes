@@ -256,7 +256,7 @@ Comparing the Rapid Fireballs code:
 NSMB2-O (Europe) - 84 = NSMB2 Special Edition (Europe)
 -> Not working for the cheat I tried to convert. Could work for other cheats.
 (I noticed not all address offsets are the same.)
--> Update: Fixed it at a later time.
+-> Update: Fixed it at a later time by comparing RAM dumps manually using HxD.
 -------------->
 
 ::::::::::::::::::::::::::::::::::::::::::::::

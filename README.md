@@ -7,6 +7,7 @@
 **************************************************
 <details><summary>[ click here to show available cheats ]</summary>
 <p>
+	
 - Character Modifier
 	- **Play as Mario**
 	- **Play as Luigi**
@@ -41,6 +42,7 @@
 - **(L+R+Y) 1000000 Coins**
 - **(L+R+A) 9999999 Coins**
 - **(L+R+B) 0 Coins**
+
 </p>
 </details>
 **************************************************

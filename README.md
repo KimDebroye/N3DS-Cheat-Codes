@@ -3,8 +3,7 @@
 ## At a glance
 
 **************************************************
-### New Super Mario Bros. 2 - Special Edition (Europe)
-### New Super Mario Bros. 2 - Gold Edition (USA)
+### New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
 **************************************************
 
 **Cheats Overview**

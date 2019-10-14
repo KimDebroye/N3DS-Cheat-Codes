@@ -1,12 +1,11 @@
 # Nintendo 2DS/3DS Cheat Codes
 
-## At a glance
+## Cheats Overview
 
 **************************************************
 ### New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
 **************************************************
 
-**Cheats Overview**
 - Character Modifier
 	- **Play as Mario**
 	- **Play as Luigi**

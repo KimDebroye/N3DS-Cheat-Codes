@@ -1,6 +1,6 @@
-New Super Mario Bros. 2 - Special Edition (Europe)
+New Super Mario Bros. 2 - Special/Gold Edition (Europe/USA)
 By KDb
-----------------------------------------------------
+-----------------------------------------------------------
 
 [Update 2019/10/13]
 
@@ -246,6 +246,8 @@ D3000000 00000000
 001F61B8 EB0DD0E4
 D2000000 00000000
 
+Update: Ignore above about this code, thought about it and researched some more before bed time: see above in this document. Fixed it at a later time.
+
 ================================================
 FINDING OFFSET FROM NSMB2 (ORIGINAL, NON SE/GE).
 ================================================
@@ -254,6 +256,7 @@ Comparing the Rapid Fireballs code:
 NSMB2-O (Europe) - 84 = NSMB2 Special Edition (Europe)
 -> Not working for the cheat I tried to convert. Could work for other cheats.
 (I noticed not all address offsets are the same.)
+-> Update: Fixed it at a later time.
 -------------->
 
 ::::::::::::::::::::::::::::::::::::::::::::::

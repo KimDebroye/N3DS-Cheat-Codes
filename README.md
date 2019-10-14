@@ -5,7 +5,7 @@
 **************************************************
 ### New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
 **************************************************
-<details><summary>[ click here to show available cheats ]</summary>
+<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS ]</summary>
 <p>
 	
 - Character Modifier

@@ -76,18 +76,27 @@
     
 **************************************************
 
-## Bugs/Issues
-- Although they work fine and I tried to iron out most crashes,
+## Bugs/Issues/Feedback
+- Although the codes work fine and I tried to iron out most crashes,
 I did encounter some seemingly random crashes depending on cheats used/circumstances.
+- Should you have feedback, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-new-super-mario-bros-2-gold-special-edition-cheat-codes.550034/).
     
 **************************************************
 
-## General Notes
-- I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
-Learned quite a lot in the process, although I'm still not up to par with the best.
-- I searched/created all codes by myself, except for:
+## Credits, Software/Tools Used & Technical Notes
+- [CTRPluginFramework (by Nanquitas)](https://github.com/Nanquitas/CTRPluginFramework-BlankTemplate)
+- [TempAR](https://raing3.gshi.org/files/psp/tools/pointer_searcher.zip)
+- [Gateway RAM Tools](https://www.maxconsole.com/threads/tool-gateway-ram-tools.40776/)
+- [HxD: Freeware Hex Editor](https://mh-nexus.de/en/hxd/)
+- I searched/created all codes by myself using the above software/tools and RAM Dump comparisons, except for:
   - Instant Powerup Change codes: merged and edited codes from [cheat contributor Optantic](https://www.max-cheats.com/view.php?ItemID=206) (or maybe even someone else).
   - Midair Jump: ported the USA region cheat code from the [CTRPF Cheat Code Database](https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/New%20Super%20Mario%20Bros.%202%20(Gold%20Edition)%20(USA)/0004000000137E00.txt) to European region.
   - Rapid Fireballs
 - All codes I searched/created are RAM based (so no ASM codes).
--  I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and also has a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
+- I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and also has a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
+
+**************************************************
+
+## General Notes
+- I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
+Learned quite a lot in the process. I'm still not up to par with the best, though.

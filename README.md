@@ -29,8 +29,7 @@
 - **Always Star Power (Invincible+Speed)**
   - *Note: Doesn't work in Browser Castle. Please use any of the White Tanooki Suit codes instead.*
 - **Start As Unlimited Gold Block Head**
-  - *Note: Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily.*
-  - *Doesn't work in Browser Castle.*
+  - *Note: Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily. Doesn't work in Browser Castle.*
 - **Always Shoot Fireballs**
 - **Always Shoot Gold Fireballs**
 - **Rapid Fireballs**

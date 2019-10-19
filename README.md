@@ -25,19 +25,24 @@
 	  - *Note: The above codes can be used for instant powerup change in all levels (including Browser Castle).*
 - **Always White Tanooki Suit (Invincible)**
 - **Always Full Tanooki Pwing Gauge**
+  - *Note: Doesn't work in Browser Castle.*
 - **Always Star Power (Invincible+Speed)**
-  - *Note: Doesn't work in (6-6) Browser Castle. Please use one of the White Tanooki Suit codes in that level.*
+  - *Note: Doesn't work in Browser Castle. Please use any of the White Tanooki Suit codes instead.*
 - **Start As Unlimited Gold Block Head**
-  - *Note: Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it.*
-- **Midair Jump**
+  - *Note: Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily. Doesn't work in Browser Castle.*
+- **Always Shoot Fireballs**
+- **Always Shoot Gold Fireballs**
 - **Rapid Fireballs**
-  - *Note: Works for Fire and Gold Mario/Luigi.*
+  - *Note: Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
+- **Midair Jump**
 - **Max Infinite Lives (Three Crowns)**
   - *Note: Die once.*
 - **Infinite Time**
   - *Note: Disable if game keeps counting remaining time points when boss down.*
 - **3 Big Coins Collected**
   - *Note: After finishing level. Works for Crown and Moon coins.*
+- **Able To Leave Unfinished Levels**
+  - *Note: Press Down at pause screen to highlight and enable level exit.*
 - **(L+R+X) 219 Crown Coins**
 - **(L+R+Y) 1000000 Coins**
 - **(L+R+A) 9999999 Coins**

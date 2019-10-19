@@ -3,8 +3,8 @@ New Super Mario Bros. 2 - Gold Edition (USA)
 Cheats by KDb
 ********************************************
 
-Cheats Overview
-- Character Modifier:
+Cheats Overview:
+- Character Modifier
 	- [ Play as Mario ]
 	- [ Play as Luigi ]
 		* Note: Even when game not beaten.
@@ -23,13 +23,20 @@ Cheats Overview
 	  (including Browser Castle).
 - [ Always White Tanooki Suit (Invincible) ]
 - [ Always Full Tanooki Pwing Gauge ]
+	* Note: Doesn't work in Browser Castle.
 - [ Always Star Power (Invincible+Speed) ]
+	* Note: Doesn't work in Browser Castle.
+	  Please use any of the White Tanooki Suit codes instead.
 - [ Start As Unlimited Gold Block Head ]
 	* Note: Start each level as Gold Block Head.
-	  Has unlimited coins. Getting hit loses it.
-- [ Midair Jump ]
+	  Has unlimited coins. Getting hit loses it temporarily.
+	  Doesn't work in Browser Castle.
+- [ Always Shoot Fireballs ]
+- [ Always Shoot Gold Fireballs ]
 - [ Rapid Fireballs ]
-	* Note: Works for Fire and Gold Mario/Luigi.
+	* Note: Works for Fire and Gold Mario/Luigi
+	  and in combination with above Fireball codes.
+- [ Midair Jump ]
 - [ Max Infinite Lives (Three Crowns) ]
 	* Note: Die once.
 - [ Infinite Time ]
@@ -38,6 +45,9 @@ Cheats Overview
 - [ 3 Big Coins Collected ]
 	* Note: After finishing level.
 	  Works for Crown and Moon coins.
+- [ Able To Leave Unfinished Levels ]
+	* Note: Press Down at pause screen
+	  to highlight and enable level exit.
 - [ (L+R+X) 219 Crown Coins ]
 - [ (L+R+Y) 1000000 Coins ]
 - [ (L+R+A) 9999999 Coins ]
@@ -355,11 +365,20 @@ B05E7210 00000000
 20004A28 000000F0
 D2000000 00000000
 
+---------------------------------------
+Note: Doesn't work in Browser Castle.
+---------------------------------------
+
 [Always Star Power (Invincible+Speed)]
 D3000000 00000000
 B05E7210 00000000
 000017AC 000000BB
 D2000000 00000000
+
+---------------------------------------
+Note: Doesn't work in Browser Castle.
+Please use any of the White Tanooki Suit codes instead.
+---------------------------------------
 
 [Always Gold Block Head (Unlimited Coins)]
 D3000000 00000000
@@ -369,7 +388,9 @@ D2000000 00000000
 
 ---------------------------------------
 Note: Start each level as Gold Block Head.
-Has unlimited coins. Getting hit loses it.
+Has unlimited coins.
+Getting hit loses it temporarily.
+Doesn't work in Browser Castle.
 ---------------------------------------
 
 [==================================]
@@ -382,6 +403,34 @@ in order for the cheat codes to work.
 ---------------------------------------
 
 ***************************************
+
+[Always Shoot Fireballs]
+D3000000 00000000
+0026C3D4 E1A00000
+00268B6C EA00000A
+00268C68 E1A00000
+002675D0 EA000006
+002675D8 1A000058
+00267638 0A000042
+003ABF0C 00000000
+D2000000 00000000
+
+[Always Shoot Gold Fireballs]
+D3000000 00000000
+0026C3D4 E1A00000
+00268B6C EA00000A
+00268C68 E1A00000
+002675D0 E1A00000
+002675D8 E1A00000
+00267638 EA000042
+003ABF0C EA000007
+D2000000 00000000
+
+[Rapid Fireballs]
+D3000000 00000000
+202E908C 00000000
+202E90AC 00000000
+D2000000 00000000
 
 [Midair Jump]
 D3000000 00000000
@@ -398,16 +447,21 @@ D3000000 00000000
 001F6188 EB0DD0E4
 D2000000 00000000
 
-[Rapid Fireballs]
+---------------------------------------
+Note: Works for Fire and Gold Mario/Luigi
+and in combination with above Fireball codes.
+---------------------------------------
+
+[==================================]
 D3000000 00000000
-202E908C 00000000
-202E90AC 00000000
-D2000000 00000000
 
 ---------------------------------------
-Note: Works for Fire
-and Gold Mario/Luigi.
+The above is a note and can be deleted.
+It also doesn't need to be activated
+in order for the cheat codes to work.
 ---------------------------------------
+
+***************************************
 
 [Max Infinite Lives (Three Crowns)]
 D3000000 16000000
@@ -458,6 +512,27 @@ D2000000 00000000
 Note: After finishing level.
 Works for Crown and Moon coins.
 ---------------------------------------
+
+[Able To Leave Unfinished Levels]
+D3000000 00000000
+0038ACC4 E1A00000
+D2000000 00000000
+
+---------------------------------------
+Note: Press Down at pause screen
+to highlight and enable level exit.
+---------------------------------------
+
+[==================================]
+D3000000 00000000
+
+---------------------------------------
+The above is a note and can be deleted.
+It also doesn't need to be activated
+in order for the cheat codes to work.
+---------------------------------------
+
+***************************************
 
 [(L+R+X) 219 Crown Coins]
 DD000000 00000700

@@ -11,9 +11,15 @@
 - Character Modifier
 	- **Play as Mario**
 	- **Play as Luigi**
-		- *Note: Even when game not beaten.*
+	  - *Note: Even when game not beaten.*
 	- **No Hat**
-		- *Note: Doesn't require 1110 lives.*
+	  - *Note: Doesn't require 1110 lives.*
+	- **Half Sized Mario/Luigi**
+	  - *Note: When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+	- **Double Sized Mario/Luigi**
+	  - *Note: When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+	- **Invisible Mario/Luigi**
+	  - *Note: When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
 - Instant PowerUps
 	- **(L+Down) Small Mario/Luigi**
 	- **(L+Left) Big Mario/Luigi**
@@ -25,10 +31,9 @@
 	  - *Note: The above codes can be used for instant powerup change in all levels (including Browser Castle).*
 - **Always White Tanooki Suit (Invincible)**
 - **Always Full Tanooki Pwing Gauge**
-  - *Note: Doesn't work in Browser Castle.*
 - **Always Star Power (Invincible+Speed)**
   - *Note: Doesn't work in Browser Castle. Please use any of the White Tanooki Suit codes instead.*
-- **Start As Unlimited Gold Block Head**
+- **Always Gold Block Head (Unlimited Coins)**
   - *Note: Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily. Doesn't work in Browser Castle.*
 - **Always Shoot Fireballs**
 - **Always Shoot Gold Fireballs**
@@ -38,7 +43,6 @@
 - **Max Infinite Lives (Three Crowns)**
   - *Note: Die once.*
 - **Infinite Time**
-  - *Note: Disable if game keeps counting remaining time points when boss down.*
 - **3 Big Coins Collected**
   - *Note: After finishing level. Works for Crown and Moon coins.*
 - **Able To Leave Unfinished Levels**
@@ -59,7 +63,7 @@
   - Insert the SD/MicroSD card into your computer/phone.
     - *You can also use FTP if you are familiar with that.*
   - Create a folder named `cheats` on the root of your SD/MicroSD card (if it doesn't already exist).
-  - Place the .txt file(s) containing the cheats for your game region in this folder.
+  - Place/Overwrite the .txt file(s) containing the cheats for your game region in this folder.
     - For **New Super Mario Bros 2 - Special Edition (Europe)**:
       - *SD/MicroSD card root*/`cheats`/**0004000000137F00.txt**
     - For **New Super Mario Bros 2 - Gold Edition (USA)**:

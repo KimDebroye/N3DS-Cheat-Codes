@@ -121,5 +121,5 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
 **************************************************
 
 ## General Notes
-- I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
-Learned quite a lot in the process. I'm still not up to par with the best, though.
+I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
+Learned quite a lot in the process.

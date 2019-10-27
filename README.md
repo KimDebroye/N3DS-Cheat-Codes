@@ -22,7 +22,7 @@
 	  - *Finish a level.*
   - *All codes can be used in all levels (including Browser Castle).*
 
-> Character Modifier
+> Character Modifier ---------------
   - **Play as Mario**
   - **Play as Luigi**
     - *Even when game not beaten.*
@@ -34,7 +34,7 @@
     - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - **Invisible Mario/Luigi**
     - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
-> Instant PowerUps
+> Instant PowerUps -----------------
   - **(L+Down) Small Mario/Luigi**
   - **(L+Left) Big Mario/Luigi**
   - **(L+Right) Fire Mario/Luigi**
@@ -42,17 +42,19 @@
   - **(R+Down) Mini Mario/Luigi**
   - **(R+Right) Gold Mario/Luigi**
   - **(R+Up) White Tanooki Mario/Luigi**
+> ----------------------------------
 - **Always White Tanooki Suit (Invincible)**
 - **Always Full Tanooki Pwing Gauge**
 - **Always Star Power (Invincible+Speed)**
 - **Always Gold Block Head (Unlimited Coins)**
   - *Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily.*
+> ----------------------------------
 - **Always Shoot Fireballs**
 - **Always Shoot Gold Fireballs**
 - **Rapid Fireballs**
   - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
 - **Mid-air Jump**
-> Unlocks
+> Unlocks --------------------------
   - **(L+R+Left+A) Everything (5 Star Save)**
     - *For currently opened save file:*
       - *Max lives (1110), Three Crowns & No Hat Mario/Luigi.*
@@ -83,12 +85,13 @@
   - **9999999 Total Coins (Counter)**
   - **1000000 Total Coins (Counter)**
   - **0000000 Total Coins (Counter)**
+> ----------------------------------
 - **3 Star/Moon Coins Collected (Per Level)**
   - *Per level code. Registers after finishing level.*
 - **Able To Leave Unfinished Levels**
   - *Press Down at pause screen to highlight and enable level exit.*
 - **Infinite Time**
-> Quick Presets
+> Quick Presets --------------------
   - **Easy Peasy Level Easy**
     - *Star Power*
     - *Mid-air Jump*

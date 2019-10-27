@@ -7,6 +7,7 @@
 **************************************************
 **<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME ]</summary>**
 <p>
+
 > ----------------------------------
 > General Notes:
 > ----------------------------------

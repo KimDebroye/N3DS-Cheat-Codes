@@ -1,6 +1,1979 @@
-New Super Mario Bros. 2 - Special/Gold Edition (Europe/USA)
+New Super Mario Bros. 2 - Special/Gold Edition
 By KDb
------------------------------------------------------------
+----------------------------------------------
+
+Note: For the most recent codes/addresses/values, check the cheat source files.
+Sometimes I fine-tuned directly in there.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/27]
+
+[Set Item Box]
+
+===
+EUR
+===
+[Item Box]
+D3000000 16000000
+207739A3 00000002
+D2000000 00000000
+-> Static address for World Map.
+When in a level, the game uses this value at a different address (probably pointer address).
+
+09 = Nothing
+00 = Mushroom
+01 = Fire Flower
+02 = Star
+04 = Mini Mushroom
+06 = Super Leaf
+07 = Gold Flower
+
+===
+USA
+===
+[Item Box]
+D3000000 16000000
+207682BF 00000002
+D2000000 00000000
+
+~~~
+Already having Instant PowerUp codes,
+not going to find pointers or create codes for it for now.
+
+-----------------
+-----------------
+-----------------
+
+Looking for pointer address for Infinite Star Power code in Browser Castle (6-6):
+
+[Always Star Power (Invincible+Speed)] 6-6
+
+[EUR]
+1403CD64 000000BB
+
+Searched for level ID:
+167645E4 00000F05	// Ingame W6-6			(Browser Castle)
+
+[USA]
+1403CD64 000000BB
+
+Searched for level ID (manually in HxD):
+16758F00 00000F05	// Ingame W6-6			(Browser Castle)
+
+Updated code:
+
+[EUR]
+[Always Star Power (Invincible+Speed)]
+D3000000 16000000
+607645E4 00000F05
+D3000000 00000000
+B05E7210 00000000
+000017AC 000000BB
+D2000000 00000000
+D3000000 16000000
+507645E4 00000F05
+D3000000 00000000
+B05E7210 00000000
+000017F8 000000BB
+D2000000 00000000
+
+[USA] (Different level id check address. Same pointer address/offset/values.)
+[Always Star Power (Invincible+Speed)]
+D3000000 16000000
+60758F00 00000F05
+D3000000 00000000
+B05E7210 00000000
+000017AC 000000BB
+D2000000 00000000
+D3000000 16000000
+50758F00 00000F05
+D3000000 00000000
+B05E7210 00000000
+000017F8 000000BB
+D2000000 00000000
+
+-----------------
+-----------------
+-----------------
+
+Manually looking for Always GB Head to work in Browser Castle as well.
+(Using calculator and Always Star Power cheat code to calculate offset difference.)
+
+[EUR]
+[Always Gold Block Head (Unlimited Coins)]
+D3000000 16000000
+607645E4 00000F05
+D3000000 00000000
+B05E7210 00000000
+20004A54 000000AA
+D2000000 00000000
+D3000000 16000000
+507645E4 00000F05
+D3000000 00000000
+B05E7210 00000000
+20004AA0 000000AA
+D2000000 00000000
+{
+Start each level as Gold Block Head.
+Has unlimited coins.
+Getting hit loses it temporarily.
+}
+
+[USA] (Different level id check address. Same pointer address/offset/values.)
+[Always Gold Block Head (Unlimited Coins)]
+D3000000 16000000
+60758F00 00000F05
+D3000000 00000000
+B05E7210 00000000
+20004A54 000000AA
+D2000000 00000000
+D3000000 16000000
+50758F00 00000F05
+D3000000 00000000
+B05E7210 00000000
+20004AA0 000000AA
+D2000000 00000000
+{
+Start each level as Gold Block Head.
+Has unlimited coins.
+Getting hit loses it temporarily.
+}
+
+-----------------
+-----------------
+-----------------
+
+Created some quick and handy presets.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/27]
+
+Porting time (for newly created EUR codes):
+
+========================================================
+========================================================
+---------
+EUR & USA
+---------
+005EF8D8 FFFF0010	// Ingame
+
+005EF8D8 FFFF0012	// World Map
+
+005EF8D8 FFFF0005	// Main Menu (1 Player Game Options)
+
+005EF8D8 FFFF000A	// Main Menu (2 Player Game Options)
+
+005EF8D8 FFFF0007	// Main Menu (Coin Rush)
+
+---------
+EUR & USA
+---------
+005EF8D8 FFFF0010	// Ingame
+
+005EF8D8 FFFF0012	// World Map
+
+005EF8D8 FFFF0005	// Main Menu (1 Player Game Options)
+
+005EF8D8 FFFF000A	// Main Menu (2 Player Game Options)
+
+005EF8D8 FFFF0007	// Main Menu (Coin Rush)
+
+-> Ingame has best results: no crashes (or at least: a lot less?).
+-> Player has to enter/exit any level though.
+========================================================
+========================================================
+
+[(L+R+Left+A) All Worlds & Levels]
+DD000000 00000321
+D3000000 16769640
+C0000000 00000117
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16769757 // -
+C0000000 00000005 // -
+20000000 00000000 // -
+DC000000 00000001 // -
+D1000000 00000000 // -
+D3000000 1676975C
+C0000000 00000004
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 1676998E
+C0000000 00000012
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000 // -
+207699A0 00000009 // -
+207699A1 00000009 // -
+207699A2 00000009 // -
+207699A3 00000009 // -
+207699A4 00000009 // -
+207699A5 00000009 // -
+207699A6 00000009 // -
+207699A7 00000009 // -
+207699A8 00000009 // -
+207699A9 00000001 // -
+D3000000 167695B0
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+20758058 00000000
+D2000000 00000000
+
+-> IMPORTANT: It seems I manually searched addresses/values that seemed similar.
+By taking a closer look and doing some clever Hex value searches in RAM dumps using
+HxD I found better location with addresses/values that look way more similar. Oof.
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/26]
+
+Proceeding with TODO notes.
+Found level pointer address -> adding check.
+
+167645E4 00001C00	// Ingame W1-Rainbow
+
+[All Worlds & Levels]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16000000
+607645E4 00001C00
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+-> Check doesn't change behavior.
+-> No crash when both codes on, though still last Star Coin path not opened.
+
+Trying to add a @WM Only check for Rainbow Levels code:
+
+[All Rainbow Levels]
+D3000000 00000000
+505EF8D8 FFFF0012
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+-> No crash when both codes on, though still last Star Coin path not opened.
+
+-> Going to see what changes in hex editor while ingame.
+
+[All Rainbow Levels v2]
+D3000000 00000000
+505EF8D8 FFFF0012
+D3000000 16000000
+00763A3C 05040302
+00763A40 06070809
+20763A44 00000001
+D2000000 00000000
+-> Doesn't work like this, even without WM check.
+
+It needs to be this:
+
+[All Rainbow Levels]
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+
+Though both codes then interfere... Trying to find a way they don't.
+
+[All Worlds & Levels]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16000000	// To know when code is active, add 2 more FF values
+60763A34 FFFFFFFF	// Rough check, will do for most cases: If code hasn't been active yet.
+10763A3A 0000FFFF	// so address 0x16763A38 becomes value FFFFFFFF.
+D0000000 00000000	// End if statements.
+D3000000 00000000	// Patch code.
+505EF8D8 FFFF0010
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+
+Then, if the above is enabled, All Rainbow Levels code can check:
+
+[All Rainbow Levels]
+D3000000 16000000
+60763A38 FFFFFFFF
+00763A38 01000000
+D0000000 00000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+
+-> Combo works, although crashes when both codes on and entering World 1-Rainbow Level.
+
+Trying something else:
+
+[All Worlds & Levels]
+D3000000 00000000
+505EF8D8 FFFF0005
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+{
+When opening any save file.
+For currently opened save file:
+* Game cleared (Browser beaten).
+* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
+* All Moon Coins in the Star World collected.
+* All paths opened (the ones that cost Star/Moon coins + all hidden exits).
+* All Toad Houses opened.
+* Sets Star/Moon counter to zero since all star pathways are opened.
+Results in a 4 Star save game when saved.
+For a 5 Star save game, combine with Max Lives code.
+}
+
+[All Rainbow Levels]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+{
+Leave code on for Rainbow levels to be always unlocked,
+even after finishing/leaving level.
+}
+
+-> Almost working combo.
+
+[All Worlds & Levels]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+{
+When opening any save file.
+For currently opened save file:
+* All levels opened & cleared.
+* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
+* All Moon Coins in Star World collected.
+* All paths opened (the ones that cost Star/Moon coins + all hidden exits).
+* All Toad Houses opened.
+* Sets Star/Moon counter to zero since all star pathways are opened.
+Results in a 4 Star save game when saved.
+For a 5 Star save game, combine with Max Lives code.
+}
+
+[All Rainbow Levels]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+{
+After entering/leaving any level.
+Leave code on for Rainbow levels to be always unlocked,
+even after finishing/leaving level.
+}
+
+TODO: Test Hex Values in Star World.
+
+Tested for some time... codes keep interfering, no matter what I do.
+Thought about:
+1) Using a temp address [All Worlds & Levels] writes to (f.e. dummy value 00000CCA, meaning Cheat Code Active). Should [All Rainbow Levels] read this value, it won't run. It will zero out this temp address though. [All Worlds & Levels] comes first in the cheat list, so when still not deactivated, it will set 00000CCA yet again and thus [All Rainbow Levels] won't run again, yet zero out that temp address again. Once [All Worlds & Levels] gets deactivated, [All Rainbow Levels] will now read a non set temp address (so 00000000) and will run.
+2) Ignoring point 1 for now... continuing with some testing and hex reading (note to self: care about endianness...)
+
+==== TEST ONLY ======================
+[All Worlds & Levels (incl. Rainbow)]
+D3000000 00000000
+505EF8D8 FFFF0012	// WM. 10 (ingame) is a safer value, though won't reset W1-Rainbow.
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+20763A3A 00000000
+20763A3B 00000001
+20763A3C 00000002
+20763A3D 00000003
+20763A3E 00000004
+20763A3F 00000005
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+20763A43 00000009
+20763A44 00000001
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+==== TEST ONLY ======================
+
+-> Keeps interfering... Tired of it for now.
+Basically, the [All Worlds & Levels] code should only be ran once... hence:
+Providing a button combo.
+Honestly, best option anyway:
+- Provides an extra safety for unlocking everything by requesting an extra user input.
+- Able to turn on both codes or only one
+	- F.e. if player already has a full save.
+	- F.e. if player wants Rainbow levels to always be unlocked.
+
+BUTTON COMBO:
+===================================
+[(L+R+Left+A) All Worlds & Levels]
+DD000000 00000321
+D3000000 00000000
+505EF8D8 FFFF0005
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+20763A3A 00000000
+20763A3B 00000001
+20763A3C 00000002
+20763A3D 00000003
+20763A3E 00000004
+20763A3F 00000005
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+20763A43 00000009
+20763A44 00000001
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+{
+For currently opened save file:
+* All levels opened & cleared.
+* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
+* All Moon Coins in Star World collected.
+* All paths opened (the ones that cost Star/Moon coins + all hidden exits).
+* All Toad Houses opened.
+* Sets Star/Moon counter to zero since all star pathways are opened.
+Results in a 4 Star save game when saved.
+For a 5 Star save game, combine with Max Lives code.
+}
+
+[All Rainbow Levels]
+D3000000 00000000
+505EF8D8 FFFF0012
+D3000000 16000000
+A0763A38 ‭FF0F‬‬FFFF
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+{
+Leave code on for Rainbow levels to be always unlocked,
+even after finishing/leaving level.
+}
+===================================
+-> Pfrfrfrt, button combo doesn't do it either... Keeps running somehow.
+-> Dropping the [All Rainbow Levels] code for now.
+-> It works in [All Worlds & Levels] as well
+(though it needs key combo+screen switch to update).
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/25]
+
+=================
+
+[Each Level Has Invincible Leaf Block]
+16763A4C 00000005
+16763A50 05050505
+...
+16763B60 05050505
+16763B64 05050000
+
+Codes:
+[Enable Invincible Leaf Block (All Levels)]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16763A4C
+C0000000 00000117
+20000000 00000005
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+
+[Disable Invincible Leaf Block (All Levels)]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16763A4C
+C0000000 00000117
+20000000 00000000
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+
+=================
+
+[Each Level Has Max Score]
+16763B6C 0F270F27
+...
+16763D94 0F270F27
+16763D98 0F270000
+
+Codes:
+[9999 Score (All Levels)]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16763A4C
+C0000000 00000117
+20000000 0000000F
+DC000000 00000001
+20000000 00000027
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+
+[0000 Score (All Levels)]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16763A4C
+C0000000 00000117
+20000000 00000000
+DC000000 00000001
+20000000 00000000
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+
+=================
+
+[Flying Gold Coin Block At Level Start]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 16000000
+207739AC 00000001
+D2000000 00000000
+
+=================
+
+TODO:
+- Port Skip Intro Movie.
+- Found out what caused the Star Coin Path not to be opened in [All Worlds & Levels] code:
+	> Interferes with All Rainbow Levels at this address/value:
+		00763A38 FFFF0000
+		><
+		00763A38 01000000
+	> Crashes when both codes are on and entering World 1-Rainbow Level.
+	> Needs fixing (perhaps needs an extra check on All Worlds & Levels
+	  code to see when in World 1-Rainbow Level (then do not run All Worlds & Levels).
+- Add Ingame (or World Map / Main Menu) check to other codes.
+- Port newly created codes to USA (note to self: don't forget the In-game check).
+
+========================================================
+========================================================
+INBETWEEN:
+Found LEVEL POINTER address:
+
+===
+EUR
+===
+167645E4 00001C00	// Ingame W1-Rainbow
+
+167645E4 00000000	// Ingame W1-1
+
+167645E4 00000100	// Ingame W1-2			(has Mega Mushroom)
+167645E4 00000504	// Ingame W5-6			(has Mega Mushroom)
+167645E4 00000206	// Ingame WMushroom-2	(has Mega Mushroom)
+
+167645E4 00000F05	// Ingame W6-6			(Browser Castle)
+
+When at World Map:
+167645E4 last-level-played-id
+
+When at Main Menu:
+167645E4 FF000000	// Main Menu
+
+===
+USA
+===
+16758F00 0000XXXX
+========================================================
+========================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/25]
+
+Continuing where I left off with full unlock codes:
+
+I noticed while thinking in bed where I made a miscalculation.
+I skipped 2 bytes (because of 2 FF's and calculating characters etc, got unknowingly confused) instead of 1 byte.
+
+Taking notes from yesterday into account, trying again:
+
+[All Levels Unlocked A]
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+-> Works. (same issue: crashes when switching save games)
+
+[All Levels Unlocked B]
+D3000000 1676390A
+C0000000 00000117
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+-> Not needed.
+
+[All Worlds Unlocked]
+D3000000 16000000
+00763A24 FFFFFFFF
+D2000000 00000000
+-> Works.
+
+[All Level Pathways Unlocked]
+D3000000 16000000
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+-> Works. (same issue: crashes when switching save games)
+
+All Worlds and All Level Pathways Unlocked combined with loop code of 4+18=22:
+
+[All Worlds & Levels]
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D2000000 00000000
+
+So, updating existing code:
+
+[All Worlds & Levels]
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+{
+For currently opened save game:
+* Game cleared (Browser beaten).
+* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
+* All Moon Coins in the Star World collected.
+* All paths opened (the ones that cost Star/Moon coins, as well as all hidden exits).
+* All Toad Houses opened.
+* Sets Star/Moon counter to zero since all star pathways are opened.
+Results in a 4 Star save game when saved.
+For a 5 Star save game, combine with Max Infinite Lives code.
+}
+
+-> Works. (Same issue: crashes when switching save games.)
+
+========================================================
+========================================================
+INBETWEEN:
+Found interesting address:
+005EF8D8 FFFF0010	// Ingame
+
+005EF8D8 FFFF0012	// World Map
+
+005EF8D8 FFFF0005	// Main Menu (1 Player Game Options)
+
+005EF8D8 FFFF000A	// Main Menu (2 Player Game Options)
+
+005EF8D8 FFFF0007	// Main Menu (Coin Rush)
+
+-> Ingame has best results: no crashes (or at least: a lot less?).
+-> Player has to enter/exit any level though.
+========================================================
+========================================================
+
+So, updating existing code:
+
+[All Worlds & Levels]
+D3000000 00000000
+505EF8D8 FFFF0012
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+
+-> Nope, trying the ingame value:
+
+[All Worlds & Levels]
+D3000000 00000000
+505EF8D8 FFFF0010
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763A24
+C0000000 00000016
+20000000 000000FF
+DC000000 00000001
+D1000000 00000000
+D3000000 16763740
+C0000000 00000064
+20000000 00000077
+DC000000 00000001
+D1000000 00000000
+D3000000 16000000
+0076373C 00000000
+D2000000 00000000
+{
+For currently opened save game:
+* Game cleared (Browser beaten).
+* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
+* All Moon Coins in the Star World collected.
+* All paths opened (the ones that cost Star/Moon coins, as well as all hidden exits).
+* All Toad Houses opened.
+* Sets Star/Moon counter to zero since all star pathways are opened.
+Results in a 4 Star save game when saved.
+For a 5 Star save game, combine with Max Infinite Lives code.
+}
+-> Works & does not crash. Player needs to enter/exit any level though.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/25]
+
+Trying to find better World Map Pointer for nohat code.
+Doesn't seem to work/Bugs when everything unlocked.
+
+-> Doing the same as for the levels. Offset seems to change, so adding that offset as well:
+
+Making RAM dump:
+nohat_wm_1-1_COMPLETE &
+nohat_wm_2-2_COMPLETE
+
+Adding values 0, 1, 0 & 1 respectively.
+
+nohat_wm_1-1			-> 1407C3B4
+nohat_wm_2-2			-> 14080D54
+nohat_wm_1-1_COMPLETE	-> 1407A834
+nohat_wm_2-2_COMPLETE	-> 14079EF4
+[A] NOTE: HAS THE SAME BASE POINTER ADDRESS AS ALREADY EXISTING CODE
+THOUGH WITH A DIFFERENT OFFSET.
+wm_1-1&wm_2-2 -> code already existing +
+
+D3000000 17000000 //
+6029CAB0 00000000 //
+B029CAB0 00000000 //
+900019D0 FFFC0001
+200019D0 00000000
+D0000000 00000000
+
+nohat_wm_1-1			-> 1407C43C
+nohat_wm_2-2			-> 14080DDC
+nohat_wm_1-1_COMPLETE	-> 1407A8BC
+nohat_wm_2-2_COMPLETE	-> 14079F7C
+[B] NOTE: HAS THE SAME BASE POINTER ADDRESS AS ALREADY EXISTING CODE
+THOUGH WITH A DIFFERENT OFFSET. 
+wm_1-1&wm_2-2 -> code already existing +
+
+90001A58 FFFC0000
+20001A58 00000001
+D0000000 00000000
+
+nohat_wm_1-1			-> 14080C94
+nohat_wm_2-2			-> 14085634
+nohat_wm_1-1_COMPLETE	-> 1407F114
+nohat_wm_2-2_COMPLETE	-> 1407E7D4
+[C] NOTE: HAS THE SAME BASE POINTER ADDRESS AS ALREADY EXISTING CODE
+THOUGH WITH A DIFFERENT OFFSET. 
+wm_1-1&wm_2-2 -> code already existing +
+
+D3000000 17000000
+6029CAB0 00000000
+B029CAB0 00000000
+900062B0 FFFC0001
+200062B0 00000000
+D2000000 00000000
+
+nohat_wm_1-1			-> 14080D1C
+nohat_wm_2-2			-> 140856BC
+nohat_wm_1-1_COMPLETE	-> 1407F19C
+nohat_wm_2-2_COMPLETE	-> 1407E85C
+[D] WARNING NOTE: HAS THE SAME BASE POINTER ADDRESS AS ALREADY EXISTING CODE
+THOUGH WITH A DIFFERENT OFFSET. 
+wm_1-1&wm_2-2 -> code already existing +
+
+D3000000 17000000
+6029CAB0 00000000
+B029CAB0 00000000
+90006338 FFFC0000
+20006338 00000001
+D2000000 00000000
+
+Would give:
+[No Hat]
+// World Map - Not fully completed save.
+D3000000 17000000
+6029CAB0 00000000
+B029CAB0 00000000
+900019C8 FFFC0001
+200019C8 00000000 // Big Mario/Luigi - Don't show hat
+D0000000 00000000
+90001A50 FFFC0000
+20001A50 00000001 // Big Mario/Luigi - Show hair instead
+D0000000 00000000
+900062A8 FFFC0001
+200062A8 00000000 // Small Mario/Luigi - Don't show hat
+D0000000 00000000
+90006330 FFFC0000
+20006330 00000001 // Small Mario/Luigi - Show hair instead
+D0000000 00000000
+// World Map - Fully completed save.
+900019D0 FFFC0001
+200019D0 00000000 // See above
+D0000000 00000000
+90001A58 FFFC0000
+20001A58 00000001
+D0000000 00000000
+900062B0 FFFC0001
+200062B0 00000000
+D0000000 00000000
+90006338 FFFC0000
+20006338 00000001
+D2000000 00000000
+// Ingame levels with different offsets for different level groups.
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D0000000 00000000
+5000640C 00010001
+0000640C 00010000
+D0000000 00000000
+50006494 00020000
+00006494 00020001
+D0000000 00000000
+5000ACEC 00010001
+0000ACEC 00010000
+D0000000 00000000
+5000AD74 00020000
+0000AD74 00020001
+D2000000 00000000
+
+-> Trying to remove flickering happening when fully unlocked...
+perhaps needs better check?
+-> Solution: Needs the full 4 byte check, f.e.:
+	> When not fully unlocked, address value of 0x1407C43C is: 00 01 00 00
+	> When fully unlocked, address value of 0x1407C43C is: 00 00 00 00
+-> Not needed for IG levels though...
+   Update: Well, I noticed I did already.
+   Better anyway :).
+
+[No Hat]
+D3000000 17000000
+6029CAB0 00000000
+B029CAB0 00000000
+500019C8 00010001
+000019C8 00010000
+D0000000 00000000
+50001A50 00020000
+00001A50 00020001
+D0000000 00000000
+500062A8 00010001
+000062A8 00010000
+D0000000 00000000
+50006330 00020000
+00006330 00020001
+D0000000 00000000
+500019D0 00010001
+000019D0 00010000
+D0000000 00000000
+50001A58 00020000
+00001A58 00020001
+D0000000 00000000
+500062B0 00010001
+000062B0 00010000
+D0000000 00000000
+50006338 00020000
+00006338 00020001
+D2000000 00000000
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+50006318 00010001
+00006318 00010000
+D0000000 00000000
+500063A0 00020000
+000063A0 00020001
+D0000000 00000000
+5000ABD8 00010001
+0000ABD8 00010000
+D0000000 00000000
+5000AC60 00020000
+0000AC60 00020001
+D0000000 00000000
+50006408 00010001
+00006408 00010000
+D0000000 00000000
+50006490 00020000
+00006490 00020001
+D0000000 00000000
+5000ACE8 00010001
+0000ACE8 00010000
+D0000000 00000000
+5000AD70 00020000
+0000AD70 00020001
+D0000000 00000000
+50006448 00010001
+00006448 00010000
+D0000000 00000000
+500064D0 00020000
+000064D0 00020001
+D0000000 00000000
+5000AD28 00010001
+0000AD28 00010000
+D0000000 00000000
+5000ADB0 00020000
+0000ADB0 00020001
+D0000000 00000000
+50006330 00010001
+00006330 00010000
+D0000000 00000000
+500063B8 00020000
+000063B8 00020001
+D0000000 00000000
+5000ABF0 00010001
+0000ABF0 00010000
+D0000000 00000000
+5000AC78 00020000
+0000AC78 00020001
+D0000000 00000000
+50006324 00010001
+00006324 00010000
+D0000000 00000000
+500063AC 00020000
+000063AC 00020001
+D0000000 00000000
+5000ABE4 00010001
+0000ABE4 00010000
+D0000000 00000000
+5000AC6C 00020000
+0000AC6C 00020001
+D0000000 00000000
+50006328 00010001
+00006328 00010000
+D0000000 00000000
+500063B0 00020000
+000063B0 00020001
+D0000000 00000000
+5000ABE8 00010001
+0000ABE8 00010000
+D0000000 00000000
+5000AC70 00020000
+0000AC70 00020001
+D0000000 00000000
+5000640C 00010001
+0000640C 00010000
+D0000000 00000000
+50006494 00020000
+00006494 00020001
+D0000000 00000000
+5000ACEC 00010001
+0000ACEC 00010000
+D0000000 00000000
+5000AD74 00020000
+0000AD74 00020001
+D2000000 00000000
+-> Works!
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/24]
+
+Well, yesterday evening I tested a lot without success,
+just to see today I didn't test my updated code.
+And guess what ... it just works.
+
+To sum up:
+Found by comparing RAM Dumps
+NSMB2-SE_SaveGame1_Start-raw.bin &
+NSMB2-SE_SaveGame2_Complete-raw.bin.
+Save Game fully unlocked by using:
+https://gbatemp.net/threads/release-new-super-mario-bros-2-save-editor.396734/
+
+[All Worlds & Levels]
+D3000000 167637D4
+C0000000 00000093
+00000000 FFFFFFFF
+DC000000 00000004
+D1000000 00000000
+D3000000 16000000
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+{
+Note:
+For currently opened save game, unlocks:
+- All Worlds
+- All Levels
+- All Star Coin Signs/Pathways
+Save on World Map to store save game.
+}
+
+----------------------------------------------
+
+[Update 2019/10/22]
++ [Update 2019/10/23]
+
+[All Star/Moon Coins]
+
+16763740 77770770
+16763744 00007070
+
+1676374C 00000070
+16763750 77770077
+16763754 00070707
+
+1676375C 00000077
+16763760 77077007
+16763764 70707000
+
+1676376C 00007077
+16763770 77007707
+16763774 07070700
+
+1676377C 00007777
+16763780 77700070
+16763784 70700000
+
+1676378C 00707777
+16763790 00770007
+16763794 07070000
+
+1676379C 00770700
+167637A0 70077000
+167637A4 70000000
+
+167637AC 70770000
+167637B0 77000700
+167637B4 07000000
+
+167637C4 77777707	// Special levels?
+167637C8 00000070	// Special levels?
+
+Code:
+
+[All Star/Moon Coins]
+D3000000 16000000
+00763740 77770770
+00763744 00007070
+0076374C 00000070
+00763750 77770077
+00763754 00070707
+0076375C 00000077
+00763760 77077007
+00763764 70707000
+0076376C 00007077
+00763770 77007707
+00763774 07070700
+0076377C 00007777
+00763780 77700070
+00763784 70700000
+0076378C 00707777
+00763790 00770007
+00763794 07070000
+0076379C 00770700
+007637A0 70077000
+007637A4 70000000
+007637AC 70770000
+007637B0 77000700
+007637B4 07000000
+007637C4 77777707
+007637C8 00000070
+D2000000 00000000
+-> Doesn't set them all. Testing with all 7's:
+
+[All Star/Moon Coins]
+D3000000 16000000
+00763740 77777777
+00763744 77777777
+0076374C 77777777
+00763750 77777777
+00763754 77777777
+0076375C 77777777
+00763760 77777777
+00763764 77777777
+0076376C 77777777
+00763770 77777777
+00763774 77777777
+0076377C 77777777
+00763780 77777777
+00763784 77777777
+0076378C 77777777
+00763790 77777777
+00763794 77777777
+0076379C 77777777
+007637A0 77777777
+007637A4 77777777
+007637AC 77777777
+007637B0 77777777
+007637B4 77777777
+007637C4 77777777
+007637C8 77777777
+D2000000 00000000
+-> Seems to work.
+
+[All Star/Moon Coins]
+D3000000 16000000
+00763740 77777777
+00763744 77777777
+0076374C 77777777
+00763750 77777777
+00763754 77777777
+0076375C 77777777
+00763760 77777777
+00763764 77777777
+0076376C 77777777
+00763770 77777777
+00763774 77777777
+0076377C 77777777
+00763780 77777777
+00763784 77777777
+0076378C 77777777
+00763790 77777777
+00763794 77777777
+0076379C 77777777
+007637A0 77777777
+007637A4 77777777
+007637AC 77777777
+007637B0 77777777
+007637B4 77777777
+007637C4 77777777
+007637C8 77777777
+D2000000 00000000
+
+=================
+
+[All Levels Unlocked]
+167637D4 FFFFFFFF
+...
+16763A20 FF000000
+16763A24 FFFFFFFF
+16763A28 FFFFFFFF
+16763A2C FFFFFFFF
+16763A30 FFFFFFFF
+16763A34 FFFFFFFF
+16763A38 FFFF0000
+
+[All Levels Unlocked]
+D3000000 167637D4 – sets the offset to 167637D4
+C0000000 0000004E – repeat the following instructions 0x4E (78) times
+00000000 FFFFFFFF – writes FFFFFFFF value to the address at 0x167637D4 (0x167637D4 + 0x00000000 = 0x167637D4)
+DC000000 00000004 – increases the offset by 0x4, Offset is now 0x167637D8
+D1000000 00000000 – decrease loop counter by 0x1, jump back to the previous 0xC0 code.
+D3000000 16000000 - adding the rest manually
+(00763A20 FF000000) // Already there at game start.
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+
+[All Levels Unlocked]
+D3000000 167637D4
+C0000000 00000093
+00000000 FFFFFFFF
+DC000000 00000004
+D1000000 00000000
+D3000000 16000000
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+-> Seems to work (crashed before, did some adjustments not to overwrite values.
+Not tested yet).
+-> Doesn't crash on new game, crashes on when f.e. World 2 has been opened.
+
+Additional adjustments not to overwrite default values:
+
+[All Levels Unlocked A]
+D3000000 167637D4
+C0000000 00000136
+20000000 000000FF
+DC000000 00000002
+D1000000 00000000
+D2000000 00000000
+
+[All Levels Unlocked B]
+D3000000 1676390A
+C0000000 00000117
+20000000 000000FF
+DC000000 00000002
+D1000000 00000000
+D2000000 00000000
+
+[All Worlds and Pathways Unlocked]
+D3000000 16000000
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+
+IMPORTANT NOTES:
+- Must be a bug in these split codes. Not all pathways are opened. Miscalculated somewhere perhaps.
+	-> UPDATE: Luma 9.1 - Opens Star Coin Path in Star World / Luma 10: doesn't? Strange. Same code.
+	-> UPDATE 2019/10/25: I noticed while thinking in bed where I made a miscalculation.
+						  SEE WAY ABOVE NOTES
+- Works in non-split/modified earlier code.
+- Doesn't seem to crash when save already loaded. It does when save isn't loaded.
+
+Reverting to previous code (with updated name) for time being:
+
+[All Worlds & Levels]
+D3000000 167637D4
+C0000000 00000093
+00000000 FFFFFFFF
+DC000000 00000004
+D1000000 00000000
+D3000000 16000000
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+
+Making a dump. Not taking: making.
+In order to compare.
+
+Just as a test, before comparing, adding value at address 16763A20
+
+[All Worlds & Levels]
+D3000000 167637D4
+C0000000 00000093
+00000000 FFFFFFFF
+DC000000 00000004
+D1000000 00000000
+D3000000 16000000
+20763A20 000000FF
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+
+-> Bit confused during testing (does seemed to work when testing in Luma 9.1)...
+Doing some further tests (note not all tests are documented).
+-> Luma 9.1 - Opens Star Coin Path in Star World / Luma 10: doesn't? Strange. Same code.
+-> Only enable once when save game loaded and then disable immediately.
+
+Dropped the A20 address and added one extra loop out of curiosity:
+
+[All Worlds & Levels]
+D3000000 167637D4
+C0000000 00000094
+00000000 FFFFFFFF
+DC000000 00000004
+D1000000 00000000
+D3000000 16000000
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+D2000000 00000000
+-> Works in Luma 10 now as well (= Opens Star Coin Path in Star World). Testing in 9.1.
+-> Doesn't work in Luma 9.1 now :/... Update: And now it works... Same code, nothing changed...
+-> Is there a difference between loop counters in Luma versions? Strange.
+-> Dunno what happened, seems to work consistently. No crashes so far.
+
+Update: Now also sets
+- All Star/Moon Coins as collected &
+- The Star/Moon cointer to zero, since all paths are opened.
+
+[All Worlds & Levels]
+D3000000 167637D4
+C0000000 00000094
+00000000 FFFFFFFF
+DC000000 00000004
+D1000000 00000000
+D3000000 16000000
+00763A24 FFFFFFFF
+00763A28 FFFFFFFF
+00763A2C FFFFFFFF
+00763A30 FFFFFFFF
+00763A34 FFFFFFFF
+20763A38 000000FF
+20763A39 000000FF
+00763740 77777777
+00763744 77777777
+0076374C 77777777
+00763750 77777777
+00763754 77777777
+0076375C 77777777
+00763760 77777777
+00763764 77777777
+0076376C 77777777
+00763770 77777777
+00763774 77777777
+0076377C 77777777
+00763780 77777777
+00763784 77777777
+0076378C 77777777
+00763790 77777777
+00763794 77777777
+0076379C 77777777
+007637A0 77777777
+007637A4 77777777
+007637AC 77777777
+007637B0 77777777
+007637B4 77777777
+007637C4 77777777
+007637C8 77777777
+2076373C 00000000
+D2000000 00000000
+-> Works consistently, sometimes crashes when left on and changing save games/entering levels/.../doing stuff.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TODO:
+Add a button combo in order not to crash.
+OR provide check when not in a level / at world map only / ... ?
+
+Same for Coin counter setters and Star/Moon Coin counter setters.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+=================
+
+[All Rainbow Levels Unlocked]
+(see working code below)
+Difference: sets it as follows (with a 9 representing Level 1-Rainbow):
+16763A3C 05040302
+16763A40 06070809
+
+[All Rainbow Levels Unlocked]
+D3000000 16000000
+00763A3C 05040302
+00763A40 06070809
+D2000000 00000000
+-> Doesn't seem to work.
+Reverting to (working) code I found earlier on.
+
+[All Rainbow Levels Unlocked]
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+
+=================
+
+[Each Level Has Invincible Leaf Block]
+16763A4C 00000005
+16763A50 05050505
+...
+16763B60 05050505
+16763B64 05050000
+
+=================
+
+[Each Level Has Max Score]
+16763B6C 0F270F27
+...
+16763D94 0F270F27
+16763D98 0F270000
+
+=================
+
+[?]
+1676459C 01010101
+...
+167645B0 01010101
+167645B4 00000100
+
+[?]
+D3000000 1676459C – sets the offset to 1676459C
+C0000000 00000006 – repeat the following instructions 0x6 (6) times
+00000000 01010101 – writes 01010101 value to the address at 0x167637D4 (0x1676459C + 0x00000000 = 0x1676459C)
+DC000000 00000004 – increases the offset by 0x4, Offset is now 0x167645A0
+D1000000 00000000 – decrease loop counter by 0x1, jump back to the previous 0xC0 code.
+D2000000 00000000
+
+[?]
+D3000000 1676459C
+C0000000 00000006
+00000000 01010101
+DC000000 00000004
+D1000000 00000000
+D2000000 00000000
+-> Can't see what it does atm.
+
+=================
+
+[??]
+167645E0 FF000000
+167645E4 000000FF
+
+[??]
+D0000000 16000000
+007645E0 FF000000
+007645E4 000000FF
+D2000000 00000000
+-> Can't see what it does atm.
+
+=================
+
+[???]
+D3000000 16000000
+00763738 DB000000
+D2000000 00000000
+-> Can't see what it does atm.
+
+=================
+
+[????]
+D3000000 16000000
+007637C0 18000000
+D2000000 00000000
+-> Can't see what it does atm.
+
+=================
+
+[Test]
+D3000000 16000000
+007637C0 18000000
+007637C4 77777707
+007637C8 00000070
+D2000000 00000000
+
+=================
+
+[Test 2]
+D3000000 16000000
+007645B4 00010000
+D2000000 00000000
+
+=================
+
+[Test 3]
+D3000000 16000000
+00773970 00000019
+D2000000 00000000
+
+=================
+
+[Test 4] -> Flying Gold Coin Block At Level Start
+D3000000 16000000
+007739AC 00000001
+D2000000 00000000
+
+=================
+
+[Test 5]
+D3000000 16000000
+207774A0 00000001
+D2000000 00000000
+
+=================
+-> When all or one of 5 above Test Cheats On and dying until it asks for Continue,
+continuing switches Save Game. 0=Save Slot 1, 1=Save Slot 2, 2=Save Slot 3
+=================
+
+
+
+DONE+WIP: Make codes out of the above and test.
+
+
+=================
+
+[Update 2019/10/21]
+
+UNLOCK ALL LEVELS
+
+Started searching for changing values, though results stayed too high.
+Then I based myself on the addresses I found for Star/Moon coins:
+looked manually around that address in Hex Editor.
+Not too far away from it I found working values to unlock levels:
+
+Based on what I found some time ago:
+
+[All Star Coins Collected (stage 1 & level 2-1)]
+=============================
+Deze doet het voor level 1-1:
+16763740 00000007
+(RAM-Dump StarCoins_1)
+
+Deze doet het voor level 1-2:
+16763740 00000070
+
+Deze doet het voor level 2-1:
+1676374C 70000000
+(RAM-Dump StarCoins_2)
+=============================
+
+Found this address:
+167637D4 11111111 => unlocks levels 1-1 to 1-Castle (1-Castle not finished = red blinking pad)
+
+Editing a bit more values.
+
+167637D4 11111111 => unlocks levels 1-1, 1-2, 1-3, 1-Castle
+167637E4 11111111 => unlocks levels 1-Castle, 1-4 & 1-5
+
+Found values:
+
+[W1 - Normal Levels]
+D3000000 16000000
+007637D4 11111111
+007637D8 11111111
+D2000000 00000000
+
+Note:
+(D3000000 16000000)
+(007637DC 11111111)	// Not needed, stays empty.
+(007637E4 11111111)	// Not needed, stays empty.
+
+[W1 - Side + Warp + Castle Levels]
+D3000000 16000000
+007637E0 00130000	// 13 = Warp Path opened + When World End Castle completed, opens W2 and becomes 00130011
+007637E8 11111111
+D2000000 00000000
+
+[W1 - Mushroom Houses]
+D3000000 16000000
+007637EC 11111111
+D2000000 00000000
+
+===
+Rainbow levels
+===
+
+- Searched in memory range 16000000 -> 17A37000.
+- (I presumed/knew it had to be in range of the level and star coin values.)
+- 4 bytes.
+- Only EQUAL and NOT EQUAL.
+- Only searched on World Map.
+- Sometimes loaded save with rainbow level already opened,
+- though trimmed results to 4 by actually unlocking a rainbow level ingame
+- and then searching again on world map.
+
+[World 1 - Rainbow Level]
+16763A38 09000000 // Opened			>< 16763A38 09090000 // Not opened
+
+Does some extra pad effects (f.e. when on, ALWAYS shows sparkles on pad as if it where just opened),
+though aren't needed:
+17222138 00000003
+1722213C 00000003 
+17291AE0 00000100
+
+[World 1 - Rainbow Level]
+16763A38 09000000 // Opened			>< 16763A38 09090000 // Not opened
+
+[All Other Worlds - Rainbow Level]
+16763A38 01090000 // Opened			>< 16763A38 09090000 // Not opened
+
+-> At the moment, only one of 2 is working at the same time (since it writes to the same address).
+
+When changing worlds, there's one value that changes one line below the above results.
+
+Found the following changing values as well when switching between saves
+(one with all worlds unlocked and one without all worlds unlocked):
+
+-> Testing some different things, came up with:
+
+[All Rainbow Levels Unlocked ?]
+D3000000 16000000
+00763A38 00000001
+00763A3C 02030405
+00763A40 060708 00	// (*SEE NOTE*)
+D2000000 00000000
+
+(*NOTE*) This last byte (address 16763A43) sets which world the player is in.
+00 = PLAYER IS ON WORLDMAP @ World 1
+01 = PLAYER IS ON WORLDMAP @ World 2
+...
+05 = PLAYER IS ON WORLDMAP @ World 6 (Browser World)
+06 = PLAYER IS ON WORLDMAP @ Mushroom World
+07 = PLAYER IS ON WORLDMAP @ Flower World
+08 = PLAYER IS ON WORLDMAP @ Star World
+
+I think the game loads the Rainbow level that is written at this byte.
+When tested, it works, although Rainbow levels of World 3 and World 6 are swapped when this code is active.
+
+Changing above code to only edit the values besides that last byte.
+
+[All Rainbow Levels Unlocked]
+D3000000 16000000
+00763A38 00000001
+00763A3C 02030405
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+
+-> NOPE, still swaps Rainbow levels of World 3 and World 6
+
+-> Unlocked all Rainbow levels (using above cheat),
+disabled the cheat, then saved game. Then (with cheat disabled),
+went in Hex Editor to see what current values are.
+There's an endianness issue
+in  00763A38 (00000001 must be 01000000)
+and 00763A3C (02030405 must be 05040302).
+Other values seem correct (strange the game only applies it there...
+THOUGH SEEMLY NOT ALL THE TIME...).
+
+So, trying again:
+
+[All Rainbow Levels Unlocked]
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+-> Works.
+
+Note: I noticed the game swaps some of the values around (as stated above), using endianness.
+Not investigating further.
+As a side note: when searching for f.e. 05040302, also finding other addresses (even at a lower address range).
+Not investigating further, since the above code works and doesn't seem to crash.
+
+Trying the shortened version:
+
+[All Rainbow Levels Unlocked]
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+00763A40 06070800
+D2000000 00000000
+-> Swaps the Star Rainbow level and Flower Rainbow level (as far as I've tested).
+-> Trying above code to see if it happened there as well... Didn't think so.
+
+[All Rainbow Levels Unlocked]
+D3000000 16000000
+00763A38 01000000
+00763A3C 05040302
+20763A40 00000006
+20763A41 00000007
+20763A42 00000008
+D2000000 00000000
+-> Works. No swaps.
+-> Update: Found a different code while comparing with a 100% completed save (see above).
+-> Update: Reverted to this code for the time being.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/19&20]
+
+Porting:
+[Always Shoot Fireballs (NSMB2(USA))]
+D3000000 00000000
+0026C4BC E1A00000
+00268C54 EA00000A
+00268D50 E1A00000
+002676B8 EA000006
+D2000000 00000000
+
+NSMB2(USA):	0026C4BC	- offset B8 =>
+EUR:		0026C404
+Searched manually for other 003 address in code Always Shoot Gold Fireballs (different offset).
+
+NSMB2(USA):	0026C4BC	- offset E8 =>
+USA:		0026C3D4
+Searched manually for other 003 address in code Always Shoot Gold Fireballs (different offset).
+
+Also added extra addresses with default values in above code in order to be able to switch between both codes.
+Gold Fireballs changes these address values from default to something else. The above code restores those default
+values.
+
+Porting:
+
+[Half Sized Mario/Luigi]
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+40000364 14000000	// When in normal levels (non Browser Castle).
+000001F4 3F000000
+000001F8 3F000000
+000001FC 3F000000
+30000364 14000000	// When in Browser Castle (non normal levels). Pointer address (B05E7210) = 1403B56C
+00000242 3F000000	// Found start of hex values {0000803F 0000803F 0000803F 00000000} @ 1403B7AC (*SEE NOTE*)
+00000242 3F000000	// Little Endianness is taken into account.
+00000242 3F000000
+D2000000 00000000
+
+---------------------------------------
+Note: When in level.
+Does not affect hitbox.
+Turn off when Big Mario/Luigi PowerUp
+wears off to unfreeze game.
+---------------------------------------
+
+...
+
+Default size value is 3F800000.
+(*NOTE*) Used TempAR pointer search in 2x RAM Dump nohat_ingame_6-6 using address 1403B7AC
+(saved me some offset calculation in Windows Calculator).
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 [Update 2019/10/13]
 
@@ -81,6 +2054,14 @@ D3000000 00000000
 0056A584 40600000
 001F61B8 EB0DD0E8
 D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/13]
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -246,8 +2227,6 @@ D3000000 00000000
 001F61B8 EB0DD0E4
 D2000000 00000000
 
-Update: Ignore above about this code, thought about it and researched some more before bed time: see above in this document. Fixed it at a later time.
-
 ================================================
 FINDING OFFSET FROM NSMB2 (ORIGINAL, NON SE/GE).
 ================================================
@@ -256,7 +2235,6 @@ Comparing the Rapid Fireballs code:
 NSMB2-O (Europe) - 84 = NSMB2 Special Edition (Europe)
 -> Not working for the cheat I tried to convert. Could work for other cheats.
 (I noticed not all address offsets are the same.)
--> Update: Fixed it at a later time by comparing RAM dumps manually using HxD.
 -------------->
 
 ::::::::::::::::::::::::::::::::::::::::::::::

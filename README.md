@@ -75,7 +75,7 @@
   - **5 Lives**
   - **Enable Gold Leaf Block (All Levels)**
   - **Disable Gold Leaf Block (All Levels)**
-  - **Flying Gold Coin Block At Level Start**
+  - **Flying Gold Coin Block (At Level Start)**
   - **All Star Coins (All Levels)**
   - **Reset Star Coins (All Levels)**
   - **All Moon Coins (All Star Levels)**

@@ -70,7 +70,7 @@ Cheats Overview:
 			* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
 			* All Moon Coins in Star World collected.
 			* All paths opened (the ones that cost Star/Moon coins + all hidden exits).
-		* Additionaly:
+		* Additionally:
 			* Sets Star/Moon counter to zero since all star pathways are opened.
 			* Enables a Flying Gold Coin Block.
 			* Puts a Star in Item Box.
@@ -681,7 +681,7 @@ For currently opened save file:
 * All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
 * All Moon Coins in Star World collected.
 * All paths opened (the ones that cost Star/Moon coins + all hidden exits).
-Additionaly:
+Additionally:
 - Sets Star/Moon counter to zero since all star pathways are opened.
 - Enables a Flying Gold Coin Block.
 - Puts a Star in Item Box.

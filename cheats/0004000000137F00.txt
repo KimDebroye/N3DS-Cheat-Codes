@@ -49,9 +49,6 @@ Cheats Overview:
 	- [ (R+Down) Mini Mario/Luigi ]
 	- [ (R+Right) Gold Mario/Luigi ]
 	- [ (R+Up) White Tanooki Mario/Luigi ]
-	* The above codes can be used for
-	  instant powerup change in all levels
-	  (including Browser Castle).
 - [ Always White Tanooki Suit (Invincible) ]
 - [ Always Full Tanooki Pwing Gauge ]
 - [ Always Star Power (Invincible+Speed) ]

@@ -8,7 +8,6 @@
 **<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME ]</summary>**
 <p>
 
-> ----------------------------------
 > General Notes:
 > ----------------------------------
   - *In order for enabled cheat codes to take effect, depending on the code enabled, some codes require you to:*
@@ -24,7 +23,6 @@
 	  - *Finish a level.*
   - *All codes can be used in all levels (including Browser Castle).*
 
-> ----------------------------------
 > Character Modifier
 > ----------------------------------
   - **Play as Mario**
@@ -38,7 +36,6 @@
     - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - **Invisible Mario/Luigi**
     - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
-> ----------------------------------
 > Instant PowerUps
 > ----------------------------------
   - **(L+Down) Small Mario/Luigi**
@@ -60,7 +57,6 @@
 - **Rapid Fireballs**
   - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
 - **Mid-air Jump**
-> ----------------------------------	
 > Unlocks
 > ----------------------------------
   - **(L+R+Left+A) Everything (5 Star Save)**
@@ -99,7 +95,6 @@
 - **Able To Leave Unfinished Levels**
   - *Press Down at pause screen to highlight and enable level exit.*
 - **Infinite Time**
-> ----------------------------------
 > Quick Presets
 > ----------------------------------
   - **Easy Peasy Level Easy**

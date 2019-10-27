@@ -80,8 +80,6 @@
   - **Reset Star Coins (All Levels)**
   - **All Moon Coins (All Star Levels)**
   - **Reset Moon Coins (All Star Levels)**
-  - **Reset Star Coins (All Levels)**
-  - **Reset Moon Coins (All Star Levels)**
   - **9999 Coin Score (All Levels)**
   - **0000 Coin Score (All Levels)**
   - **219 Star/Moon Coins (Counter)**

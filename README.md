@@ -160,7 +160,7 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
 - [TempAR](https://raing3.gshi.org/files/psp/tools/pointer_searcher.zip)
   - *Used to find pointer addresses in raw RAM dumps.*
 - [HxD: Freeware Hex Editor](https://mh-nexus.de/en/hxd/)
-  - *Used for manually comparing and reading RAM dumps.*
+  - *Used for manually searching addresses/values by comparing and reading raw RAM dumps.*
 - [NSMB2 Save Editor](https://gbatemp.net/threads/release-new-super-mario-bros-2-save-editor.396734/)
   - *Used for unlocking a fully completed save in order to compare RAM dumps. Thanks a bunch!*
 - I searched/created (almost) all codes myself using the above software/tools and RAM Dump comparisons (no ASM).

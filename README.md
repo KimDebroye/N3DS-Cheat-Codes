@@ -7,28 +7,41 @@
 **************************************************
 **<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME ]</summary>**
 <p>
-	
-- Character Modifier
-	- **Play as Mario**
-	- **Play as Luigi**
-	  - *Even when game not beaten.*
-	- **No Hat**
-	  - *Doesn't require max (1110) lives.*
-	- **Half Sized Mario/Luigi**
-	  - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
-	- **Double Sized Mario/Luigi**
-	  - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
-	- **Invisible Mario/Luigi**
-	  - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
-- Instant PowerUps
-	- **(L+Down) Small Mario/Luigi**
-	- **(L+Left) Big Mario/Luigi**
-	- **(L+Right) Fire Mario/Luigi**
-	- **(L+Up) Tanooki Mario/Luigi**
-	- **(R+Down) Mini Mario/Luigi**
-	- **(R+Right) Gold Mario/Luigi**
-	- **(R+Up) White Tanooki Mario/Luigi**
-	  - *The above codes can be used for instant powerup change in all levels (including Browser Castle).*
+
+- > General Notes:
+  - *In order for enabled cheat codes to take effect, depending on the code enabled, some codes require you to:*
+    - *Use a button combination.*
+      - *These codes are marked with a * and list the button combination to be used between (parentheses).*
+    - *Switch Screens. Accomplishable by, for example:*
+      - *Switching between Worlds on World Map (if more then one World opened).*
+      - *Entering and exiting a level.*
+	- *Some codes require this because of checks used in the code.*
+	- *For exiting a level, any of the following options are valid:*
+	  - *Die in level.*
+	  - *Pause and return to map.*
+	  - *Finish a level.*
+  - *All codes can be used in all levels (including Browser Castle).*
+
+- > Character Modifier
+  - **Play as Mario**
+  - **Play as Luigi**
+    - *Even when game not beaten.*
+  - **No Hat**
+    - *Doesn't require max (1110) lives.*
+  - **Half Sized Mario/Luigi**
+    - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+  - **Double Sized Mario/Luigi**
+    - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+  - **Invisible Mario/Luigi**
+    - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+- > Instant PowerUps
+  - **(L+Down) Small Mario/Luigi**
+  - **(L+Left) Big Mario/Luigi**
+  - **(L+Right) Fire Mario/Luigi**
+  - **(L+Up) Tanooki Mario/Luigi**
+  - **(R+Down) Mini Mario/Luigi**
+  - **(R+Right) Gold Mario/Luigi**
+  - **(R+Up) White Tanooki Mario/Luigi**
 - **Always White Tanooki Suit (Invincible)**
 - **Always Full Tanooki Pwing Gauge**
 - **Always Star Power (Invincible+Speed)**
@@ -39,7 +52,7 @@
 - **Rapid Fireballs**
   - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
 - **Mid-air Jump**
-- Unlocks
+- > Unlocks
   - **(L+R+Left+A) Everything (5 Star Save)**
     - *For currently opened save file:*
       - *Max lives (1110), Three Crowns & No Hat Mario/Luigi.*
@@ -75,7 +88,7 @@
 - **Able To Leave Unfinished Levels**
   - *Press Down at pause screen to highlight and enable level exit.*
 - **Infinite Time**
-- Quick Presets
+- > Quick Presets
   - **Easy Peasy Level Easy**
     - *Star Power*
     - *Mid-air Jump*

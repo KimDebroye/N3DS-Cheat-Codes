@@ -8,21 +8,6 @@
 **<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME ]</summary>**
 <p>
 
-> General Notes:
-> ----------------------------------
-  - *In order for enabled cheat codes to take effect, depending on the code enabled, some codes require you to:*
-    - *Use a button combination.*
-      - *These codes are marked with a * and list the button combination to be used between (parentheses).*
-    - *Switch Screens. Accomplishable by, for example:*
-      - *Switching between Worlds on World Map (if more then one World opened).*
-      - *Entering and exiting a level.*
-	- *Some codes require this because of checks used in the code.*
-	- *For exiting a level, any of the following options are valid:*
-	  - *Die in level.*
-	  - *Pause and return to map.*
-	  - *Finish a level.*
-  - *All codes can be used in all levels (including Browser Castle).*
-
 > Character Modifier
 > ----------------------------------
   - **Play as Mario**
@@ -31,11 +16,11 @@
   - **No Hat**
     - *Doesn't require max (1110) lives.*
   - **Half Sized Mario/Luigi**
-    - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - **Double Sized Mario/Luigi**
-    - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - **Invisible Mario/Luigi**
-    - *When in level. Does not affect hitbox. Turn off when Big Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
 > Instant PowerUps
 > ----------------------------------
   - **(L+Down) Small Mario/Luigi**
@@ -110,6 +95,23 @@
 
 **************************************************
 
+## General Notes:
+  - In order for enabled cheat codes to take effect, depending on the code enabled,
+**some codes require you to:**
+    - **Use a button combination.**
+      - *These codes are marked with a * and list the button combination to be used between (parentheses).*
+    - **Switch Screens.** Accomplishable by, for example:
+      - *Switching between Worlds on World Map (if more then one World opened).*
+      - *Entering and exiting a level.*
+	- *Some codes require this because of checks used in the code.*
+	- *For exiting a level, any of the following options are valid:*
+	  - *Die in level.*
+	  - *Pause and return to map.*
+	  - *Finish a level.*
+  - All codes can be used in all levels (including Browser Castle).
+
+**************************************************
+
 ## Installation
 - [Download the latest version of the NSMB2-SE+GE cheat files](https://github.com/KimDebroye/N3DS-Cheat-Codes/releases/).
 - Running **Custom Firmware Luma3DS 9.1 or higher**:
@@ -180,6 +182,6 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
 
 **************************************************
 
-## General Notes
+## Personal Notes
 I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
 Learned quite a lot in the process.

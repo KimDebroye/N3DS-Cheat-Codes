@@ -7,7 +7,7 @@
 **<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME ]</summary>**
 <p>
 
-> Character Modifier
+#### Character Modifier
 > ----------------------------------
   - `Play as Mario`
   - `Play as Luigi`

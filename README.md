@@ -2,7 +2,6 @@
 
 ## Cheats Overview
 
-**************************************************
 ### New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
 **************************************************
 **<details><summary>[ CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME ]</summary>**

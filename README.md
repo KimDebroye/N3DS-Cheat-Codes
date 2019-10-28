@@ -15,11 +15,11 @@
   - `No Hat`
     - *Doesn't require max (1110) lives.*
   - `Half Sized Mario/Luigi`
-    - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level. Does not affect hitbox.<br />Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - `Double Sized Mario/Luigi`
-    - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level. Does not affect hitbox.<br />Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - `Invisible Mario/Luigi`
-    - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level. Does not affect hitbox.<br />Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
 > Instant PowerUps
 > ----------------------------------
   - `(L+Down) Small Mario/Luigi`
@@ -95,8 +95,7 @@
 **************************************************
 
 ## General Notes:
-  - In order for enabled cheat codes to take effect, depending on the code enabled,
-<br />**some codes require you to:**
+  - In order for enabled cheat codes to take effect, depending on the code enabled, <br />**some codes require you to:**
     - **Use a button combination.**
       - *These codes are marked with a * and list the button combination to be used between (parentheses).*
     - **Switch Screens.** Accomplishable by, for example:

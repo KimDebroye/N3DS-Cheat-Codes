@@ -139,7 +139,7 @@
 ## Bugs/Issues/Feedback
 - Although the codes work fine and I tried to iron out most crashes,
 I did encounter some seemingly random crashes depending on cheats used/circumstances.
-  - A good advice is to occasionally turn off cheats you don't need all the time (like f.e. set & reset cheats, ...)
+  - I strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).
 - Should you have feedback, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-new-super-mario-bros-2-gold-special-edition-cheat-codes.550034/).
 
 ## Credits, Software/Tools Used & Technical Notes

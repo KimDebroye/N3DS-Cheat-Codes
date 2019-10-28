@@ -10,41 +10,41 @@
 
 > Character Modifier
 > ----------------------------------
-  - **Play as Mario**
-  - **Play as Luigi**
+  - `Play as Mario`
+  - `Play as Luigi`
     - *Even when game not beaten.*
-  - **No Hat**
+  - `No Hat`
     - *Doesn't require max (1110) lives.*
-  - **Half Sized Mario/Luigi**
+  - `Half Sized Mario/Luigi`
     - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
-  - **Double Sized Mario/Luigi**
+  - `Double Sized Mario/Luigi`
     - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
-  - **Invisible Mario/Luigi**
+  - `Invisible Mario/Luigi`
     - *When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
 > Instant PowerUps
 > ----------------------------------
-  - **(L+Down) Small Mario/Luigi**
-  - **(L+Left) Big Mario/Luigi**
-  - **(L+Right) Fire Mario/Luigi**
-  - **(L+Up) Tanooki Mario/Luigi**
-  - **(R+Down) Mini Mario/Luigi**
-  - **(R+Right) Gold Mario/Luigi**
-  - **(R+Up) White Tanooki Mario/Luigi**
+  - `(L+Down) Small Mario/Luigi`
+  - `(L+Left) Big Mario/Luigi`
+  - `(L+Right) Fire Mario/Luigi`
+  - `(L+Up) Tanooki Mario/Luigi`
+  - `(R+Down) Mini Mario/Luigi`
+  - `(R+Right) Gold Mario/Luigi`
+  - `(R+Up) White Tanooki Mario/Luigi`
 > ----------------------------------
-- **Always White Tanooki Suit (Invincible)**
-- **Always Full Tanooki Pwing Gauge**
-- **Always Star Power (Invincible+Speed)**
-- **Always Gold Block Head (Unlimited Coins)**
+- `Always White Tanooki Suit (Invincible)`
+- `Always Full Tanooki Pwing Gauge`
+- `Always Star Power (Invincible+Speed)`
+- `Always Gold Block Head (Unlimited Coins)`
   - *Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily.*
 > ----------------------------------
-- **Always Shoot Fireballs**
-- **Always Shoot Gold Fireballs**
-- **Rapid Fireballs**
+- `Always Shoot Fireballs`
+- `Always Shoot Gold Fireballs`
+- `Rapid Fireballs`
   - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
-- **Mid-air Jump**
+- `Mid-air Jump`
 > Unlocks
 > ----------------------------------
-  - **(L+R+Left+A) Everything (5 Star Save)**
+  - `(L+R+Left+A) Everything (5 Star Save)`
     - *For currently opened save file:*
       - *Max lives (1110), Three Crowns & No Hat Mario/Luigi.*
       - *All levels opened & cleared (including Rainbow Levels & Toad Houses).*
@@ -56,35 +56,35 @@
       - *Enables a Flying Gold Coin Block.*
       - *Puts a Star in Item Box.*
     - *Results in a 5 Shiny Star save game when saved.*
-  - **Max Lives (Three Crowns)**
-  - **5 Lives**
-  - **Enable Gold Leaf Block (All Levels)**
-  - **Disable Gold Leaf Block (All Levels)**
-  - **Flying Gold Coin Block (At Level Start)**
-  - **All Star Coins (All Levels)**
-  - **Reset Star Coins (All Levels)**
-  - **All Moon Coins (All Star Levels)**
-  - **Reset Moon Coins (All Star Levels)**
-  - **9999 Coin Score (All Levels)**
-  - **0000 Coin Score (All Levels)**
-  - **219 Star/Moon Coins (Counter)**
-  - **000 Star/Moon Coins (Counter)**
-  - **9999999 Total Coins (Counter)**
-  - **1000000 Total Coins (Counter)**
-  - **0000000 Total Coins (Counter)**
+  - `Max Lives (Three Crowns)`
+  - `5 Lives**
+  - `Enable Gold Leaf Block (All Levels)`
+  - `Disable Gold Leaf Block (All Levels)`
+  - `Flying Gold Coin Block (At Level Start)`
+  - `All Star Coins (All Levels)`
+  - `Reset Star Coins (All Levels)`
+  - `All Moon Coins (All Star Levels)`
+  - `Reset Moon Coins (All Star Levels)`
+  - `9999 Coin Score (All Levels)`
+  - `0000 Coin Score (All Levels)`
+  - `219 Star/Moon Coins (Counter)`
+  - `000 Star/Moon Coins (Counter)`
+  - `9999999 Total Coins (Counter)`
+  - `1000000 Total Coins (Counter)`
+  - `0000000 Total Coins (Counter)`
 > ----------------------------------
-- **3 Star/Moon Coins Collected (Per Level)**
+- `3 Star/Moon Coins Collected (Per Level)`
   - *Per level code. Registers after finishing level.*
-- **Able To Leave Unfinished Levels**
+- `Able To Leave Unfinished Levels`
   - *Press Down at pause screen to highlight and enable level exit.*
-- **Infinite Time**
+- `Infinite Time`
 > Quick Presets
 > ----------------------------------
-  - **Easy Peasy Level Easy**
+  - `Easy Peasy Level Easy`
     - *Star Power*
     - *Mid-air Jump*
     - *Infinite Time*
-  - **Coin Rusher**
+  - `Coin Rusher`
     - *Star Power*
     - *Gold Block Head*
     - *Rapid Gold Fireballs*

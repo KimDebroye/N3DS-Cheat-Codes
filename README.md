@@ -56,7 +56,7 @@
       - *Puts a Star in Item Box.*
     - *Results in a 5 Shiny Star save game when saved.*
   - `Max Lives (Three Crowns)`
-  - `5 Lives**
+  - `5 Lives`
   - `Enable Gold Leaf Block (All Levels)`
   - `Disable Gold Leaf Block (All Levels)`
   - `Flying Gold Coin Block (At Level Start)`

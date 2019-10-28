@@ -108,8 +108,6 @@
 	  - *Finish a level.*
   - All codes can be used in all levels (including Browser Castle).
 
-**************************************************
-
 ## Installation
 - [Download the latest version of the NSMB2-SE+GE cheat files](https://github.com/KimDebroye/N3DS-Cheat-Codes/releases/).
 - Running **Custom Firmware Luma3DS 9.1 or higher**:
@@ -129,8 +127,6 @@
     - Certain cheats need additional key combinations when in game. These cheats are marked with a * and also mention the key combinations to use in order to activate the cheat at any given time when in game.
   - Exit out of the Rosalina menu by pressing the B button until the game is back in focus.
 - Happy cheating!
-  
-**************************************************
 
 ## Cheat Compatibility
 - Compatible with
@@ -139,16 +135,12 @@
   - Custom Firmware
     - Luma3DS 10.0.1
     - Luma3DS 9.1
-    
-**************************************************
 
 ## Bugs/Issues/Feedback
 - Although the codes work fine and I tried to iron out most crashes,
 I did encounter some seemingly random crashes depending on cheats used/circumstances.
   - A good advice is to occasionally turn off cheats you don't need all the time (like f.e. set & reset cheats, ...)
 - Should you have feedback, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-new-super-mario-bros-2-gold-special-edition-cheat-codes.550034/).
-    
-**************************************************
 
 ## Credits, Software/Tools Used & Technical Notes
 - [CTRPluginFramework (by Nanquitas)](https://github.com/Nanquitas/CTRPluginFramework-BlankTemplate)
@@ -177,8 +169,6 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
   - Able To Leave Unfinished Levels
   	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
 - I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and contains a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
-
-**************************************************
 
 ## Personal Notes
 I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.

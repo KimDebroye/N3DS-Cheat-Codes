@@ -97,7 +97,7 @@
 
 ## General Notes:
   - In order for enabled cheat codes to take effect, depending on the code enabled,
-**some codes require you to:**
+<br />**some codes require you to:**
     - **Use a button combination.**
       - *These codes are marked with a * and list the button combination to be used between (parentheses).*
     - **Switch Screens.** Accomplishable by, for example:

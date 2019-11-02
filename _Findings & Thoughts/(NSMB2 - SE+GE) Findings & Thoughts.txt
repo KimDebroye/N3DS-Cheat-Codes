@@ -10,6 +10,541 @@ Sometimes I fine-tuned directly in there.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+[Update 2019/11/1]
+
+[Moon Jump]
+See notes added further below.
+-> Split Moon Jump codes into cheat engine specific optimized codes (CTRPF & Luma).
+-> Optimized button combinations.
+
+Done:
+- Optimized a lot of codes and checks.
+- Intensive conditions testing done: going to mark it as a Stable Release (perhaps TODO: some more testing).
+- Optimized cheats and notes for cross-engine compatibility between Luma & CTRPF.
+- Fixed missing Star Coins in Star World.
+- Add other changes here (to be posted for release 2.1).
+
+[Update 2019/11/2]
+
+Version 2.1 | Release Notes
+- Added new cheat codes for both regions:
+		- Mega Mario
+			* Optimized to work in intended (sub)levels only.
+			* Easily expandable for other (sub)levels that have a Mega Mushroom (f.e. Coin Rush levels: untested so no idea which levels).
+		- Moon Jump
+			* Makes Mario/Luigi jump higher.
+			* Contains 2 entries:
+				* Values optimized for use with CTRPF cheat engine.
+				* Values optimized for use with Luma cheat engine.
+- Adjusted cheat codes:
+		- Always Star Power & Always Gold Block Head
+			* Rewritten. Cheats now also work in S-8 (Star World - Castle).
+		- Mid-air Jump
+			* Previous ported code entirely rewritten from scratch.
+				* Allows Mario/Luigi to infinitely jump multiple times in mid-air.
+				* Hold button to jump as high as desired.
+			* Based upon own findings while making Moon Jump code.
+		- Unlock All (f.k.a. Unlock Everything)
+			* Fixed missing Star Coins in Star World when applying cheat.
+			* Added Disable Gold Leaf Blocks (All Levels) code to make sure saving game results in a Shiny Star save.
+		- All Star Coins & Reset Star Coins
+			* Fixed altering Star Coins in Star World when applying cheats.
+		- Optimized many other codes and checks.
+			- During intensive testing rounds:
+				* Crashes where fixed immediately after occuring.
+				* No further notable crashes occured.
+				* Hence:
+			- Marking this release (2.1) as Stable Release.
+- Cosmetic changes:
+	- Optimized cheats and notes for cross-engine compatibility between Luma & CTRPF.
+		- Categories:
+			* Dummy codes acting as categories dropped in Luma.
+				* Improves enabling/disabling cheat codes (less scrolling).
+			* Categories visible as folders in CTRPF.
+				* Categories not (yet) supported in Luma.
+		- Adjusted a few cheat code names.
+		- Adjusted cheat code notes to be optimized for readability in CTRPF.
+			* Reading notes not (yet) supported in Luma.
+		- Moved General Notes & Cheats Overview to an accompanying text file (NSMB2-SE+GE_Summary).
+
+-----------------
+-----------------
+-----------------
+
+I noticed Always Star Power (and thus as well Gold Block Head) doesn't work in S-8 (Star World - Castle).
+Looking for pointer address for Infinite Star Power code in S-8 (Star World - Castle):
+
+[Always Star Power (Invincible+Speed)] S-8
+-> Seems to be the same as W6-6 (Browser Castle)
+-> Checking level ID to add to code.
+
+[EUR]
+1403CD64 000000BB
+
+Level ID:
+167645E4 00000F08	// Ingame S-8			(Star World - Castle)
+
+[USA]
+1403CD64 000000BB
+
+Level ID:
+16758F00 00000F08	// Ingame S-8			(Star World - Castle)
+
+Updated code:
+
+[EUR]
+[Always Star Power]
+D3000000 16000000
+607645E4 00000F05
+D3000000 00000000
+B05E7210 00000000
+000017AC 000000BB
+D2000000 00000000
+D3000000 16000000
+507645E4 00000F05
+D3000000 00000000
+B05E7210 00000000
+000017F8 000000BB
+D3000000 16000000
+507645E4 00000F08
+D3000000 00000000
+B05E7210 00000000
+000017F8 000000BB
+D2000000 00000000
+
+Updated for [USA] code too, as well as Gold Block Head codes.
+TODO: perhaps better use the Instant Powerups check (later, too lazy now)
+since the {607645E4 00000F05 // Not Browser Castle} also counts for S-8 (Star World-Castle),
+possibly writing values twice to different addresses and maybe overwriting. Testing...
+-> A crash occured: Adjusting code anyway.
+
+TODO:
+- Port Moon Jump & Mid-air Jump.
+- Edit Quick Presets to match newer codes.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/??]
+
+TODO:
+For 2.1:
+- Add my own Multi-Jump code (test if pointer needed)
+- Add [Disable Gold Leaf Blocks (All Levels)] in Unlock Everything code.
+- Add Item Box items.
+- Test
+Already added:
+- Mega Mario (Only works in intended (sub)levels 1-2 (underground only), 5-6 & M-3).
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/29] (continued)
+
+[(R+Left) Mega Mario/Luigi]
+DD000000 00000120
+D3000000 16000000
+507645E4 00030100
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+B0000364 00000000
+20000015 00000005
+D2000000 00000000
+DD000000 00000120
+D3000000 16000000
+507645E4 00000504
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+B0000364 00000000
+20000015 00000005
+D2000000 00000000
+DD000000 00000120
+D3000000 16000000
+507645E4 00000206
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+B0000364 00000000
+20000015 00000005
+D2000000 00000000
+DD000000 00000120
+D3000000 16000000
+507645E4 02020206
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+B0000364 00000000
+20000015 00000005
+D2000000 00000000
+{
+Only works in intended (sub)levels:
+* 1-2 (Underground only)
+* 5-6
+* M-3
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[Update 2019/10/28]
+
+[Moon Jump]
+
+Used GLEE search method:
+https://macrox.gshi.org/The%20Hacking%20Text.htm#hax0r_mj
+
+@Level 1-1:
+1416AC3C C0000000 (on ground)	(float value = -2)
+1416AC3C > C0000000 (jumping, going up)		f.e. CXX00000
+1416AC3C < C0000000 (jumping, going down)	f.e. BXX00000
+???
+
+By setting value to around 40200000 (float value = 2.5),
+basically I have a better code for Multi-Jump:
+[Multi-Jump]
+DD000000 00000002
+D3000000 14000000
+0016AC3C 40200000
+D2000000 00000000
+-> Works, could need a pointer address though for other levels, not sure.
+
+BUT... what if I don't want to multi-jump and only want to jump higher?
+
+Wondering atm what I can code to trigger Mario/Luigi to go down...
+
+Values changing when jumping/on ground:
+1416BD68 00000100		// ON GROUND
+	-> also set when hitting something (f.e. block).
+1416BD68 00000001		// not sure (yet?) (can't reproduce, but found)
+1416BD68 00000101		// IN AIR, GOING UP
+1416BD68 00000101		// IN AIR, GOING DOWN
+-> Note: still a bit untested for changing values depending on jump situations.
+
+(Values seem to change from time to time. Must have a reason (f.e. timeout on running?). Untested atm.)
+1416BD70 00000000		// ON GROUND (standing still condition, also found under other conditions)
+1416BD70 00000002		// ON GROUND (conditions for this value: ?)
+1416BD70 00020002		// IN AIR, MAX SPEED, JUMPING (HOLDING JUMP BUTTON)
+1416BD70 00020000		// IN AIR, MAX SPEED, JUMPING (RELEASED JUMP BUTTON)
+
+IMPORTANT NOTE: Not ignoring addresses, although ignoring above conclusions.
+Going to see ingame what changes and how.
+
+Perhaps:
+1) Read current value of 1416AC3C.
+	2) If read value is lower than some higher number: 
+		3) Add some value to 1416AC3C (+) & set 1416B770 to 00000202 to go up (in air).
+	4) If read value is higher than some number:
+		5) Do nothing with 1416AC3C & set 1416B770 to 00000102 to go down (~ on ground).
+
+Logic seems alright, although not sure (yet?).
+Hmmm... (thinking "out loud"):
+
+Perhaps:
+1) Read current value of 1416AC3C.
+	2) If read value is lower than some fixed higher number: 
+		3) Add some value to 1416AC3C (+).
+	4) If read value is higher than some number:
+		5) Do nothing with 1416AC3C & set 1416B770 to 00000102 to go down (~ on ground).
+		
+Didn't even try above. Tried something else:
+
+Switching between Mini Mario and Big/Fire/Gold Mario...
+
+Found address near above addresses:
+1416AC18 C0200000	// Mini Mario
+1416AC18 C0800000	// Non Mini Mario
+-> Perhaps this sets how high one can jump? Trying.
+
+Well, I always thought Mini Mario jumped higher. Doesn't.
+
+[Update 2019/10/29]
+
+Found an example of a Moon Jump code @
+https://www.max-cheats.com/view.php?ItemID=562
+
+Different game, logic quite similar as how I thought about it,
+yet with different execution (since it needs to behave differently).
+
+[Example]
+DD000000 00000200
+D3000000 10000000
+57321644 FFFFFFFF
+37321514 440F0000
+D9000000 07321514
+D4000000 00003F80
+D6000000 07321514
+D2000000 00000000
+DD000000 00000200
+D3000000 10000000
+67321644 FFFFFFFF
+37321640 440F0000
+D9000000 07321640
+D4000000 00003F80
+D6000000 07321640
+D2000000 00000000
+
+Trying to code how I think it may work for NSMB2:
+[Moon Jump]
+D3000000 14000000	// Set offset
+3016AC3C 40200000	// If value @ [address+offset] smaller than 2,5
+D9000000 0016AC3C	// Load value @ [address+offset] in register
+D4000000 3FA00000	// Add 0,05 to value stored in register
+D6000000 0016AC3C	// Write value in register back to [address+offset]
+D2000000 00000000
+
+Abandoning for now... Jumps really really high all of the sudden.
+
+~~~~~~~~~~~~
+
+[Update 2019/10/30]
+
+Good results while holding B:
+[MJ]
+DD000000 00000002
+D3000000 14000000
+3016BDC8 B727C5AC	// smaller than -0.00001	NOTE: Check for B at front, meaning it moves from going up to going down OR check using value of address 0x1416B770?
+0016AC3C 40600000
+D2000000 00000000
+
+TODO:
+-> needs better disabling of pressing B multiple times for multi-jump (3XX... does this a bit).
+	-> there's this address at 1616AC10 that stores some height value?
+-> needs some sort of a height cap (automatically falling down).
+
+~~~~~~~~~~~~
+
+[Update 2019/10/31]
+Trying something different. IF address 0x1616AC10 contains the height of Mario/Luigi while
+jumping. What if I (at least try, still learning by doing research) multiply that value by 2?
+https://gbatemp.net/threads/guide-how-to-create-gateway-cheat-codes.410926/page-2#post-6022505
+
+[Moon Jump]
+DD000000 00000002
+D3000000 14000000	// Set offset.
+6016AC3C C0000000	// If not not on ground:
+D9000000 0016AC10	// Load value @ [address+offset] in register.
+D4000000 3E800000	// Add 0,25 to value stored in register (as a test, still need to find a way to add the same value at 0x1416AC10, perhaps using an always empty temp address?).
+D6000000 0016AC10	// Write value in register back to [address+offset].
+D2000000 00000000
+-> Completely makes Mario/Luigi flip while in air (flying left to right)
+-> Doesn't work... at all.
+
+Immediately tried something else (basically what I did 2 days ago,
+though adding a different value and changing the if condition)
+... IT WORKED LIKE A CHARM! :
+
+[Moon Jump (~x1.5)]
+D3000000 14000000	// Set offset.
+6016AC3C C0000000	// If not not on ground:
+D9000000 0016AC3C	// Load value @ [address+offset] in register.
+D4000000 0000AAAA	// Add 0xAAAA to value stored in register.
+D6000000 0016AC3C	// Write value in register back to [address+offset].
+D2000000 00000000
+-> Works like a charm. Still needs pointer.
+   Height can be changed by changing 0000AAAA to a higher (or lower) value.
+   
+[Moon Jump (~x2)]
+D3000000 14000000	// Set offset.
+6016AC3C C0000000	// If not not on ground:
+D9000000 0016AC3C	// Load value @ [address+offset] in register.
+D4000000 0000EEEE	// Add 0xEEEE to value stored in register.
+D6000000 0016AC3C	// Write value in register back to [address+offset].
+D2000000 00000000
+-> Works like a charm. Still needs pointer.
+
+[Moon Jump]
+D3000000 14000000	// Set offset.
+6016AC3C C0000000	// If not not on ground:
+D9000000 0016AC3C	// Load value @ [address+offset] in register.
+D4000000 00011111	// Add 0x11111 to value stored in register.
+D6000000 0016AC3C	// Write value in register back to [address+offset].
+D2000000 00000000
+-> Works like a charm. Good value. Still needs pointer.
+
+-> Update: needs better check. When triple jumping and holding B, M/L stays in air.
+
+==========================================================
+Rechecked (found these earlies but didn't note them here):
+
+1416B904 00000000	// ON GROUND.
+1416B904 FFFFFFFF	// IN AIR.
+
+1416BAC4 00000000	// ON GROUND.
+1416BAC4 FFFFFFFF	// IN AIR.
+
+==========================================================
+
+[Moon Jump]
+D3000000 14000000	// Set offset.
+5016B904 FFFFFFFF	// If in air:
+D9000000 0016AC3C	// Load value @ [address+offset] in register.
+D4000000 00011111	// Add 0x11111 to value stored in register.
+D6000000 0016AC3C	// Write value in register back to [address+offset].
+D2000000 00000000
+-> Works like a charm. Good value. Still needs pointer.
+-> Still: When triple jumping and holding B, M/L stays in air.
+-> Solution: 0xFFFF and higher seems to be a too big value. Doesn't happen when set to 0xEEEE.
+-> Update: not found working (anymore?) in Luma 10.1. Investigating...
+
+====================================================================================
+====================================================================================
+====================================================================================
+( Currently Final: )
+
+[Moon Jump]
+DD000000 00000002	// If button B pressed:
+D3000000 14000000	// Set offset.
+5016B904 FFFFFFFF	// If in air:
+D9000000 0016AC3C	// Load value @ [address+offset] in register.
+D4000000 0000EEEE	// Add 0xEEEE to value stored in register.
+D6000000 0016AC3C	// Write value in register back to [address+offset].
+D2000000 00000000
+
+Without comments:
+
+[Moon Jump]
+DD000000 00000002
+D3000000 14000000
+5016B904 FFFFFFFF
+D9000000 0016AC3C
+D4000000 0000EEEE
+D6000000 0016AC3C
+D2000000 00000000
+
+-> Works like a charm. Good value. Still needs pointer.
+-> Note: from D4000000 0xFFFF onwards: when triple jumping and holding B, M/L stays in air.
+		 0xEEEE still works as expected. (Probably has got something to do with exceeding level height.)
+
+-> TODO:
+- Pointer.
+- Also enable for button A (= DD000000 00000001 ...).
+- Port to USA.
+
+UPDATE: DOESN'T SEEM TO WORK NOW IN LUMA 10.1 and yet I can remember having tested it (& found working).
+HAD THIS ISSUE BEFORE. Strange. Works consistently using Luma9.1 with plugin loader (v1.0.0.0).
+
+Gonna try and make a pointer code out of it anyway...
+====================================================================================
+====================================================================================
+====================================================================================
+
+RAM Dumping:
+- MJ_EUR_1-1:
+1416B904
+1416AC3C
+- MJ_EUR_1-2:
+141074F8
+14106830
+- MJ_EUR_6-6:
+1403C460
+1403B798
+
+=>
+
+[Moon Jump (KDb)]
+DD000000 00000001
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+40000364 14000000
+50000EA8 FFFFFFFF
+D9000000 000001E0
+D4000000 0000EEEE
+D6000000 000001E0
+D2000000 00000000
+DD000000 00000001
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+30000364 14000000
+50000EF4 FFFFFFFF
+D9000000 0000022C
+D4000000 0000EEEE
+D6000000 0000022C
+D2000000 00000000
+DD000000 00000002
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+40000364 14000000
+50000EA8 FFFFFFFF
+D9000000 000001E0
+D4000000 0000EEEE
+D6000000 000001E0
+D2000000 00000000
+DD000000 00000002
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+30000364 14000000
+50000EF4 FFFFFFFF
+D9000000 0000022C
+D4000000 0000EEEE
+D6000000 0000022C
+D2000000 00000000
+-> Works, though Luma 10.1 issue.
+-> Updated with A button as well.
+-> Updated for Browser Castle as well.
+
+[UPDATE 2019/11/1]
+-> Found that in Luma, the added value 0xEEEE isn't enough to see an effect. The code works though.
+With a value of f.e. 0x55555, the effect is visible. There has to be a cheat apply timing difference between CTRPF & Luma.
+Going for the Luma value.
+-> ALSO, it seems Luma doesn't allow 2 different buttons in a cheat code.
+F.e.
+DD000000 00000001 (if A button)
+...
+DD000000 00000002 (if B button)
+...
+only seems to be working for the first button (A).
+-> Also, in Luma 9.1 (without any plugin loaded), this type of code doesn't seem to work at all.
+-> It does when using f.e. CTRPF, although that one needs different values
+(the values used for Luma 10 are too high for the version of CTRPF I tested with).
+-> Update: it does work in another chain-loaded version of Luma 9.1 I tested with, so dropping the 10+ requirement.
+
+So:
+
+[(B) Moon Jump (Luma v10+ Only)]
+DD000000 00000002
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+40000364 14000000
+50000EA8 FFFFFFFF
+D9000000 000001E0
+D4000000 00060000
+D6000000 000001E0
+D2000000 00000000
+DD000000 00000002
+D3000000 00000000
+605E7210 00000000
+B05E7210 00000000
+30000364 14000000
+50000EF4 FFFFFFFF
+D9000000 0000022C
+D4000000 00060000
+D6000000 0000022C
+D2000000 00000000
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 [Update 2019/10/27]
 
 [Set Item Box]
@@ -693,11 +1228,13 @@ EUR
 
 167645E4 00000000	// Ingame W1-1
 
-167645E4 00000100	// Ingame W1-2			(has Mega Mushroom)
-167645E4 00000504	// Ingame W5-6			(has Mega Mushroom)
-167645E4 00000206	// Ingame WMushroom-2	(has Mega Mushroom)
+167645E4 00030100	// Ingame W1-2 - START			 		(better not use Mega Mushroom here)
+167645E4 00030100	// Ingame W1-2 - SUBLEVEL		 		(Mega Mushroom)
+167645E4 00000504	// Ingame W5-6
+167645E4 00000206	// Ingame WMushroom-3 - START	 		(better not use Mega Mushroom here)
+167645E4 02020206	// Ingame WMushroom-3 - LAST SUBLEVEL	(Mega Mushroom)
 
-167645E4 00000F05	// Ingame W6-6			(Browser Castle)
+167645E4 00000F05	// Ingame W6-6 (Browser Castle)
 
 When at World Map:
 167645E4 last-level-played-id

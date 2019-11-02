@@ -26,7 +26,7 @@
     - *When in level.*
     - *Does not affect hitbox.*
     - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
-> Character PowerUps
+> Character Powerups
 > ----------------------------------
   - `(L+Down) Small Mario/Luigi`
   - `(L+Left) Big Mario/Luigi`

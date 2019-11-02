@@ -15,35 +15,60 @@
   - `No Hat`
     - *Doesn't require max (1110) lives.*
   - `Half Sized Mario/Luigi`
-    - *When in level. Does not affect hitbox.<br />Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level.*
+    - *Does not affect hitbox.*
+    - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - `Double Sized Mario/Luigi`
-    - *When in level. Does not affect hitbox.<br />Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *When in level.*
+    - *Does not affect hitbox.*
+    - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
   - `Invisible Mario/Luigi`
-    - *When in level. Does not affect hitbox.<br />Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
-> Instant PowerUps
+    - *When in level.*
+    - *Does not affect hitbox.*
+    - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+> Character PowerUps
 > ----------------------------------
   - `(L+Down) Small Mario/Luigi`
   - `(L+Left) Big Mario/Luigi`
   - `(L+Right) Fire Mario/Luigi`
   - `(L+Up) Tanooki Mario/Luigi`
   - `(R+Down) Mini Mario/Luigi`
+  - `(R+Left) Mega Mario/Luigi`
+    - *Only works in intended (sub)levels:*
+      - *1-2 (Underground only)*
+      - *5-6*
+      - *M-3*
+    - *Not (yet) optimized to work in Coin Rush levels that have a Mega Mushroom powerup.*
   - `(R+Right) Gold Mario/Luigi`
   - `(R+Up) White Tanooki Mario/Luigi`
+> Character Abilities
 > ----------------------------------
 - `Always White Tanooki Suit (Invincible)`
 - `Always Full Tanooki Pwing Gauge`
 - `Always Star Power (Invincible+Speed)`
 - `Always Gold Block Head (Unlimited Coins)`
-  - *Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily.*
-> ----------------------------------
+  - *Start each level as Gold Block Head.*
+  - *Has unlimited coins.*
+  - *Getting hit loses it temporarily.*
 - `Always Shoot Fireballs`
+  - *Persistent code, even when turning off cheat.*
 - `Always Shoot Gold Fireballs`
+  - *Persistent code, even when turning off cheat.*
 - `Rapid Fireballs`
+  - *Persistent code, even when turning off cheat.*
   - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
-- `Mid-air Jump`
-> Unlocks
+- `Moon Jump`
+  - *Makes Mario/Luigi jump higher.*
+  - *Make sure to enable the code optimized for the Cheat Engine in use:*
+    - *CTRPluginFramework or*
+    - *Luma.*
+  - *If desired, delete the code for the non used Cheat Engine.*
+- `(B) Mid-air Jump`
+  - *Allows Mario/Luigi to infinitely jump multiple times in mid-air.*
+  - *Hold button to jump as high as desired.*
+> Unlocks/Sets/Resets
 > ----------------------------------
-  - `(L+R+Left+A) Everything (5 Star Save)`
+  - `(L+R+Left+A) Unlock All (5 Star Save)`
     - *For currently opened save file:*
       - *Max lives (1110), Three Crowns & No Hat Mario/Luigi.*
       - *All levels opened & cleared (including Rainbow Levels & Toad Houses).*
@@ -51,7 +76,9 @@
       - *All Moon Coins in Star World collected.*
       - *All paths opened (the ones that cost Star/Moon coins + all hidden exits).*
     - *Additionally:*
+      - *Unlocks all Coin Rush levels.*
       - *Sets Star/Moon counter to zero since all star pathways are opened.*
+      - *Disables Gold Leaf Blocks in all levels to make sure saving game results in a Shiny Star save.*
       - *Enables a Flying Gold Coin Block.*
       - *Puts a Star in Item Box.*
     - *Results in a 5 Shiny Star save game when saved.*
@@ -71,12 +98,13 @@
   - `9999999 Total Coins (Counter)`
   - `1000000 Total Coins (Counter)`
   - `0000000 Total Coins (Counter)`
+> Level Specific
 > ----------------------------------
-- `3 Star/Moon Coins Collected (Per Level)`
-  - *Per level code. Registers after finishing level.*
-- `Able To Leave Unfinished Levels`
-  - *Press Down at pause screen to highlight and enable level exit.*
-- `Infinite Time`
+  - `3 Star/Moon Coins Collected (Per Level)`
+    - *Per level code. Registers after finishing level.*
+  - `Able To Leave Unfinished Levels`
+    - *Press Down at pause screen to highlight and enable level exit.*
+  - `Infinite Time`
 > Quick Presets
 > ----------------------------------
   - `Easy Peasy Level Easy`
@@ -134,12 +162,11 @@
     - Could be compatible with Old 2DS/3DS, although I don't own one of those and thus couldn't test.
   - Custom Firmware
     - Luma3DS 10.0.1
-    - Luma3DS 9.1
+    - Luma3DS 9.1 (with/without CTRPF plugin loader).
 
 ## Bugs/Issues/Feedback
-- Although the codes work fine and I tried to iron out most crashes,
-I did encounter some seemingly random crashes depending on cheats used/circumstances.
-  - I strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).
+- No notable crashes occuring (as of Stable Release Version 2.1)
+  - I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).
 - Should you have feedback, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-new-super-mario-bros-2-gold-special-edition-cheat-codes.550034/).
 
 ## Credits, Software/Tools Used & Technical Notes
@@ -163,8 +190,6 @@ I did encounter some seemingly random crashes depending on cheats used/circumsta
   - Always Shoot Gold Fireballs
   	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
   - Rapid Fireballs
-  	- Ported the NSMB2 Gold Edition (USA) cheat code to NSMB2 Special Edition (Europe).
-  - Midair Jump
   	- Ported the NSMB2 Gold Edition (USA) cheat code to NSMB2 Special Edition (Europe).
   - Able To Leave Unfinished Levels
   	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).

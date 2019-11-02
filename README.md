@@ -165,7 +165,7 @@
     - Luma3DS 9.1 (with/without CTRPF plugin loader).
 
 ## Bugs/Issues/Feedback
-- No notable crashes (as of Stable Release Version 2.1)
+- No notable crashes (as of Stable Release Version 2.1).
   - **I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).**
 - Should you have feedback, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-new-super-mario-bros-2-gold-special-edition-cheat-codes.550034/).
 

@@ -156,7 +156,9 @@ D0000000 00000000
 00000244 3F000000
 00000248 3F000000
 D2000000 00000000
-{When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.}
+{When in level.\n
+Does not affect hitbox.\n
+Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.}
 
 [Double Sized Mario/Luigi]
 D3000000 00000000
@@ -174,7 +176,9 @@ D0000000 00000000
 00000244 3FC00000
 00000248 3FC00000
 D2000000 00000000
-{When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.}
+{When in level.\n
+Does not affect hitbox.\n
+Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.}
 
 [Invisible Mario/Luigi]
 D3000000 00000000
@@ -192,7 +196,9 @@ D0000000 00000000
 00000244 00000000
 00000248 00000000
 D2000000 00000000
-{When in level. Does not affect hitbox. Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.}
+{When in level.\n
+Does not affect hitbox.\n
+Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.}
 
 [--]
 
@@ -345,7 +351,11 @@ B05E7210 00000000
 B0000364 00000000
 20000015 00000005
 D2000000 00000000
-{Only works in intended (sub)levels: 1-2 (Underground only), 5-6 & M-3. Not (yet) optimized to work in Coin Rush levels that have a Mega Mushroom powerup.}
+{Only works in intended (sub)levels:\n
+* 1-2 (Underground only)\n
+* 5-6\n
+* M-3\n
+Not (yet) optimized to work in Coin Rush levels that have a Mega Mushroom powerup.}
 
 [(R+Right) Gold Mario/Luigi]
 DD000000 00000110
@@ -452,7 +462,9 @@ B05E7210 00000000
 30000364 14000000
 20004AA0 000000AA
 D2000000 00000000
-{Start each level as Gold Block Head. Has unlimited coins. Getting hit loses it temporarily.}
+{Start each level as Gold Block Head.\n
+Has unlimited coins.\n
+Getting hit loses it temporarily.}
 
 [Always Shoot Fireballs]
 D3000000 00000000
@@ -486,7 +498,8 @@ D3000000 00000000
 202E908C 00000000
 202E90AC 00000000
 D2000000 00000000
-{Persistent code, even when turning off cheat. Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.}
+{Persistent code, even when turning off cheat.\n
+Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.}
 
 [Moon Jump (CTRPF Optimized)]
 D3000000 00000000
@@ -553,7 +566,8 @@ B05E7210 00000000
 50000EF4 FFFFFFFF
 0000022C 40600000
 D2000000 00000000
-{Allows Mario/Luigi to infinitely jump multiple times in mid-air. Hold button to jump as high as desired.}
+{Allows Mario/Luigi to infinitely jump multiple times in mid-air.\n
+Hold button to jump as high as desired.}
 
 [--]
 
@@ -605,7 +619,19 @@ D3000000 16000000
 D3000000 16000000
 207682BF 00000002
 D2000000 00000000
-{For currently opened save file: * Max lives (1110), Three Crowns & No Hat Mario/Luigi. * All levels opened & cleared (including Rainbow Levels & Toad Houses). * All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected. * All Moon Coins in Star World collected. * All paths opened (the ones that cost Star/Moon coins + all hidden exits). + Additionally: * Unlocks all Coin Rush levels. * Sets Star/Moon counter to zero since all star pathways are opened.	* Disables Gold Leaf Blocks in all levels to make sure saving game results in a Shiny Star save. * Enables a Flying Gold Coin Block. * Puts a Star in Item Box. * Results in a 5 Shiny Star save game when saved.}
+{For currently opened save file:\n
+* Max lives (1110), Three Crowns & No Hat Mario/Luigi.\n
+* All levels opened & cleared (including Rainbow Levels & Toad Houses).\n
+* All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.\n
+* All Moon Coins in Star World collected.\n
+* All paths opened (the ones that cost Star/Moon coins + all hidden exits).\n
+Additionally:\n
+* Unlocks all Coin Rush levels.\n
+* Sets Star/Moon counter to zero since all star pathways are opened.\n
+* Disables Gold Leaf Blocks in all levels to make sure saving game results in a Shiny Star save.\n
+* Enables a Flying Gold Coin Block.\n
+* Puts a Star in Item Box.\n
+Results in a 5 Shiny Star save game when saved.}
 
 [Max Lives (Three Crowns)]
 D3000000 16000000
@@ -821,7 +847,9 @@ D2000000 00000000
 D3000000 00000000
 0022438C E1A00000
 D2000000 00000000
-{* Star Power * Mid-air Jump * Infinite Time}
+{* Star Power\n
+* Mid-air Jump\n
+* Infinite Time}
 
 [(Quick Preset) Coin Rusher]
 D3000000 00000000
@@ -872,7 +900,10 @@ D2000000 00000000
 D3000000 00000000
 0022438C E1A00000
 D2000000 00000000
-{* Star Power * Gold Block Head * Rapid Gold Fireballs * Infinite Time}
+{* Star Power\n
+* Gold Block Head\n
+* Rapid Gold Fireballs\n
+* Infinite Time}
 
 [--]
 

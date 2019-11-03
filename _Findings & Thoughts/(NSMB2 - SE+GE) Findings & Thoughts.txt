@@ -515,7 +515,7 @@ only seems to be working for the first button (A).
 
 So:
 
-[(B) Moon Jump (Luma v10+ Only)]
+[(B) Moon Jump (Luma Optimized)]
 DD000000 00000002
 D3000000 00000000
 605E7210 00000000

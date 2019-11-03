@@ -266,8 +266,7 @@ Found address near above addresses:
 1416AC18 C0200000	// Mini Mario
 1416AC18 C0800000	// Non Mini Mario
 -> Perhaps this sets how high one can jump? Trying.
-
-Well, I always thought Mini Mario jumped higher. Doesn't.
+-> Nothing really (if I remember correctly).
 
 [Update 2019/10/29]
 

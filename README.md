@@ -126,7 +126,7 @@
   - In order for enabled cheat codes to take effect, depending on the code enabled, <br />**some codes require you to:**
     - **Use a button combination.**
       - *These codes are marked with a * and list the button combination to be used between (parentheses).*
-    - **Switch Screens.** Accomplishable by, for example:
+    - **Trigger a screen transition.** Accomplishable by, for example:
       - *Switching between Worlds on World Map (if more then one World opened).*
       - *Entering and exiting a level.*
 	- *Some codes require this because of checks used in the code.*

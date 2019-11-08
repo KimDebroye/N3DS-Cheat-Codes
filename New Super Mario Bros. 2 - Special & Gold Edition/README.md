@@ -1,8 +1,8 @@
 # Nintendo 2DS/3DS Cheat Codes
 
-## Cheats Overview
+## New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
 
-### New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
+### Cheats Overview
 **************************************************
 **<details><summary>` CLICK TO SHOW/HIDE AVAILABLE CHEATS FOR THIS GAME `</summary>**
 <p>
@@ -124,7 +124,7 @@
 
 **************************************************
 
-## General Notes:
+### General Notes:
   - In order for enabled cheat codes to take effect, depending on the code enabled, <br />**some codes require you to:**
     - **Use a button combination.**
       - *These codes are marked with a * and list the button combination to be used between (parentheses).*
@@ -138,7 +138,7 @@
 	  - *Finish a level.*
   - All codes can be used in all levels (including Browser Castle).
 
-## Installation
+### Installation
 - [Download the latest version of the NSMB2-SE+GE cheat files](https://github.com/KimDebroye/N3DS-Cheat-Codes/releases/).
 - Running **Custom Firmware Luma3DS 9.1 or higher**:
   - Insert the SD/MicroSD card into your computer/phone.
@@ -158,19 +158,19 @@
   - Exit out of the Rosalina menu by pressing the B button until the game is back in focus.
 - Happy cheating!
 
-## Cheat Compatibility
+### Cheat Compatibility
 - Compatible with
   - Old & New 2DS/3DS XL
   - Custom Firmware
     - Luma3DS 10.0.1
     - Luma3DS 9.1 (with/without CTRPF plugin loader).
 
-## Bugs/Issues/Feedback
+### Bugs/Issues/Feedback
 - No notable crashes (as of Stable Release Version 2.1).
   - **I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).**
 - Should you have feedback, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-new-super-mario-bros-2-gold-special-edition-cheat-codes.550034/).
 
-## Credits, Software/Tools Used & Technical Notes
+### Credits, Software/Tools Used & Technical Notes
 - [CTRPluginFramework (by Nanquitas)](https://github.com/Nanquitas/CTRPluginFramework-BlankTemplate)
   - *Used for searching addresses/values and creating RAM dumps.*
 - [Gateway RAM Tools](https://www.maxconsole.com/threads/tool-gateway-ram-tools.40776/)
@@ -196,7 +196,7 @@
   	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
 - I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/New%20Super%20Mario%20Bros.%202%20-%20Special%20%26%20Gold%20Edition/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and contains a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
 
-## Personal Notes
+### Personal Notes
 I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
 Learned quite a lot in the process.
 It has been a fun ride finding and creating cheat codes for this game.

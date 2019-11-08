@@ -17,15 +17,15 @@
   - `Half Sized Mario/Luigi`
     - *When in level.*
     - *Does not affect hitbox.*
-    - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *Turn off when Mega Mario/Luigi Powerup wears off in order to unfreeze game.*
   - `Double Sized Mario/Luigi`
     - *When in level.*
     - *Does not affect hitbox.*
-    - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *Turn off when Mega Mario/Luigi Powerup wears off in order to unfreeze game.*
   - `Invisible Mario/Luigi`
     - *When in level.*
     - *Does not affect hitbox.*
-    - *Turn off when Mega Mario/Luigi PowerUp wears off in order to unfreeze game.*
+    - *Turn off when Mega Mario/Luigi Powerup wears off in order to unfreeze game.*
 > Character Powerups
 > ----------------------------------
   - `(L+Down) Small Mario/Luigi`

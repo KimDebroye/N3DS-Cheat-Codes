@@ -194,7 +194,7 @@
   	- Ported the NSMB2 Gold Edition (USA) cheat code to NSMB2 Special Edition (Europe).
   - Able To Leave Unfinished Levels
   	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
-- I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and contains a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
+- I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/New%20Super%20Mario%20Bros.%202%20-%20Special%20%26%20Gold%20Edition/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and contains a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.
 
 ## Personal Notes
 I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.

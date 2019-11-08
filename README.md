@@ -43,10 +43,10 @@
   - `(R+Up) White Tanooki Mario/Luigi`
 > Character Abilities
 > ----------------------------------
-- `Always White Tanooki Suit (Invincible)`
+- `Always White Tanooki Suit`
 - `Always Full Tanooki Pwing Gauge`
-- `Always Star Power (Invincible+Speed)`
-- `Always Gold Block Head (Unlimited Coins)`
+- `Always Star Power`
+- `Always Gold Block Head`
   - *Start each level as Gold Block Head.*
   - *Has unlimited coins.*
   - *Getting hit loses it temporarily.*
@@ -59,15 +59,26 @@
   - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
 - `Moon Jump`
   - *Makes Mario/Luigi jump higher.*
-  - *Make sure to enable the code optimized for the Cheat Engine in use:*
-    - *CTRPluginFramework or*
-    - *Luma.*
-  - *If desired, delete the code for the non used Cheat Engine.*
-- `(B) Mid-air Jump`
+  - *Code optimized for use with Luma~Rosalina's cheat engine.*
+  - *Read cheat code note for use with CTRPluginFramework.*
+- `(B) Infinite Jump`
   - *Allows Mario/Luigi to infinitely jump multiple times in mid-air.*
   - *Hold button to jump as high as desired.*
 > Unlocks/Sets/Resets
 > ----------------------------------
+  - `Max Lives (Three Crowns)`
+  - `5 Lives`
+  - `Flying Gold Coin Block (At Level Start)`
+  - `3 Star/Moon Coins Collected (Per Level)`
+    - *Per level code. Registers after finishing level.*
+  - `All Star Coins (All Levels)`
+  - `Reset Star Coins (All Levels)`
+  - `All Moon Coins (All Star Levels)`
+  - `Reset Moon Coins (All Star Levels)`
+  - `219 Star/Moon Coins (Counter)`
+  - `000 Star/Moon Coins (Counter)`
+  - `Enable Gold Leaf Block (All Levels)`
+  - `Disable Gold Leaf Block (All Levels)`
   - `(L+R+Left+A) Unlock All (5 Star Save)`
     - *For currently opened save file:*
       - *Max lives (1110), Three Crowns & No Hat Mario/Luigi.*
@@ -82,34 +93,25 @@
       - *Enables a Flying Gold Coin Block.*
       - *Puts a Star in Item Box.*
     - *Results in a 5 Shiny Star save game when saved.*
-  - `Max Lives (Three Crowns)`
-  - `5 Lives`
-  - `Enable Gold Leaf Block (All Levels)`
-  - `Disable Gold Leaf Block (All Levels)`
-  - `Flying Gold Coin Block (At Level Start)`
-  - `All Star Coins (All Levels)`
-  - `Reset Star Coins (All Levels)`
-  - `All Moon Coins (All Star Levels)`
-  - `Reset Moon Coins (All Star Levels)`
   - `9999 Coin Score (All Levels)`
   - `0000 Coin Score (All Levels)`
-  - `219 Star/Moon Coins (Counter)`
-  - `000 Star/Moon Coins (Counter)`
   - `9999999 Total Coins (Counter)`
   - `1000000 Total Coins (Counter)`
   - `0000000 Total Coins (Counter)`
-> Level Specific
+> Ease Of Use
 > ----------------------------------
-  - `3 Star/Moon Coins Collected (Per Level)`
-    - *Per level code. Registers after finishing level.*
+  - `No Game Over`
   - `Able To Leave Unfinished Levels`
     - *Press Down at pause screen to highlight and enable level exit.*
-  - `Infinite Time`
+> Teleport
+> ----------------------------------
+  - `Straight To Browser`
+  - `Straight To End Credits`
 > Quick Presets
 > ----------------------------------
   - `Easy Peasy Level Easy`
     - *Star Power*
-    - *Mid-air Jump*
+    - *(B) Infinite Jump*
     - *Infinite Time*
   - `Coin Rusher`
     - *Star Power*
@@ -158,8 +160,7 @@
 
 ## Cheat Compatibility
 - Compatible with
-  - New 2DS/3DS XL
-    - Could be compatible with Old 2DS/3DS, although I don't own one of those and thus couldn't test.
+  - Old & New 2DS/3DS XL
   - Custom Firmware
     - Luma3DS 10.0.1
     - Luma3DS 9.1 (with/without CTRPF plugin loader).
@@ -198,3 +199,6 @@
 ## Personal Notes
 I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.
 Learned quite a lot in the process.
+It has been a fun ride finding and creating cheat codes for this game.
+I sincerely hope you all like toying with the game using the cheats provided
+and that it may reflect a bit of the joy I had tinkering with them.

@@ -6,7 +6,4 @@
 
 **************************************************
 
-### Description
-
-A repository in which I add custom created cheat files for Nintendo 2DS/3DS games, optimized for use with CFW Luma.
 Follow the links for more information about cheats for each game listed above.

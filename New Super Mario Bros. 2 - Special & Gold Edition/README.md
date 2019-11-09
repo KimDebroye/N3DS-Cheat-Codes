@@ -43,31 +43,33 @@
   - `(R+Up) White Tanooki Mario/Luigi`
 > Character Abilities
 > ----------------------------------
-- `Always White Tanooki Suit`
-- `Always Full Tanooki Pwing Gauge`
-- `Always Star Power`
-- `Always Gold Block Head`
-  - *Start each level as Gold Block Head.*
-  - *Has unlimited coins.*
-  - *Getting hit loses it temporarily.*
-- `Always Shoot Fireballs`
-  - *Persistent code, even when turning off cheat.*
-- `Always Shoot Gold Fireballs`
-  - *Persistent code, even when turning off cheat.*
-- `Rapid Fireballs`
-  - *Persistent code, even when turning off cheat.*
-  - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
-- `Moon Jump`
-  - *Makes Mario/Luigi jump higher.*
-  - *Code optimized for use with Luma~Rosalina's cheat engine.*
-  - *Read cheat code note for use with CTRPluginFramework.*
-- `(B) Infinite Jump`
-  - *Allows Mario/Luigi to infinitely jump multiple times in mid-air.*
-  - *Hold button to jump as high as desired.*
+  - `Always White Tanooki Suit`
+  - `Always Full Tanooki Pwing Gauge`
+  - `Always Star Power`
+  - `Always Gold Block Head`
+    - *Start each level as Gold Block Head.*
+    - *Has unlimited coins.*
+    - *Getting hit loses it temporarily.*
+  - `Always Shoot Fireballs`
+    - *Persistent code, even when turning off cheat.*
+  - `Always Shoot Gold Fireballs`
+    - *Persistent code, even when turning off cheat.*
+  - `Rapid Fireballs`
+    - *Persistent code, even when turning off cheat.*
+    - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
+  - `Moon Jump`
+    - *Makes Mario/Luigi jump higher.*
+    - *Code optimized for use with Luma~Rosalina's cheat engine.*
+    - *Read cheat code note for use with CTRPluginFramework.*
+  - `(B) Infinite Jump`
+    - *Allows Mario/Luigi to infinitely jump multiple times in mid-air.*
+    - *Hold button to jump as high as desired.*
 > Unlocks/Sets/Resets
 > ----------------------------------
   - `Max Lives (Three Crowns)`
   - `5 Lives`
+  - `Infinite Time`
+    - *Persistent code, even when turning off cheat.*
   - `Flying Gold Coin Block (At Level Start)`
   - `3 Star/Moon Coins Collected (Per Level)`
     - *Per level code. Registers after finishing level.*

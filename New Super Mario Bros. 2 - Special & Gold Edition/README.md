@@ -1,5 +1,3 @@
-![NSMB2-SE+GE Cheat Codes](https://i.imgur.com/8ZZ7VEd.png)
-
 ## New Super Mario Bros. 2 - Special Edition (Europe) & Gold Edition (USA)
 
 ### Cheats Overview

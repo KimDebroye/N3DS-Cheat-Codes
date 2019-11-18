@@ -832,7 +832,7 @@ Press Down at pause screen to highlight and enable level exit.
 
 [++Teleport++]
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 605EF8D8 FFFF0012

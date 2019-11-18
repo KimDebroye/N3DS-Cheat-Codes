@@ -28,7 +28,7 @@ Version 2.2 (Stable) | Release Notes
 
     Added new cheat codes for both regions:
         Teleport
-            Straight To Browser
+            Straight To Bowser
 			Straight To End Credits
 		Ease Of Use
 			No Game Over
@@ -305,7 +305,7 @@ EUR
 167645E4 00000206	// Ingame WMushroom-3 - START	 		(better not use Mega Mushroom here)
 167645E4 02020206	// Ingame WMushroom-3 - LAST SUBLEVEL	(Mega Mushroom)
 
-167645E4 00000F05	// Ingame W6-6 (Browser Castle)
+167645E4 00000F05	// Ingame W6-6 (Bowser Castle)
 
 When at World Map:
 167645E4 last-level-played-id
@@ -334,63 +334,63 @@ Levels from Worlds 1->5:
 
 Abandoning for now...
 
-Went (again) into Hex Editor and around 167645E4 there are 3 more interesting addresses (f.e. 6-6 Browser Castle):
+Went (again) into Hex Editor and around 167645E4 there are 3 more interesting addresses (f.e. 6-6 Bowser Castle):
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-6-6(BrowserCastle) AT START
+6-6(BowserCastle) AT START
 167645DC 000F0500
 167645E0 00000100
 167645E4 00000F05
 
-6-6(BrowserCastle) SUBLEVEL (AFTER FIRST DOOR)
+6-6(BowserCastle) SUBLEVEL (AFTER FIRST DOOR)
 167645DC 000F0500
 167645E0 00030102
 167645E4 02000F05
 
-6-6(BrowserCastle) SUBLEVEL with flag & flashing lights (AFTER SECOND DOOR)
+6-6(BowserCastle) SUBLEVEL with flag & flashing lights (AFTER SECOND DOOR)
 167645DC 010F0500
 167645E0 00030000
 167645E4 00010F05
 
-6-6(BrowserCastle) SUBLEVEL with flag & first Browser fight (AFTER BIG GREEN DOOR)
+6-6(BowserCastle) SUBLEVEL with flag & first Bowser fight (AFTER BIG GREEN DOOR)
 167645DC 020F0500
 167645E0 00030000
 167645E4 00020F05
 
-6-6(BrowserCastle) SUBLEVEL with second & last Browser fight (AFTER FIRST BROWSER FIGHT)
+6-6(BowserCastle) SUBLEVEL with second & last Bowser fight (AFTER FIRST Bowser FIGHT)
 167645DC 030F0500
 167645E0 00030000
 167645E4 00030F05
 
 -->
 
-6-6(BrowserCastle) TRANSITION TO END CREDITS (AFTER SECOND BROWSER FIGHT)
+6-6(BowserCastle) TRANSITION TO END CREDITS (AFTER SECOND Bowser FIGHT)
 167645DC 030F0500
 167645E0 00030000
 167645E4 FF001A05
 167645E8 00000001
 
-6-6(BrowserCastle) END CREDITS (AFTER TRANSITION)
+6-6(BowserCastle) END CREDITS (AFTER TRANSITION)
 167645DC 001A0500
 167645E0 00010000
 167645E4 00001A05
 167645E8 00000000
 
-6-6(BrowserCastle) BACK @ World Map @6-6 (AFTER END CREDITS)
+6-6(BowserCastle) BACK @ World Map @6-6 (AFTER END CREDITS)
 167645DC 001A0500
 167645E0 00010000
 167645E4 00001A05
 167645E8 00000000
 
-6-6(BrowserCastle) SWITCHED @ World Map to @1-R (AFTER GETTING BACK ON WORLD MAP)
+6-6(BowserCastle) SWITCHED @ World Map to @1-R (AFTER GETTING BACK ON WORLD MAP)
 167645DC 001A0500
 167645E0 00010000
 167645E4 00001A05
 167645E8 00000000
 -> nothing changes at these locations when uncheated. The World Map address pointer probably does.
 
-6-6(BrowserCastle) MOVED @ World Map to @1-1 (AFTER WORLD SWITCH ON WM)
+6-6(BowserCastle) MOVED @ World Map to @1-1 (AFTER WORLD SWITCH ON WM)
 167645DC 001A0500
 167645E0 00010000
 167645E4 00001A05
@@ -401,7 +401,7 @@ Went (again) into Hex Editor and around 167645E4 there are 3 more interesting ad
 
 So, pointer version:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 605EF8D8 FFFF0012
@@ -425,7 +425,7 @@ D2000000 00000000
 
 ->
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 505EF8D8 FFFF0012	// When at World Map:
 D3000000 17000000
@@ -439,15 +439,15 @@ B05E72B0 00000000
 60000018 00030F05	// When not already set:
 60000018 FF001A05	// When not at End Credits transition:
 60000018 00001A05	// When not at End Credits:
-00000010 030F0500	// Set values for last Browser Fight.
-00000014 00030000	// Set values for last Browser Fight.
-00000018 00030F05	// Set values for last Browser Fight.
+00000010 030F0500	// Set values for last Bowser Fight.
+00000014 00030000	// Set values for last Bowser Fight.
+00000018 00030F05	// Set values for last Bowser Fight.
 D2000000 00000000
 -> Works, although returning to W6-6 doesn't work. Returns to last entered level (prob missed something, got some ideas, though not testing further atm).
 
 -> So, for now, I'm quite content with:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 605EF8D8 FFFF0012
@@ -488,11 +488,11 @@ B05E72B0 00000000
 00000014 00010000
 00000018 00001A05
 D2000000 00000000
--> Not much difference noticable. Sticking with this one for now. In line with Straight to Browser cheat.
+-> Not much difference noticable. Sticking with this one for now. In line with Straight to Bowser cheat.
 
 -> So, to sum up, for now, I'm quite content with:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 605EF8D8 FFFF0012
@@ -559,7 +559,7 @@ f.e. a pipe or door in a level.
 F.e.:
 -----
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 605EF8D8 FFFF0012
@@ -597,7 +597,7 @@ Some Easter Eggs:
 
 ( Basically "teleport" cheat codes: )
 
-[Straight To Browser]
+[Straight To Bowser]
 DD000000 00000001
 D3000000 00000000
 505EF8D8 FFFF0012
@@ -624,7 +624,7 @@ D2000000 00000000
    
 Some address must have been set differently at the first level enter. Trying to find out what.
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 505EF8D8 FFFF0010 // 12 (no matter:)
 D3000000 16000000
@@ -655,7 +655,7 @@ D2000000 00000000
 
 So, trying:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 505EF8D8 FFFF0012
 BFFFF65C 00000000
@@ -676,7 +676,7 @@ D2000000 00000000
 
 So, trying:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 505EF8D8 FFFF0012
 D3000000 17000000
@@ -691,7 +691,7 @@ D2000000 00000000
 
 Trying no check:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 17000000
 B029CAB0 00000000
 0000006C 00000F05
@@ -703,7 +703,7 @@ D2000000 00000000
 
 -----------------
 Based on this code:
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 505EF8D8 FFFF0010 // 12 (no matter:)
 D3000000 16000000
@@ -716,7 +716,7 @@ Trying to find a valid pointer address for the address that crashed:
 
 167645DC 00XXXXSS	// XXXX = Level, SS = Sublevel
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 B05E72B0 00000000
 00000010 000F0503
@@ -727,7 +727,7 @@ Trying to find a valid pointer address for the address that didn't crash before:
 167645E4 00030F05	// Didn't crash before.
 
 ->
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 B05E72B0 00000000
 00000018 00030F05
@@ -749,7 +749,7 @@ Solution: this of course: 60000010 030F0500
 
 -> Working code with checks to make sure End Credits are shown:
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 B05E72B0 00000000
@@ -761,7 +761,7 @@ D2000000 00000000
 -> Works (Edit: hmmm, not entirely). Doesn't crash when trying again @ W6-6, though crashes when trying again in f.e. W1-1.
 -> + 605EF8D8 FFFF0012 check (as in: don't run code at World Map)?
 
-[Straight To Browser]
+[Straight To Bowser]
 D3000000 00000000
 605EF8D8 FFFF0005
 605EF8D8 FFFF0012
@@ -792,7 +792,7 @@ When @ World Map:
 
 ->
 
-[Straight To Browser A]
+[Straight To Bowser A]
 D3000000 00000000
 505EF8D8 FFFF0012
 D3000000 17000000
@@ -878,7 +878,7 @@ I noticed Always Star Power (and thus as well Gold Block Head) doesn't work in S
 Looking for pointer address for Infinite Star Power code in S-8 (Star World - Castle):
 
 [Always Star Power (Invincible+Speed)] S-8
--> Seems to be the same as W6-6 (Browser Castle)
+-> Seems to be the same as W6-6 (Bowser Castle)
 -> Checking level ID to add to code.
 
 [EUR]
@@ -917,7 +917,7 @@ D2000000 00000000
 
 Updated for [USA] code too, as well as Gold Block Head codes.
 TODO: perhaps better use the Instant Powerups check (later, too lazy now)
-since the {607645E4 00000F05 // Not Browser Castle} also counts for S-8 (Star World-Castle),
+since the {607645E4 00000F05 // Not Bowser Castle} also counts for S-8 (Star World-Castle),
 possibly writing values twice to different addresses and maybe overwriting. Testing...
 -> A crash occured: Adjusting code anyway.
 
@@ -1298,7 +1298,7 @@ D6000000 0000022C
 D2000000 00000000
 -> Works, though Luma 10.1 issue.
 -> Updated with A button as well.
--> Updated for Browser Castle as well.
+-> Updated for Bowser Castle as well.
 
 [UPDATE 2019/11/1]
 -> Found that in Luma, the added value 0xEEEE isn't enough to see an effect. The code works though.
@@ -1385,7 +1385,7 @@ not going to find pointers or create codes for it for now.
 -----------------
 -----------------
 
-Looking for pointer address for Infinite Star Power code in Browser Castle (6-6):
+Looking for pointer address for Infinite Star Power code in Bowser Castle (6-6):
 
 [Always Star Power (Invincible+Speed)] 6-6
 
@@ -1393,13 +1393,13 @@ Looking for pointer address for Infinite Star Power code in Browser Castle (6-6)
 1403CD64 000000BB
 
 Searched for level ID:
-167645E4 00000F05	// Ingame W6-6			(Browser Castle)
+167645E4 00000F05	// Ingame W6-6			(Bowser Castle)
 
 [USA]
 1403CD64 000000BB
 
 Searched for level ID (manually in HxD):
-16758F00 00000F05	// Ingame W6-6			(Browser Castle)
+16758F00 00000F05	// Ingame W6-6			(Bowser Castle)
 
 Updated code:
 
@@ -1437,7 +1437,7 @@ D2000000 00000000
 -----------------
 -----------------
 
-Manually looking for Always GB Head to work in Browser Castle as well.
+Manually looking for Always GB Head to work in Bowser Castle as well.
 (Using calculator and Always Star Power cheat code to calculate offset difference.)
 
 [EUR]
@@ -1728,7 +1728,7 @@ D2000000 00000000
 {
 When opening any save file.
 For currently opened save file:
-* Game cleared (Browser beaten).
+* Game cleared (Bowser beaten).
 * All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
 * All Moon Coins in the Star World collected.
 * All paths opened (the ones that cost Star/Moon coins + all hidden exits).
@@ -2048,7 +2048,7 @@ EUR
 167645E4 00000206	// Ingame WMushroom-3 - START	 		(better not use Mega Mushroom here)
 167645E4 02020206	// Ingame WMushroom-3 - LAST SUBLEVEL	(Mega Mushroom)
 
-167645E4 00000F05	// Ingame W6-6 (Browser Castle)
+167645E4 00000F05	// Ingame W6-6 (Bowser Castle)
 
 When at World Map:
 167645E4 last-level-played-id
@@ -2146,7 +2146,7 @@ D3000000 16000000
 D2000000 00000000
 {
 For currently opened save game:
-* Game cleared (Browser beaten).
+* Game cleared (Bowser beaten).
 * All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
 * All Moon Coins in the Star World collected.
 * All paths opened (the ones that cost Star/Moon coins, as well as all hidden exits).
@@ -2226,7 +2226,7 @@ D3000000 16000000
 D2000000 00000000
 {
 For currently opened save game:
-* Game cleared (Browser beaten).
+* Game cleared (Bowser beaten).
 * All Star Coins in Worlds 1-6 and Mushroom/Flower Worlds collected.
 * All Moon Coins in the Star World collected.
 * All paths opened (the ones that cost Star/Moon coins, as well as all hidden exits).
@@ -3192,7 +3192,7 @@ D2000000 00000000
 00 = PLAYER IS ON WORLDMAP @ World 1
 01 = PLAYER IS ON WORLDMAP @ World 2
 ...
-05 = PLAYER IS ON WORLDMAP @ World 6 (Browser World)
+05 = PLAYER IS ON WORLDMAP @ World 6 (Bowser World)
 06 = PLAYER IS ON WORLDMAP @ Mushroom World
 07 = PLAYER IS ON WORLDMAP @ Flower World
 08 = PLAYER IS ON WORLDMAP @ Star World
@@ -3297,11 +3297,11 @@ Porting:
 D3000000 00000000
 605E7210 00000000
 B05E7210 00000000
-40000364 14000000	// When in normal levels (non Browser Castle).
+40000364 14000000	// When in normal levels (non Bowser Castle).
 000001F4 3F000000
 000001F8 3F000000
 000001FC 3F000000
-30000364 14000000	// When in Browser Castle (non normal levels). Pointer address (B05E7210) = 1403B56C
+30000364 14000000	// When in Bowser Castle (non normal levels). Pointer address (B05E7210) = 1403B56C
 00000242 3F000000	// Found start of hex values {0000803F 0000803F 0000803F 00000000} @ 1403B7AC (*SEE NOTE*)
 00000242 3F000000	// Little Endianness is taken into account.
 00000242 3F000000
@@ -5328,9 +5328,9 @@ Results:
 	-> Offset shouldn't be that big, since hat and body
 	   are probably close to each other (in real life and so I'm guessing in code too.)
 	B) World 6 (INGAME, World Map=OK):
-	-> Rainbow and other levels except Browser Castle:
+	-> Rainbow and other levels except Bowser Castle:
 	   -> See (A)
-	-> 6-Browser Castle Ingame = INSTANT CRASH.
+	-> 6-Bowser Castle Ingame = INSTANT CRASH.
 	-> Seems to be the same as Instant Powerup codes.
 	-> Needs a check
 	   (Someone found this for the Instant Powerup Codes,
@@ -5584,7 +5584,7 @@ B000C658 00000000
 D2000000 00000000
 -> Works in normal levels.
 
-[No Hat IG PiP - Rainbow and Browser Levels]
+[No Hat IG PiP - Rainbow and Bowser Levels]
 D3000000 00000000
 60100850 00000000
 B0100850 00000000
@@ -5596,18 +5596,18 @@ B000C658 00000000
 2000ACE8 00000000
 2000AD70 00000001
 D2000000 00000000
--> Works in Rainbow and Browser levels up to 6-2.
+-> Works in Rainbow and Bowser levels up to 6-2.
 From then on it crashes.
-In 6-6 (Browser Castle) it doesn't crash, although it doesn't work (keeps hat).
+In 6-6 (Bowser Castle) it doesn't crash, although it doesn't work (keeps hat).
 
-Now, for the check to see wether in normal or rainbow/browser levels:
+Now, for the check to see wether in normal or rainbow/Bowser levels:
 
 Trying the check found by someone for the Instant Powerups:
 D3000000 00000000
 605E7210 00000000
 B05E7210 00000000
 60000015 00000000
-30000364 14000000	// If less than (Browser)
+30000364 14000000	// If less than (Bowser)
 DO
 D3000000 00000000
 605E7210 00000000
@@ -5911,7 +5911,7 @@ B000C658 00000000
 D2000000 00000000
 -> Works in normal levels.
 
-[No Hat IG PiP - Rainbow and Browser Levels]
+[No Hat IG PiP - Rainbow and Bowser Levels]
 D3000000 00000000
 60100850 00000000
 B0100850 00000000
@@ -5923,9 +5923,9 @@ B000C658 00000000
 2000ACE8 00000000
 2000AD70 00000001
 D2000000 00000000
--> Works in Rainbow and Browser levels up to 6-2.
+-> Works in Rainbow and Bowser levels up to 6-2.
 From then on it crashes.
-In 6-6 (Browser Castle) it doesn't crash, although it doesn't work (keeps hat).
+In 6-6 (Bowser Castle) it doesn't crash, although it doesn't work (keeps hat).
 -> No crash after pipe shot.
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -5933,7 +5933,7 @@ In 6-6 (Browser Castle) it doesn't crash, although it doesn't work (keeps hat).
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 [Update 2019/10/07]
 
-Looked for addresses in (6-Browser Castle):
+Looked for addresses in (6-Bowser Castle):
 nohat_ingame_6-6
 140419B4 00000000
 14041A3C 00000001
@@ -5964,7 +5964,7 @@ nohat_ingame_2-2			-> 14170D74
 nohat_ingame_rainbowlvl_1-1	-> 14041974
 nohat_ingame_6-6			-> 140419B4
 [A]
-(All but Browser)
+(All but Bowser)
 D3000000 00000000
 605E2D18 00000000
 B05E2D18 00000000
@@ -5972,7 +5972,7 @@ B0000020 00000000
 20006274 00000000
 D2000000 00000000
 
-(Browser)
+(Bowser)
 D3000000 00000000	//
 605E2D18 00000000	//
 B05E2D18 00000000	//
@@ -5987,7 +5987,7 @@ nohat_ingame_2-2			-> 14170DFC
 nohat_ingame_rainbowlvl_1-1	-> 140419FC
 nohat_ingame_6-6			-> 14041A3C
 [B]
-(All but Browser)
+(All but Bowser)
 D3000000 00000000 //
 605E2D18 00000000 //
 B05E2D18 00000000 //
@@ -5995,7 +5995,7 @@ B0000020 00000000 //
 200062FC 00000001
 D2000000 00000000 //
 
-(Browser)
+(Bowser)
 D3000000 00000000	//
 605E2D18 00000000	//
 B05E2D18 00000000	//
@@ -6010,7 +6010,7 @@ nohat_ingame_2-2			-> 14175634
 nohat_ingame_rainbowlvl_1-1	-> 14046254
 nohat_ingame_6-6			-> 14046294
 [C]
-(All but Browser)	??? (note: had an invalid pointer between 1-1 & 2-2 -> perhaps mario/luigi size difference? still taking the pointer that seems to match best. Could crash...)
+(All but Bowser)	??? (note: had an invalid pointer between 1-1 & 2-2 -> perhaps mario/luigi size difference? still taking the pointer that seems to match best. Could crash...)
 D3000000 00000000
 605EFB1C 00000000
 B05EFB1C 00000000
@@ -6018,7 +6018,7 @@ B00000B4 00000000
 200004DC 00000000
 D2000000 00000000
 
-(Browser)
+(Bowser)
 D3000000 00000000
 
 
@@ -6029,7 +6029,7 @@ nohat_ingame_2-2			-> 141756BC
 nohat_ingame_rainbowlvl_1-1	-> 140462DC
 nohat_ingame_6-6			-> 1404631C
 [D]
-(All but Browser)
+(All but Bowser)
 D3000000 00000000
 605EFB1C 00000000
 B05EFB1C 00000000
@@ -6037,7 +6037,7 @@ B00000B4 00000000
 20000564 00000001
 D2000000 00000000
 
-(Browser)
+(Bowser)
 D3000000 00000000
 
 
@@ -6045,7 +6045,7 @@ D3000000 00000000
 
 So:
 
-[No Hat - All but Browser ?]
+[No Hat - All but Bowser ?]
 D3000000 00000000
 605E2D18 00000000
 B05E2D18 00000000
@@ -6059,7 +6059,7 @@ B00000B4 00000000
 20000564 00000001
 D2000000 00000000
 
-[No Hat - All but Browser - Big Only]
+[No Hat - All but Bowser - Big Only]
 D3000000 00000000
 605E2D18 00000000
 B05E2D18 00000000
@@ -6068,7 +6068,7 @@ B0000020 00000000
 200062FC 00000001
 D2000000 00000000
 
-[No Hat - All but Browser - Small Only ?]
+[No Hat - All but Bowser - Small Only ?]
 D3000000 00000000
 605EFB1C 00000000
 B05EFB1C 00000000
@@ -6098,7 +6098,7 @@ PERHAPS do a check anyway?
 So, with the offsets:
 D3000000 00000000
 405E7210 14100000	// if greater than &
-605E7210 1403B56C	// not equal to rainbow/browser castle: normal levels
+605E7210 1403B56C	// not equal to rainbow/Bowser castle: normal levels
 B05E7210 00000000
 200063A0 00000000
 D3000000 00000000
@@ -6230,7 +6230,7 @@ D0000000 00000000
 0000AD70 00020001
 D2000000 00000000
 
-[No Hat IG (Browser Castle)]
+[No Hat IG (Bowser Castle)]
 D3000000 00000000
 605E7210 00000000
 B05E7210 00000000
@@ -8001,7 +8001,7 @@ D3000000 00000000
 202E90DC 00000000
 
 The below button codes can be used for instant powerup change
-in all levels (including Browser Castle).
+in all levels (including Bowser Castle).
 
 [======== Instant PowerUps ========]
 D3000000 00000000

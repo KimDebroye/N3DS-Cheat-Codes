@@ -22,7 +22,7 @@ General Notes:
 	        * Die in level.
 	        * Pause and return to map.
 	        * Finish a level.
-  * All cheat codes can be used in all levels (including Browser Castle).
+  * All cheat codes can be used in all levels (including Bowser Castle).
 
 **************************************************
 
@@ -126,7 +126,7 @@ Cheats Overview:
 	- [ Able To Leave Unfinished Levels ]
 		* Press Down at pause screen to highlight and enable level exit.
 - Teleport
-	- [ Straight To Browser ]
+	- [ Straight To Bowser ]
 	- [ Straight To End Credits ]
 - Quick Presets
 	- [ Easy Peasy Level Easy ]

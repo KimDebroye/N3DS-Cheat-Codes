@@ -105,7 +105,7 @@
     - *Press Down at pause screen to highlight and enable level exit.*
 > Teleport
 > ----------------------------------
-  - `Straight To Browser`
+  - `Straight To Bowser`
   - `Straight To End Credits`
 > Quick Presets
 > ----------------------------------
@@ -136,7 +136,7 @@
 	  - *Die in level.*
 	  - *Pause and return to map.*
 	  - *Finish a level.*
-  - All codes can be used in all levels (including Browser Castle).
+  - All codes can be used in all levels (including Bowser Castle).
 
 ### Installation
 - [Download the latest version of the NSMB2-SE+GE cheat files](https://github.com/KimDebroye/N3DS-Cheat-Codes/releases/).

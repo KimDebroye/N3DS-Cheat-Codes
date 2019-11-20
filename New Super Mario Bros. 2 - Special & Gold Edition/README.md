@@ -49,11 +49,14 @@
     - *Has unlimited coins.*
     - *Getting hit loses it temporarily.*
   - `Always Shoot Fireballs`
-    - *Persistent code, even when turning off cheat.*
+    - *In effect when playing a level.*
+    - *In order to restore game default, disable this cheat code when not in a level.*
   - `Always Shoot Gold Fireballs`
-    - *Persistent code, even when turning off cheat.*
+    - *In effect when playing a level.*
+    - *In order to restore game default, disable this cheat code when not in a level.*
   - `Rapid Fireballs`
-    - *Persistent code, even when turning off cheat.*
+    - *In effect when playing a level.*
+    - *In order to restore game default, disable this cheat code when not in a level.*
     - *Works for Fire and Gold Mario/Luigi and in combination with above Fireball codes.*
   - `Moon Jump`
     - *Makes Mario/Luigi jump higher.*
@@ -136,6 +139,12 @@
 	  - *Die in level.*
 	  - *Pause and return to map.*
 	  - *Finish a level.*
+  - In order for some cheat codes to be successfully disabled, <br />**the following cheat codes need to be disabled when not in a level:**
+	  - *Always Shoot Fireballs*
+	  - *Always Shoot Gold Fireballs*
+	  - *Rapid Fireballs*
+	  - *Infinite Time*
+	  - *All Quick Presets using any of the above cheat codes.*
   - All codes can be used in all levels (including Bowser Castle).
 
 ### Installation
@@ -187,11 +196,11 @@
   - Instant Powerup Change codes
   	- Merged and edited existing codes.
   - Always Shoot Fireballs
-  	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
+  	- Ported & optimized the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
   - Always Shoot Gold Fireballs
-  	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
+  	- Ported & optimized the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
   - Rapid Fireballs
-  	- Ported the NSMB2 Gold Edition (USA) cheat code to NSMB2 Special Edition (Europe).
+  	- Ported & optimized the NSMB2 Gold Edition (USA) cheat code to NSMB2 Special Edition (Europe).
   - Able To Leave Unfinished Levels
   	- Ported the NSMB2 Non Gold/Special Edition (USA) cheat code to both regions (SE+GE).
 - I added my notes to this repository for those interested in reading about [my findings and thought process](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/New%20Super%20Mario%20Bros.%202%20-%20Special%20%26%20Gold%20Edition/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt). It's not very well structured though (I didn't intend it for public reading, was fine for me though to work with) and contains a few Dutch language strings, which can of course easily be translated using Google Translate for example in case needed.

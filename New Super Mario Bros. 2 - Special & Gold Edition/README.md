@@ -139,7 +139,7 @@
 	  - *Die in level.*
 	  - *Pause and return to map.*
 	  - *Finish a level.*
-  - In order for some cheat codes to be successfully disabled, <br />**the following cheat codes need to be disabled when not in a level:**
+  - In order to be successfully disabled, <br />**the following cheat codes need to be disabled when not in a level:**
 	  - *Always Shoot Fireballs*
 	  - *Always Shoot Gold Fireballs*
 	  - *Rapid Fireballs*

@@ -10,9 +10,24 @@ Sometimes I fine-tuned directly in there.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-[Update 2019/11/?]
+[Update 2019/11/20]
 
+Version 2.2.1 (Stable) | Release Notes
 
+Usability:
+	- Ability to disable ASM codes.
+		- By rewriting game defaults when not in a level.
+	- The following codes are no longer persistent:
+		- Always Shoot Fireballs
+		- Always Shoot Gold Fireballs
+		- Rapid Fireballs
+		- Infinite Time
+		- All Quick Presets using any of the above cheat codes.
+	- In order to be successfully disabled,
+	  the above mentioned cheat codes need
+	  to be disabled when not in a level.
+Cosmetic Changes:
+	- Corrected a rather embarrassing typo in all cheats & documents: Browser -> Bowser
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -2,7 +2,7 @@
 New Super Mario Bros. 2 - Gold Edition (USA) &
 New Super Mario Bros. 2 - Special Edition (Europe)
 https://github.com/KimDebroye/N3DS-Cheat-Codes
-Version 2.2 (Stable)
+Version 2.2.1 (Stable)
 **************************************************
 
 General Notes:
@@ -22,6 +22,13 @@ General Notes:
 	        * Die in level.
 	        * Pause and return to map.
 	        * Finish a level.
+  * In order to be successfully disabled,
+	the following cheat codes need to be disabled when not in a level:
+		* Always Shoot Fireballs
+		* Always Shoot Gold Fireballs
+		* Rapid Fireballs
+		* Infinite Time
+		* All Quick Presets using any of the above cheat codes.
   * All cheat codes can be used in all levels (including Bowser Castle).
 
 **************************************************
@@ -72,11 +79,17 @@ Cheats Overview:
 		* Has unlimited coins.
 		* Getting hit loses it temporarily.
 	- [ Always Shoot Fireballs ]
-		* Persistent code, even when turning off cheat.
+		* In effect when playing a level.
+		* In order to restore game default,
+		  disable this cheat code when not in a level.
 	- [ Always Shoot Gold Fireballs ]
-		* Persistent code, even when turning off cheat.
+		* In effect when playing a level.
+		* In order to restore game default,
+		  disable this cheat code when not in a level.
 	- [ Rapid Fireballs ]
-		* Persistent code, even when turning off cheat.
+		* In effect when playing a level.
+		* In order to restore game default,
+		  disable this cheat code when not in a level.
 		* Works for Fire and Gold Mario/Luigi
 		  and in combination with above Fireball codes.
 	- [ Moon Jump ]
@@ -90,7 +103,9 @@ Cheats Overview:
 	- [ Max Lives (Three Crowns) ]
 	- [ 5 Lives ]
 	- [ Infinite Time ]
-		* Persistent code, even when turning off cheat.
+		* In effect when playing a level.
+		* In order to restore game default,
+		  disable this cheat code when not in a level.
 	- [ Flying Gold Coin Block (At Level Start) ]
 	- [ 3 Star/Moon Coins Collected (Per Level) ]
 		* Per level code. Registers after finishing level.

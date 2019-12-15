@@ -123,7 +123,7 @@
   - *Used for help with finding pointer addresses in raw RAM dumps.*
 - [HxD: Freeware Hex Editor](https://mh-nexus.de/en/hxd/)
   - *Used for manually searching addresses/values/pointers by comparing and reading raw RAM dumps.*
-- [SM3DL Save Editor](https://github.com/yonaikerlol/Super-Mario-3D-Land-SGE/blob/master/Super%20Mario%20Land%203D%20Savegame%20Editor)
+- [SM3DL Save Editor](https://github.com/yonaikerlol/Super-Mario-3D-Land-SGE)
   - *Used for partially unlocking a save file in order to compare RAM dumps.*
 - [SM3DL Shiny Star Fix](https://gbatemp.net/threads/how-to-get-5-sparkly-stars-savefile-back-on-super-mario-3d-land.542645/)
   - *Consulted for information/findings about converting a non shiny (1->5) star save to a shiny (1->5) save.<br />Thanks a bunch!*

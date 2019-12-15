@@ -1,0 +1,4184 @@
+**************************************************
+Super Mario 3D Land (All Regions & Revisions)
+https://github.com/KimDebroye/N3DS-Cheat-Codes
+Version 1.0.0 (Stable)
+**************************************************
+
+~~~~~~~~~~~~~~~~~
+General Dev Notes
+~~~~~~~~~~~~~~~~~
+- All cheat codes should be optimized for all regions.
+	-> Subject to change.
+	-> Codes tested on USA & EUR region at time of writing.
+	-> Other regions untested at time of writing.
+		-> Should theoretically work, unless proven wrong.
+- When mentioning 'All Regions', this would also mean '& All Revisions'.
+	-> Subject to change.
+	-> Tested with latest revision (as far as I know).
+	-> Other revisions untested at time of writing.
+		-> Should theoretically work, unless proven wrong.
+- Based on own testing rounds, current version marked as Stable.
+	-> Subject to change.
+- Below findings are subject to change.
+	-> As in: no guarantee all information is 100% correct.
+		-> Feel free to correct if any information is wrong or misleading.
+- For the most recent codes/addresses/values/names/notes/...,
+  please check the cheat source files.
+	-> Sometimes fine-tuned directly in there.
+- Below findings not listed in a particular order,
+  though kept structured.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+===============
+TECHNICAL NOTES
+===============
+
+----------
+Reference:
+----------
+
+https://gbatemp.net/threads/guide-how-to-create-gateway-cheat-codes.410926/
+
+----------------------------
+Additional (important) info:
+----------------------------
+
+~~~~~~~~~~~~~~~~~~~~~
+WHEN USING CONDITIONS
+~~~~~~~~~~~~~~~~~~~~~
+
+In programming languages, when using (nested) if conditions:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+if{			// If condition #1.
+	if{		// If condition #2.
+		... // ... Do stuff when conditions #1 & #2 are met.
+	}		// End If condition #2.
+}			// End If condition #1.
+...			// ... Do stuff regardless when conditions #1 & #2 are met.
+
+When using code types:
+~~~~~~~~~~~~~~~~~~~~~~
+Example:
+
+...
+60000008 00000000	// Condition #1.	(f.e. 6 = if not equals (16 bytes)...)
+90000002 00000100	// Condition #2.	(f.e. 9 = if not equals (8 bytes)...)
+...					// ... Do stuff when conditions #1 & #2 are met.
+D0000000 00000000	// End Condition #2.
+D0000000 00000000	// End Condition #1. (& Continue.)
+...					// ... Do stuff regardless when conditions #1 & #2 are met.
+D2000000 00000000	// End all above conditions (+ more is ended, see reference).
+
+-> Above logic is important when writing codes
+   for use with Luma~Rosalina's cheat engine.
+-> Second D0 type code didn't seem to be necessary
+   when using CTRPluginFramework (.plg version, which is an older version,
+   didn't test if necessary when using newer .3gx version).
+-> Above logic (with 2nd D0 type code) also works in CTRPluginFramework,
+   so strongly adviced to use above logic when writing codes for use with both
+   Luma~Rosalina's & CTRPF cheat engine.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+REGARDING WRITING OR READING SPECIFIC BYTES
+( LITTLE ENDIAN & BIG ENDIAN ) ~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+How it may look in Hex Editor (or f.e. HxD):
+--------------------------------------------
+
+Little Endian format:
+// In Little Endian format,
+// values are read and written from right to left.
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...
+16101230  | 12 00 01 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+When searching using f.e. CTRPF search feature:
+-----------------------------------------------
+
+Results (f.e.):
+~~~~~~~~~~~~~~~
+16101230 00010012	// (!) Reversed values for codes (codes use Big Endian format).
+					// In Big Endian format,
+					// values are read and written from left to right.
+
+---------------------------------------
+Some examples to write specific values:
+---------------------------------------
+
+Example #1:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+00101230 AABBCCDD	// Write (8 bytes = 32 bits) value AABBCCDD to 16101230. 
+D2000000 00000000	// End (more info: see reference).
+
+( Alternative way of writing: )
+
+D3000000 16101230	// Move offset to address 16101230.
+00000000 AABBCCDD	// Write (8 bytes = 32 bits) value AABBCCDD to 16101230. 
+D2000000 00000000	// End (more info: see reference).
+-> (!) IMPORTANT: Make sure code isn't
+				  00000000 00000000 // Write all zeros to current address/offset + offset 0.
+				  Although this should be correct code, I've seen it not working.
+				  (Can't remember which cheat engine, I think it was Luma~Rosalina's.)
+
+( Alternative way of writing: )
+  Note: somewhat exaggerated for this example, though valid.
+
+D3000000 00000000	// Move offset to address 00000000.
+DC000000 16101230	// Add offset 16101230 to current offset/address.
+00000000 AABBCCDD	// Write (8 bytes = 32 bits) value AABBCCDD to 16101230. 
+D2000000 00000000	// End (more info: see reference).
+-> (!) IMPORTANT: (Same as above.)
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...         || || || ||
+16101230  | DD CC BB AA  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+Example #2:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+10101230 0000AABB	// Write (4 bytes = 16 bits) value AABB to 16101230. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...         || ||
+16101230  | BB AA 01 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+Example #3:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+10101232 0000AABB	// Write (4 bytes = 16 bits) value AABB to 16101232. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...               || ||
+16101230  | 12 00 BB AA  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+Example #4:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+20101230 000000AA	// Write (2 bytes = 8 bits) value AA to 16101230. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...         ||
+16101230  | AA 00 01 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+Example #5:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+20101231 000000AA	// Write (2 bytes = 8 bits) value AA to 16101231. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...            ||
+16101230  | 12 AA 01 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+Example #6:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+20101232 000000AA	// Write (2 bytes = 8 bits) value AA to 16101232. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...               ||
+16101230  | 12 00 AA 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+
+Example #7:
+~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+20101233 000000AA	// Write (2 bytes = 8 bits) value AA to 16101233. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...                  ||
+16101230  | 12 00 01 AA  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+-------------------------------------------
+Regarding reading values (for f.e. checks):
+-------------------------------------------
+Same logic applies.
+
+
+For Example:
+~~~~~~~~~~~~
+
+D3000000 16000000	// Move offset to address 16000000.
+90101232 00000001	// If (4 bytes = 16 bits) value starting at 16101232 equals 0001. 
+D2000000 00000000	// End (more info: see reference).
+
+=> (remember: reversed values!)
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...               || ||
+16101230  | 12 00 01 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+
+Answer: Yes, true (equal).
+
+
+~~~~~~~~~~~~~~~~
+NEGATIVE OFFSETS
+~~~~~~~~~~~~~~~~
+(Note: not used in below codes, although can be useful information.)
+
+Example:
+~~~~~~~~
+
+          | 00 01 02 03  |  04 05 06 07 |
+_________________________________________
+...         || || || ||
+16101230  | 12 00 01 00  |  00 00 00 00 |
+16101238  | 00 00 00 00  |  00 00 00 00 |
+...
+17110120  | 01 01 01 01  |  00 00 00 00 |
+17110128  | 00 00 00 00  |  00 00 00 00 |
+...
+
+Supposing 17110120 is current offset:
+
+Sample code:
+~~~~~~~~~~~~
+D3000000 17000000
+50110120 01010101	// Currently doing a dummy check at address/offset 17110120.
+???					// How to write to f.e. 16101230,
+					   which is below address 17110120 ?
+D2000000 00000000
+=> Answer: using a negative offset.
+
+How to calculate a negative offset:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Negative offset to go back from 17110120 to 16101230 is:
+
+Using Windows Calculator -> Programming mode -> HEX:
+
+(Note: Reversed addresses because offset needs to go back:)
+(hex) 16101230 - (hex) 17110120
+= (hex) FFFF FFFF FEFF 1110
+				  ^^^^ ^^^^ => Only selecting the last 4 bytes!
+
+=>
+
+Sample code:
+~~~~~~~~~~~~
+D3000000 17000000
+50110120 01010101	// Currently doing a dummy check at address/offset 17110120.
+DC000000 FEFF1110	// Using DC code type to add a negative offset (in this case: FEFF1110).
+00000000 AABBCCDD	// Writing at address/offset 16101230.
+D2000000 00000000
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+STRANGE CHARACTERS MIXED WITH CODE IN CHEAT CODE LIST
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+I once struggled with strange characters showing up
+when going to the cheat list (Luma~Rosalina menu -> Cheats),
+making the cheat codes not work
+(although every bit of logic & code being correct).
+
+Turned out (at least in my case),
+when using f.e. Notepad++ (untested in other text editors),
+sometimes (can't pinpoint when or how it happened),
+when using Find & Replace, an invisible character snuck in.
+
+In fact, it's even possible to see where exactly,
+since when viewing the cheat list,
+any code showing up in the cheat list hints the location where
+that sneaky invisible character can be found in the text document
+containing the cheat codes.
+
+Fix for when the above happens:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In f.e. Notepad++ :
+- Turn on View -> Show Symbol -> Show All Characters &
+  use f.e. backspace or delete to delete the hidden character.
+or (when showing hidden characters is not prefered:)
+- Look at the Luma~Rosalina Cheat list to hint the location,
+  next use the arrow keys in Notepad (or another text editor)
+  to see where the arrow key doesn't seem to move the text cursor &
+  use f.e. backspace or delete to delete the hidden character.
+- Any other clever way to remove the hidden character.
+  (Could have been an encoding issue f.e., not sure.)
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+===================================
+GENERAL NOTE ABOUT POINTER SEARCHES
+===================================
+
+Using TempAR using 2 RAM Dumps of different levels/save slots
+didn't yield any valid green pointers,
+although I did find it helpful to start with found grey results &
+then manually comparing RAM Dumps for changing address values
+and calculating offsets to refine pointers for this game.
+
+General TempAR note when searching for pointers:
+- Cranked up the Maximum Offset to 0x15000.
+
+Had some different variations (including one using negative offsets),
+although the following are what I came up with.
+
+In general, finding pointers requires some abstract thinking and
+a good understanding of how to navigate within RAM Dumps
+(which comes after a while).
+It also helped me a lot writing down the addresses & values
+when navigating.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+=============
+LEVEL POINTER
+=============
+
+--------------------------------
+Important to note for this game:
+--------------------------------
+When in level:
+~~~~~~~~~~~~~~
+- Changing to a different levels changes addresses/values
+  (unless one is looking for an address that is used for all levels).
+- (Re)starting level/dying (at least once) in level
+  COULD changes addresses/values (with a small offset difference).
+  In order to solve the changing offset difference, an additional subpointer
+  (which I found to be B000000C)
+  is required for these codes.
+  -> Noticed this in a few codes I've been working on
+     where I initially had to go with negative offsets
+	 in order to change values at certain addresses.
+     (!) Note: these codes may or may not have included (yet?)
+	           in this document or the current cheat code release.
+              (like f.e. Hat/No Hat).
+  -> Additional pointer has added advantage of not having
+     to go negative offset(s).
+
+F.e.:
+	- When addresses/values are found
+	  when not having died yet in a particular level,
+	  RAM Dump must be taken upon (same) level start
+	  (or restart after going to Main Menu or World Map,
+	  in which case any already found addresses do stay the same).
+	- When having died (at least) once in level,
+	  previously found addresses upon level start or restart,
+	  must be searched for again &
+	  a RAM Dump must be taken upon having at least having died once
+	  in that same level.
+
+-> Summarized:
+   ~~~~~~~~~~~~~~~~~
+   A) In most cases:
+   ~~~~~~~~~~~~~~~~~
+   In order to find correct offsets:
+   When addresses are found in a particular level:
+   => RAM must be dumped from same level!
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   B) In case addresses change after dying in level:
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   In order to find correct offsets,
+   When addresses are found in a particular level
+   (a) upon same level (re)start or
+   (b) dying (at least once) in same level:
+   => RAM must be dumped from same level & when (a) or (b).
+--------------------------------
+
+Starting off, I searched online if a pointer had been found by others before.
+No need to invent hot water if it already exists...
+
+If I remember correctly, I was (somewhat*) able to reconstruct the pointer setup myself
+after some longer searching for values & testing runs.
+* = didn't really have to, hence 'somewhat'.
+
+There's a particular address
+- which is static (different for each region though)
+  throughout all levels
+- that keeps a unique address value for each level &
+- leads to the correct memory region when in level.
+
+If I remember correctly, this address popped up
+during an Unknown Search + Equal and Not Equal search
+throughout different levels.
+
+Using TempAR with the found address
+& manually comparing RAM Dumps for changing values,
+it's possible to reconstruct the pointer.
+	- Note: I didn't document these steps since it was already working,
+	        although if I remember correctly, I used 2 RAM Dumps
+			from the same region, which I optimized afterwards
+			for all regions (See 'Optimization for All Regions').
+
+	F.e. I found (working on my end):
+
+	EUR
+	---
+	[Invincible (by ?)]
+	D3000000 14000000
+	60024764 00000000
+	B0024764 00000000
+	B0000074 00000000
+	20000190 0000000A
+	D2000000 00000000
+
+	(Quickly ported the EUR code to USA:)
+	USA PORTED
+	----------
+	[Invincible (by ?)]
+	D3000000 14000000
+	60024098 00000000
+	B0024098 00000000
+	B0000074 00000000
+	20000190 0000000A
+	D2000000 00000000
+
+	-> Note: Didn't use this code,
+	   since I didn't like the blinking effect.
+	   Worked on a better Always Star Power alternative.
+
+-----------------------------
+Optimization for All Regions:
+-----------------------------
+
+For it to work on both (and perhaps more?) regions:
+Checking a EUR and a USA RAM Dump using TempAR
+for a pointer to the following addresses:
+EUR: 14024764
+USA: 14024098
+
+->
+The following codes:
+
+D3000000 14000000
+60024764 00000000	// EUR
+B0024764 00000000
+&
+D3000000 14000000
+60024098 00000000	// USA
+B0024098 00000000
+
+need to be replaced with for both (and perhaps more?) regions:
+
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+
+Result:
+-------
+
+Template:
+---------
+[(All Regions) Level Pointer]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000	// Current offset.
+...					// Edit values here. Offset(s) to be calculated from current offset.
+D2000000 00000000
+
+	Example (USA level 1-1 (Upon Level (Re)Start))
+	----------------------------------------------
+	-> B03E1300
+		-> 3E1300 Leads to: 14023E24
+	-> B0000274
+		-> 14023E24 + 274 = 14024098 Leads to: 17066C58
+	-> B0000074
+		-> 17066C58 + 74 =  17066CCC Leads to: 171452DC
+	... // Editing addresses/values here
+	       with offset calculated from 171452DC (=> ADDRESSX - 171452DC = offset).
+
+Template With In Level (a.k.a. IG=In Game) check:
+-------------------------------------------------
+[(All Regions) Level Pointer + IG Check]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000	// Current offset.
+...					// Edit values here. Offset(s) to be calculated from current offset.
+D2000000 00000000
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+In case address location change
+between level (re)start &
+dying (at least once) in level
+(having to go negative offset
+ could be a sign):
+
+...
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+B000000C 00000000	// Additional offset.
+...					// Edit values here. Offset(s) to be calculated from current offset.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+=================
+WORLD MAP POINTER
+=================
+
+--------------------------------
+Important to note for this game:
+--------------------------------
+When at World Map:
+~~~~~~~~~~~~~~~~~~
+Switching save slots changes addresses/values.
+
+-> Summarized:
+   In order to find correct offsets:
+   When addresses are found when having selected a certain save game/slot
+   => RAM must be dumped from same save game/slot!
+--------------------------------
+
+F.e. USA only pointer:
+
+[(USA) WM Pointer]
+D3000000 00000000
+603E12BC 00000000
+B03E12BC 00000000
+B000CCE0 00000000	// (for USA) sets current offset at 16181716.
+...
+...					// Add addresses/values NOT depending on selected save file here.
+...					// If code below is used as well, take care for offset changes
+...					// or separate code.
+...
+DC000000 0000B766	// (for USA) sets current offset at 1618CE7C:
+50000000 00000000	// If SG=1:
+DC000000 00000000	// No additional offset.
+D0000000 00000000	// (End current If instruction.)
+50000000 00000001	// If SG=2:
+DC000000 00000060	// Additional offset of (hex) 60.
+D0000000 00000000	// (End current If instruction.)
+50000000 00000002	// If SG=3:
+DC000000 000000C0	// Additional offset of (hex) C0.
+D0000000 00000000	// (End current If instruction.)
+...
+...					// Add addresses/values depending on selected save file here.
+...					// Note: Calculate address offsets from (for USA:) 1618CE7C.
+...					// The above code will add additional offsets for other save files.
+...
+D2000000 00000000
+
+-----------------------------
+Optimization for All Regions:
+-----------------------------
+
+For the following regions, the save game check should be at:
+EUR: 1618D9FC
+USA: 1618CE7C
+
+Setting up:
+-----------
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000	// (Note: 4 bytes left to the one for levels.)
+					-> EUR: lands at 16152F48
+					-> USA: lands at 161523C8
+DC000000 0003AAB4
+					-> EUR: sets current offset at 1618D9FC
+					-> USA: sets current offset at 1618CE7C
+					
+Result:
+-------
+
+(General note:)
+I wasn't able to find a subpointer (yet?) that points
+to the correct region for each selected save game/slot,
+so I gracefully solved it using a Save Game Check
+that adds an additional offset if Save Slot 2 or 3 is selected.
+
+[(All Regions) WM Pointer]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+...					// (for EUR) current offset is at 16152F48.
+...					// (for USA) current offset is at 161523C8.
+...
+...					// Add addresses/values NOT depending on selected save file here.
+...					// If code below is used as well, take care for offset changes
+...					// or separate code.
+...
+DC000000 0003AAB4	// Sets current offset at (for EUR:) 1618D9FC or (for USA:) 1618CE7C:
+50000000 00000000	// If SG=1:
+DC000000 00000000	// No additional offset.
+D0000000 00000000	// (End current If instruction.)
+50000000 00000001	// If SG=2:
+DC000000 00000060	// Additional offset of (hex) 60.
+D0000000 00000000	// (End current If instruction.)
+50000000 00000002	// If SG=3:
+DC000000 000000C0	// Additional offset of (hex) C0.
+D0000000 00000000	// (End current If instruction.)
+...
+...					// Add addresses/values depending on selected save file here.
+...					// Note: Calculate address offsets from (for USA:) 1618CE7C.
+...					// The above code will add additional offsets for other save files.
+...
+D2000000 00000000
+
+
+Template:
+---------
+-> Note: Regions EUR & USA tested, others untested.
+
+[(All Regions) WM Pointer]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+...
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+...
+D2000000 00000000
+
+	Example:
+	--------
+
+	[Max Lives (Three Crowns)]
+	D3000000 00000000
+	603E1300 00000000
+	B03E1300 00000000
+	B0000270 00000000
+	DC000000 0003AAB4
+	50000000 00000000
+	DC000000 00000000
+	D0000000 00000000
+	50000000 00000001
+	DC000000 00000060
+	D0000000 00000000
+	50000000 00000002
+	DC000000 000000C0
+	D0000000 00000000
+	10002C66 00000456
+	D2000000 00000000
+	-> Works for EUR & USA region (& possibly for other regions too, untested).
+	-> Without WM Check => Also works when in level
+	  (dying in level keeps lives at set number).
+
+
+Template With WM check:
+-----------------------
+-> Note: Regions EUR & USA tested, others untested.
+
+EUR Fixed address for IG/WM/... check: 0x 161994F4
+USA Fixed address for IG/WM/... check: 0x 16198974
+
+DC000000 0003AAB4 sets current offset at (for EUR:) 1618D9FC or (for USA:) 1618CE7C.
+
+[(All Regions) WM Pointer + WM Check]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000
+...
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+...
+D2000000 00000000
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+===========================
+LOWER BASED ADDRESS POINTER
+===========================
+-> Note: 'Lower based address': just to give the child a name.
+-> Optimal for addresses in region 00100000
+   to about 00432000 (?-> not sure, didn't have to go that high).
+   - In this case: Used for ASM (assembly) codes.
+-> Not sure if every 'lower based address' works with this pointer,
+   though it does for the ported ASM codes.
+   Found exception:
+   F.e. the 'Coins Give An Extra Life' code doesn't need a pointer:
+   Same address works for both EUR & USA region (& perhaps all regions).
+   (Should/Could also work when converted to the pointer edition, didn't test.)
+
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+...					// For EUR: current offset is at 163290
+...					// For USA: current offset is at 163288
+DC000000 XXXXXXXX	// Add offset to reach address to write to.
+					// Or write using f.e. 20XXXXXX 000000YY.
+D2000000 00000000
+
+Template:
+---------
+-> Note: Regions EUR & USA tested, others untested.
+
+[(All Regions) ASM Pointer]
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+...
+D2000000 00000000
+
+Optional:
+---------
+An ingame/world map/... check can be added
+using the following region free pointer code:
+
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000	// When at World Map:
+...
+
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000	// When in any level:
+...
+
+Note:
+~~~~~
+The Level & World Map check code contains
+a different pointer setup,
+although it leads to the same address.
+Basically: this is a shorter way of providing a check
+for lower based address codes.
+
+Example:
+--------
+
+[Always Flutter (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0016F484 13A00000
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0016F484 E3A00001
+D2000000 00000000
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+===================================================
+MAIN MENU | WORLD MAP | IN LEVEL | TRANSITION CHECK
+===================================================
+
+(Cfr. my NSMB2-SE+GE codes:)
+I'll be needing this:
+- as a safe guard to avoid crashes and/or
+- to control where a cheat is applied and thus
+- to avoid running a cheat code where it is not needed.
+
+----------------------------------
+The chosen one (at least for now):
+EUR Fixed address: 0x 161994F4
+USA Fixed address: 0x 16198974
+
+Used a EUR and a USA RAM Dump
+in order to find a pointer address:
+----------------------------------
+
+// Main Menu: Press Start to Play Screen
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C3200000
+...
+D2000000 00000000
+-> Note: also when transitioning between worlds on World Map.
+
+// Main Menu: File Select Menu
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1800000
+...
+D2000000 00000000
+
+// World Map
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+...
+D2000000 00000000
+
+// World Map: When Saving Game
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C3480000
+...
+D2000000 00000000
+
+// In Level
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+...
+D2000000 00000000
+
+// Entering Level Transition
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C3C80000
+...
+D2000000 00000000
+
+-> Working checks for both regions. (Tested)
+   -> Possibly for all regions. (Untested)
+-> Not optimal to be used with a 'not equal to' check (6XXXXXXX YYYYYYYY)
+   since values can change during certain transitions.
+   -> For an 'equal to' check, these are fine (as far as I know/tested).
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+=======================
+MOON JUMP/INFINITE JUMP
+=======================
+
+Using GLEE method:
+http://viper.shadowflareindustries.com/?file=hackv500c.html&cat=hax0r#hax0r_mj
+
+USA Level 1-1:
+
+171453FC JMPFLOAT	// Contains jump float value.
+					// Has value of around "4xxx" when jumping upwards.
+					// Has value of around "Cxxx" when falling.
+
+Needing an address with value to check while in air/on ground.
+	- Looking for Specific Values (learned from NSMB2-SE/GE):
+		- 00000000 = ON GROUND
+		- FFFFFFFF = IN AIR
+
+There seems to be more than 1 result, going for a candidate:
+(no candidate in range of address containing jump value though)
+---------------------------------------------------------------
+144FCC38 00000000	// ON GROUND
+144FCC38 FFFFFFFF	// IN AIR
+
+Looking for another possible candidate that is in range:
+--------------------------------------------------------
+17145A24 00000000	// ON GROUND	(when equal to zero)
+17145A24 !=00000000	// IN AIR		(when not equal to zero)
+
+Another interesting candidate:
+------------------------------
+17154224 00000000	// ON GROUND (OR WHEN FLOATING WITH TANOOKI M/L RELEASED)
+17154224 00000001	// IN AIR
+17154224 00000100	// IN AIR WHILE FLOATING WITH TANOOKI M/L
+
+Constructing static higher jump test cheats:
+--------------------------------------------
+For USA Level 1-1:
+
+[Moon Jump Test]
+D3000000 17000000
+60145A24 00000000
+D9000000 001453FC
+D4000000 00055000	// Ok value for CTRPF,
+D6000000 001453FC	   Luma will need a higher value though
+D2000000 00000000	   due to cheat apply timing difference.
+
+[(B) Infinite Jump Test]
+DD000000 00000002
+D3000000 17000000
+60145A24 00000000
+001453FC 42100000	// Ok value for CTRPF.
+D2000000 00000000
+
+Pointer Edition:
+----------------
+- Note for finding offsets:
+	-> B03E1300
+		-> 3E1300 Leads to: 14023E24
+	-> B0000274
+		-> 14023E24 + 274 = 14024098 Leads to: 17066C58
+	-> B0000074
+		-> 17066C58 + 74 =  17066CCC Leads to: 171452DC
+
+For both regions (and perhaps even more?):
+
+[Moon Jump]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000748 00000000
+D9000000 00000120
+D4000000 00110000
+D6000000 00000120
+D2000000 00000000
+{
+Makes Mario/Luigi jump higher.\n
+(For use with CTRPF, replace 00110000 with 00055000.)
+}
+
+[(B) Infinite Jump]
+DD000000 00000002
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000748 00000000
+00000120 42100000
+D2000000 00000000
+{
+Allows Mario/Luigi to infinitely jump multiple times in mid-air.\n
+Hold button to jump as high as desired.
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+=================
+ALWAYS STAR POWER
+=================
+
+Searched for timer value (Bigger Than & Smaller Than):
+
+USA Special 1-1:
+17143500 000000BB
+-> Unlike NSMB2-SE/GE, this only keeps it going
+   once Star Power is activated by getting a Star.
+   Needs other addresses/values:
+
+Searched using Not Equal & Equal:
+
+USA Special 1-1:
+171434A8 3F000001
+171434FC 3F000101
+
+-----------------
+
+Trying a static code for USA Special 1-1
+with a basic check:
+
+[Always Star Power (USA S1-1)]
+D3000000 17000000
+701434E8 00000001
+201434E8 00000001
+D0000000 00000000
+7014353C 00000101
+1014353C 00000101
+D2000000 00000000
+->           ^^^^ 01 = active, 00 = not active
+-> Seems to work.
+
+
+Pointer Edition:
+----------------
+- Note for finding offsets:
+	-> B03E1300
+		-> 3E1300 Leads to: 14023E24
+	-> B0000274
+		-> 14023E24 + 274 = 14024098 Leads to: 17064C98
+	-> B0000074
+		-> 17064C98 + 74 =  17064D0C Leads to: 1714335C
+
+[Always Star Power]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+7000018C 00000001
+2000018C 00000001
+D0000000 00000000
+700001E0 00000101
+100001E0 00000101
+D2000000 00000000
+-> Works. Both for USA & EUR (& possibly even other regions).
+
+------
+UPDATE
+------
+
+!!!!!!!!!!!!!!!
+Important note:
+!!!!!!!!!!!!!!!
+When using Luma~Rosalina's cheat engine,
+I found that sometimes, despite the above cheat being on,
+Mario or Luigi still gets hit (possibly resulting in dying in level).
+Happened f.e.:
+- Sometimes, in Special 1-1 when the Prongos dive in a headbutt
+  (spike on top of their head).
+- Sometimes, in W1-Castle with the big Bowser fireballs (when up close)
+  (or sometimes even with the turning smaller ones at level start).
+- In a level with floor spikes (f.e. 7-2).
+  (Always after about a second.)
+- Possibly in other levels containing spikes or fire.
+
+So, I did some tests with same addresses although different values,
+resulting in no real differences.
+
+When using CTRPluginFramework, this behavior does not occur.
+For now, I can only assume - although not being sure about this -
+there could be a small gap in Luma~Rosalina's cheat engine
+where a cheat isn't applied for a tiny fraction of a second,
+resulting in this kind of behavior.
+
+Further along the line, I find out that when including the timer value
+(frozen at a value > 0), it also adds the Star Power sparkle effect.
+I also found out that, when a timer value > 0
+(& thus showing the sparkle effect) is included,
+it also works in Luma~Rosalina's cheat engine
+with none of the issues described above.
+
+To sum up:
+----------
+In the updated cheat code below,
+the second last line containing
+000001E4 00000055
+can be removed in order to opt
+for no Star Power sparkle effect,
+although it would cause small issues
+when using Luma~Rosalina's cheat engine.
+
+Notes about timer value & possible alternatives
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(tested with Luma~Rosalina's cheat engine):
+- 25:
+	- Slightly above zero,
+	  for it to time out quickly
+	  when cheat is turned off.
+	- Wear off sound played
+	  when disabling cheat code.
+	- Normal appearance of Mario/Luigi.
+	- With Star Power Sparkles.
+
+Tested alternatives
+(with * meaning what changes comparing to previous value):
+- 5:
+	- Slightly above zero,
+	  for it to time out quickly
+	  when cheat is turned off.
+	* No wear off sound played
+	  when disabling cheat code.
+	- Normal appearance of Mario/Luigi.
+	- With Star Power Sparkles.
+- 2:
+	- Slightly above zero,
+	  for it to time out quickly
+	  when cheat is turned off.
+	- No wear off sound played
+	  when disabling cheat code.
+	* Yellow appearance of Mario/Luigi.
+	- With Star Power Sparkles.
+- 1:
+	- Slightly above zero,
+	  for it to time out quickly
+	  when cheat is turned off.
+	- No wear off sound played
+	  when disabling cheat code.
+	- Yellow appearance of Mario/Luigi.
+	* No Star Power Sparkles.
+
+(All Regions)
+[Always Star Power]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+1000018C 00000001
+100001E0 00000101
+200001E4 00000025
+D2000000 00000000
+-> With Star Power sparkles.
+-> No previously described issues
+   when using with Luma~Rosalina's cheat engine.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+==================
+NO INGAME BG MUSIC
+==================
+
+When searching for Always Star Power,
+I bumped on a byte with a value of 2 when having grabbed a Star Powerup.
+When I edited it in Hex, it turned out the BG music wasn't playing anymore.
+I started a new Search (1 Byte), looked for Specific Value 2 (when having Star Powerup)
+& then looked for a Not Equal to 2 when it wore out.
+
+I tested (some of) the results and came up with this:
+
+USA
+[No BG Music In Level]
+D3000000 00000000
+20428B95 00000002
+D2000000 00000000
+{
+When in level, background music only plays for about 2 seconds,
+then fades out when entering any level.
+
+}
+-> Any value different than 00 seems to fade out.
+   No difference in fade out speed though
+   or music playing for a little while.
+   Happens as well when Star Power wears out
+   after having grabbed a Power Star
+   and the Star Power background music
+   (which does play, disregarding this cheat code)
+   stops playing.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+============
+UNLOCK CODES
+============
+
+Trying to pinpoint the location where the variables are stored for game achievements.
+
+Starting with an easy one to find an address, so I'm able to check manually in HxD
+for changes between a "new gameed" & a "completed game (almost)" RAM Dump.
+
+Should be all packed together.
+-> Update afterwards: Answer seems to be Yes & No.
+   This can't be compared with NSMB2-SE/GE (where it was >a lot< easier).
+
+================
+LEVEL: BEST TIME
+================
+
+USA - SG1 - Level 1-1
+
+3 addresses:
+15913452	-> This one probably is the return value from level. Doesn't change anything when on WM.
+1618FDB4	-> This one changes after a forced screen transition (f.e. changing worlds).
+173F4BB8	-> This one changes immediately.
+
+So, checking RAM Dumps... Looking for repeating patterns,
+like f.e.:
+- FFFFFFFF ...
+- 01010101 ...
+- etc.
+
+
+Side info:
+Completed values:
+Start:		Best time: /
+Completed:	Best time: 37 (== (hex) 25)), RIVAL's Best time: 48 (== (hex) 30)
+
+Interesting results at:
+
+START:
+------
+				  1618CF08
+				  ||
+90060000 00000000 4DD4D25D 00000000
+00008100 00810000 00000000 00000000
+00000000 00000000 00000000 00000000
+01000000 00000000 00000000 00000000
+00000000 00000000 00000000 00008100
+00000000 00000081 00000000 00000000
+00000000 00000000 00000000 00008181
+00818100 81810000 81000081 00818200
+81820081 82008182 00008200 00820000
+82000082 00008200 00810000 81000081
+00008100 00810000 81000081 00008100
+00810000 81000081 00008100 00010000
+82000082 00008200 00810000 00000081
+00008100 00810000 81000081 00000000
+
+COMPLETED:
+----------
+				  1618CF08
+				  ||
+90060000 00000000 00D5D25D 00000000
+81008181 00810000 00000000 00000000
+00000000 00000000 00000000 00000100
+01000000 00000000 00000000 00000000
+00000000 00000000 00000000 81008100
+00000000 00810081 00000000 00000000
+00000000 00000000 00000000 00818181
+81818181 81818100 81810081 82818282
+81828281 82828182 82008282 00828200
+82820082 82008281 00818100 81810081
+81008181 00818100 81810081 81008181
+00818100 81810081 81008101 00018200
+82820082 82008281 00810000 00810081
+81008181 00818100 81810081 00000000
+
+-> Didn't work, no visible change (perhaps needs to be combined, not sure atm).
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Trying the way I found the entry point for NSMB2-SE/GE:
+
+Looking for the address where each level's #Star Coins is stored.
+If looking for each level's Star Coins works the same way as in NSMB2-SE/GE,
+I should look for:
+
+===========================
+[#STAR COINS FOR LEVEL 1-1]
+===========================
+
+Search Options
+--------------
+
+- Search at World Map
+	- 1 BYTE (OR 4 BYTES for readability)
+	- UNKNOWN SEARCH
+		- (!) AVOID SPECIFIC SEARCH IN MOST CASES,
+			  since, depending on the level,
+			  the values could be also stored
+			  as f.e. 70 instead of only 07.
+			  I started on a fresh new game,
+			  in that case it worked using
+			  Specific Search.
+			  
+- Enter a level and grab 1 or more Star Coins.
+	- Finish level.
+- At World Map:
+	- Look for following values, depending on the Star Coins grabbed:
+		- No Star Coin = 0
+		- 1st Star Coin = 1
+		- 2nd Star Coin = 2
+		- 1st & 2nd Star Coin = 3
+		- 3rd Star Coin = 4
+		- 1st & 3rd Star Coin = 5
+		- 2nd & 3rd Star Coin = 6
+		- All 3 Star Coins = 7
+- Restart Save File if needed (as in: Restart completely since game auto saves inbetween).
+
+Found 3 addresses:
+16CBB2B0
+16CC2278
+16CC9A3C
+-> None of these work atm.
+
+It could be I'm not using the correct search options atm.
+I also have other search options in mind I like to test first
+instead of investigating this further
+(see further on).
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+-> Going to check for #lives at World Map. Perhaps over there...
+
+SG1 = 1618FAE2
+
+-> Not sure atm.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+(POST SCRIPTUM: FIRST METHOD THAT WORKED:)
+=========================
+COMPARING SAVE GAME DATA:
+=========================
+	- In HxD.
+	- Using a fully unlocked save game downloaded from
+	  https://3ds-savegames.com/save/super-mario-3d-land/super-mario-3d-land-100
+	- Using source code from:
+	  https://github.com/yonaikerlol/Super-Mario-3D-Land-SGE/blob/master/Super%20Mario%20Land%203D%20Savegame%20Editor/SM3DL_SGE.cs
+
+Save Game (with almost everything unlocked):
+SG1: Address 2B8C = FFFFFF7F
+SG2: Address 350F = F3FFFF7F
+SG3: Address 3E92 = 01000000
+(note: values in little endian, to be reversed when searching for in CTRPF!)
+
+In my current case, SG2 gives 1 result:
+
+SG2:
+1618FC60 F3FFFF7F
+
+Gonna switch save games a little and see what it gives by searching again.
+
+Results for all USA save games:
+SG1: 1618FBD4 F3FFFF7F
+SG2: 1618FC60 F3FFFF7F
+SG3: 1618FCEC F3FFFF7F
+-> Works for all save games.
+
+And also (after I put my version of SG2 on SG1):
+SG1: 159133DC F3FFFF7F
+-> Address seems to update as well when reloading save file... Changing value untested.
+
+Deleting a save, starting a new game and see what it gives.
+
+[All Worlds & Special Worlds Unlocked (SG1)]
+D3000000 16000000
+0018FBD4 FFFFFFFF
+D2000000 00000000
+-> Works.
+	- Normal World Levels aren't unlocked.
+	- Special Worlds Levels are unlocked, except:
+		- Special World Castles & Special World 8 need Star Coins to pass.
+	- Results in a 3 Star Save when saved (not glittering (yet?)).
+	
+Note:
+	- Perhaps FFFFFF7F might do the trick as well instead of all FF.
+		- F3FFFF7F on a freshly started save only results in a 2 Star Save.
+		
+Still needs more investigation, although... it's a good start.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Found more info. Thanks a bunch for this:
+https://gbatemp.net/threads/how-to-get-5-sparkly-stars-savefile-back-on-super-mario-3d-land.542645/
+-> Got a full 5 shiny star save now as a reference.
+-> Still looking to unlock all levels.
+
+SG1: 1618FBD4 3FFFFFFF
+SG2: 1618FC60 3FFFFFFF
+SG3: 1618FCEC 3FFFFFFF
+
+So, working cheats to unlock all Worlds:
+
+[All Worlds & Special Worlds Unlocked (SG1)]
+D3000000 16000000
+0018FBD4 3FFFFFFF
+D2000000 00000000
+-> Results in a Shiny 3 Star Save when saving game.
+
+[All Worlds & Special Worlds Unlocked (SG2)]
+D3000000 16000000
+0018FC60 3FFFFFFF
+D2000000 00000000
+-> Results in a Shiny 3 Star Save when saving game.
+
+[All Worlds & Special Worlds Unlocked (SG3)]
+D3000000 16000000
+0018FCEC 3FFFFFFF
+D2000000 00000000
+-> Results in a Shiny 3 Star Save when saving game.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+======================
+Unlock levels testing:
+======================
+
+A) Using W1 - Toad House (Opened/Closed)
+============================================
+- USA region.
+- Save Game Slot 1.
+- Dumped save files (GameData.bin) using CheckPoint.
+- With:
+	a) Everything unlocked (100% save)
+	b) W1 - Toad House closed.
+
+Started comparing GameData.bin files and searched for those values ingame:
+
+Results:
+--------
+- Note: tested some other values as well, 
+        those either corrupted save file
+		or didn't do anything.
+
+(USA) Save File 1:
+
+1618FBD4 3FFFFFFF	// Unlocks all Worlds (as found before).
+
+--------------------------------
+HOW TO OPEN TOAD HOUSE AGAIN
+--------------------------------
+
+16191DE8 00000000	// Unlocks Toad House in World 1.
+					// 00000001 closes Toad House in World 1.
+					// In GameData.bin: 2CA4+3
+
+B) Using W1 - Level 1
+=====================
+- USA region.
+- Save Game Slot 1.
+- Dumped save files (GameData.bin) using CheckPoint. &
+- Dumped RAM using CTRPluginFramework + RAW conversion using GatewayRAMTools.
+	-> Note: When at World Map.
+- With:
+	a) Everything unlocked (100% save)
+	b) From freshly started save file (slot 1):
+		a) W1 - Level 1: Not finished	(new game).
+		b) W1 - Level 1: Finished level	(flag grabbed, not at top).
+		c) W1 - Level 1: Finished level	(flag grabbed, at top).
+		d) W1 - Level 1: Finished level	(flag grabbed, at top + 3 Star Coins collected).
+
+Compared different Save & RAM Dumps manually in HxD.
+
+Results:
+--------
+
+- For World1: 1-1, something changes at:
+
+16190EA4	00000000 // Started (not finished)
+16190EA4	00000018 // Flag Pole Reached (finished)
+					 // -> Both for Top & Non Top of Flag Pole
+					 // -> This value must be located somewhere else.
+16190EA4	0000001F // Flag Pole Reached & 3 Star Coins Collected (finished)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Imported save data seem to start around:
+1618FC94
+- Comparing over there for changing values.
+- Checking around above address (16190EA4) as well for changing values.
+
+- For World1: 1-1, something also changes at:
+
+W1: 1-1 Started		(Not Finished)
+==================================
+1618FD9C	00000001 // This value sets wether level is finished or not (red pad).
+					 // Does not unlock path to next level.
+1618FDA8	00000000 // This value contains how the level was finished.
+					 // 64 is max (top) = Golden Flag.
+1618FDB4	00000000 // Best Time (hex) as searched before.
++
+16190EA4	00000000 // Level not completed & 0 Star Coins collected.
+					 // Unlocks path to next level when set (not zero).
+					 // Note: Star Coins aren't added to the Star Coins counter.
+~
+1618FDA4	00000000 // ? Not sure what this does (yet?).
+
+W1: 1-1 Finished	(Flag Pole Reached, No Top) + (No Star Coins)
+=================================================================
+1618FD9C	00000002 // This value sets wether level is finished or not (blue pad).
+					 // Does not unlock path to next level.
+1618FDA8	00000019 // This value contains how the level was finished.
+					 // 64 is max (top) = Golden Flag. 
+1618FDB4	00000037 // Best Time (hex) as searched before.
++
+16190EA4	00000018 // Level completed & 0 Star Coins collected.
+					 // Unlocks path to next level when set (not zero).
+					 // Note: Star Coins aren't added to the Star Coins counter.
+~
+1618FDA4	00000000 // ? Not sure what this does (yet?).
+
+W1: 1-1 Finished	(Flag Pole Reached, Top) + (No Star Coins)
+==============================================================
+1618FD9C	00000002 // This value sets wether level is finished or not (blue pad).
+					 // Does not unlock path to next level.
+1618FDA8	00000064 // This value contains how the level was finished.
+					 // 64 is max (top) = Golden Flag.
+1618FDB4	00000037 // Best Time (hex) as searched before.
++
+16190EA4	00000018 // Level completed & 0 Star Coins collected.
+					 // Unlocks path to next level when set (not zero).
+					 // Note: Star Coins aren't added to the Star Coins counter.		 
+~
+1618FDA4	00000000 // ? Not sure what this does (yet?).
+
+W1: 1-1 Finished	(Flag Pole Reached, Top) + (3 Star Coins)
+=============================================================
+1618FD9C	00000002 // This value sets wether level is finished or not (blue pad).
+					 // Does not unlock path to next level.
+1618FDA8	00000064 // This value contains how the level was finished.
+					 // 64 is max (top) = Golden Flag.
+1618FDB4	00000037 // Best Time (hex) as searched before.
++
+16190EA4	0000001F // Level completed & 3 Star Coins collected.
+					 // Unlocks path to next level when set (not zero).
+					 // Note: Star Coins aren't added to the Star Coins counter.
+~
+1618FDA4	00000000 // ? Not sure what this does (yet?).
+
+W1: 1-1 Finished	(Everything Unlocked (100% Save))
+=====================================================
+1618FD9C	00000002 // This value sets wether level is finished or not (blue pad).
+					 // Does not unlock path to next level.
+1618FDA8	00000064 // This value contains how the level was finished.
+					 // 64 is max (top) = Golden Flag.
+1618FDB4	00000023 // Best Time (hex) as searched before.
++
+16190EA4	0000003F // Level completed & 3 Star Coins collected.
+					 // ? & never died more than 4or5 times in level ?
+					 // Unlocks path to next level when set (not zero).
+					 // Note: Star Coins aren't added to the Star Coins counter.
+~ Other address changes at
+1618FDA4	0006001B // ? Not sure what this does (yet?).
+
+Testing:
+~~~~~~~~
+
+W1: 1-2
+=======
+1618FDBC	00000002 // Set Level as finished (blue pad).
+1618FDC8	00000064 // Golden Flag (flag top grabbed).
+16190EC0	0000003F // Level completed & 3 Star Coins collected.
+-> Works.
+
+W1: 1-Mystery Box
+=================
+A) Not Finished (Opened):
+-------------------------
+1618FDDC	00000001 // Set Level as not finished (red pad).
+1618FDE8	00000000 // Level not finished.
+16190EDC	00000000 // Level not completed & 0 Star Coin(s) collected.
+
+B) Finished (Closed):
+---------------------
+1618FDDC	00000002 // Set Level as finished (blue pad).
+1618FDE8	00000064 // Level finished. (Maxed = ~Golden Flag, but doesn't show.)
+16190EDC	00000008 // Level completed & 0 or 1 Star Coin(s) collected.
+					 // Tested: Can be set to 3F...
+
+-----------------------------
+HOW TO OPEN MYSTERY BOX AGAIN
+-----------------------------
+- Searched from address 16180000 using Not Equal & Equal To:
+
+16191DC8	00000001
+
+See below for more information. Had to do some digging.
+
+W1: 1-3
+=======
+1618FDFC	00000002 // Set Level as finished (blue pad).
+1618FE08	00000064 // Golden Flag (flag top grabbed).
+16190EF8	0000003F // Level completed & 3 Star Coins collected.
+-> Works.
+
+W1: 1-4 (Hidden Level)
+======================
+1618FE1C	00000002 // Set Level as finished (blue pad).
+1618FE28	00000064 // Golden Flag (flag top grabbed).
+16190F14	0000003F // Level completed & 3 Star Coins collected.
+-> Works.
+
+W1: 1-Toad House
+====================
+1618FE3C	00000002 // Set Level as finished (blue pad).
+1618FE48	00000000 // Set as open to enter.
+					 // Tested: Can be set to 64...
+16190F30	00000008 // Level completed before.
+					 // Tested: Can be set to 3F...
+					 
+--------------------------------
+HOW TO OPEN TOAD HOUSE AGAIN
+--------------------------------
+(As searched before:)
+
+16191DE8	00000000 // Unlocks Toad House in World 1.
+					 // 00000001 closes Toad House in World 1.
+					 
+W1: 1-Castle
+============
+1618FE5C	00000002 // Set Level as finished (blue pad).
+1618FE68	00000064 // Golden Flag (flag top grabbed).
+16190F4C	0000003F // Level completed & 3 Star Coins collected.
+-> Works.
+-> Note:
+   -> Also opens the road to the next world, showing the cut scene.
+   -> However, when using the Unlock All Worlds code,
+      the game doesn't show the cut scene between worlds anymore.
+	  Furthermore, the pictures aren't unlocked.
+	  This needs to be done separately.
+-> (!) Important note:
+	The very last level in the game, being Special World 8 - Castle,
+	can not have the value 3F (since it would allow M/L to run to the
+	right, towards next world, which would crash the game, simply because
+	there is no next world after Special World 8.
+	That value must be (hex) 37.
+
+
+=================
+STAR COIN COUNTER
+=================
+Easy search using (2 Bytes) Specific Value:
+
+(USA)
+1618FAE4	00000163 // = 355 Star Coins.
+
+
+===================
+UNLOCK ALL PICTURES
+===================
+
+(Noticed while setting up code to (keep) open closed Toad Houses,
+the unlock code initially didn't unlock pictures:)
+
+I set up a static test code (see further below, although
+without changing # Star Coins & Worlds Unlock,
+since setting 3FFFFFFF would already have set the cut scenes
+between Worlds as shown, without pictures being unlocked).
+
+Search Setup
+~~~~~~~~~~~~
+a) Unlocked a freshly started game save using the static test code (save slot #1)
+	- Not visiting World 2 yet.
+b) Copied save slot #1 to save slot #2 (for easy restoring).
+
+Search Options
+~~~~~~~~~~~~~~
+- Region 16180000 -> +-17000000
+	- Assuming (correctly) that the picture storing address
+	  is located in the same region as the other unlock addresses.
+a) USA Save Slot #1 : Not visited World 2 yet.
+	- UNKNOWN SEARCH, 4 BYTES
+b) USA Save Slot #2 : Moving to World 2. -> Cut scene plays with 2nd picture.
+	- NOT EQUAL TO
+c) Restored Save Game from previously backed up save slot #2.
+d) USA Save Slot #1 : Not visited World 2 yet.
+	- NOT EQUAL TO + a few EQUAL TO's (to refine)
+e) USA Save Slot #2 : Moving to World 2. -> Cut scene plays with 2nd picture.
+	- NOT EQUAL TO + a few EQUAL TO's (to refine)
+   ...
+
+Found an interesting address,
+entered W3 - Blue Toad House (the one with pictures)
+and tried changing some values at that address.
+The following address/value combination
+unlocked all pictures for USA - Save Slot #1:
+
+(Static USA - Save Slot 1 - All Pictures)
+1618FABC 0FFF0000
+
+Calculating offsets:
+~~~~~~~~~~~~~~~~~~~~
+
+Reference:
+USA - Save Slot Check Address:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1618CE7C (= base address to calculate from)
+
+Address to write to:
+~~~~~~~~~~~~~~~~~~~~
+1618FABC
+
+=>
+
+1618FABC - 1618CE7C = offset 2C40
+
+
+==========================
+UNLOCK ALL WORLDS & LEVELS
+==========================
+
+---------------------------
+---------------------------
+USA STATIC UNLOCK TEST CODE
+---------------------------
+---------------------------
+
+[(Test) Unlock All Worlds + W1 Levels]
+D3000000 16000000
+0018FAE4 00000163
+0018FBD4 3FFFFFFF
+D3000000 16000000
+0018FD9C 00000002
+0018FDA8 00000064
+00190EA4 0000003F
+D3000000 16000000
+0018FDBC 00000002
+0018FDC8 00000064
+00190EC0 0000003F
+D3000000 16000000
+0018FDDC 00000002
+0018FDE8 00000064
+00190EDC 0000003F
+00191DC8 00000001
+D3000000 16000000
+0018FDFC 00000002
+0018FE08 00000064
+00190EF8 0000003F
+D3000000 16000000
+0018FE1C 00000002
+0018FE28 00000064
+00190F14 0000003F
+D3000000 16000000
+0018FE3C 00000002
+0018FE48 00000064
+00190F30 0000003F
+00191DE8 00000000
+D3000000 16000000
+0018FE5C 00000002
+0018FE68 00000064
+00190F4C 0000003F
+D2000000 00000000
+-> Works.
+-> Also shows icons of levels finished with M&L.
+
+--------------------
+Setting up loop code
+--------------------
+Note: All address examples are
+	- From USA region.
+	- First save slot.
+
+--------------------
+Loop how many times?
+--------------------
+
+The 1618XXXX address region seems to start & end at:
+
+1618FD9C -> 16190E74
+
+Counting how many levels need to be set.
+Copied Hex code from full save game dump,
+pasted in an empty text document
+& counted all occurrences of 02000000.
+Note: using Notepad++,
+	   highlighted 02000000
+	   & by using manual pattern recognition,
+	   excluded 02000000 dummies
+       (not to be added to total).
+	   In my case there were three.
+
+=> Decimal: 135. => Hex: 87.
+
+(!) Additional remarks & fixes:
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    See update below.
+
+-------------------
+What & how to loop?
+-------------------
+
+Calculating offsets:
+~~~~~~~~~~~~~~~~~~~~
+
+Reference:
+USA - Save Slot Check Address:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1618CE7C (= base address to calculate from)
+
+A) All Pictures, Star Coins & All Worlds:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+USA - Save Slot #1 address to unlock all pictures:
+1618FABC
+
+USA - Save Slot #1 address to set number of collected Star Coins:
+1618FAE4
+
+USA - Save Slot #1 address to unlock all worlds:
+1618FBD4
+
+(1618FABC - 1618CE7C) &
+(1618FAE4 - 1618CE7C) &
+(1618FBD4 - 1618CE7C)
+=>
+00002C40 0FFF0000
+00002C68 00000163
+00002D58 3FFFFFFF
+
+~~~~~~~~~~
+B) Levels:
+~~~~~~~~~~
+
+~~~~~~~~~~~~~~~~~~~~
+Two loops per level:
+~~~~~~~~~~~~~~~~~~~~
+
+F.e. for Level 1-1:
+
+1)
+~~
+1618FD9C	00000002	// Start address for 1st loop.
+1618FDA8	00000064	// 1618FDA8 - 1618FD9C
+						// => Offset from start address: (hex) C.
+
+Offset from Save Slot Check address:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(F.e.) Current offset for USA - Save Slot #1 at:
+1618CE7C
+
+Start Address to write to:
+1618FD9C
+=> 1618FD9C - 1618CE7C = 2F20
+
+&
+
+2)
+~~
+16190EA4	0000003F	// Start address for 2nd loop.
+						
+Distance between levels for DC type code:
+
+(Level 1-2) - (Level 1-1)
+1618FDBC	- 1618FD9C		= (hex) 20.
+&
+16190EC0	- 16190EA4		= (hex) 1C.
+-> Different offset is reason to have 2 loops per level.
+
+Offset from Save Slot Check address:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(F.e.) Current offset for USA - Save Slot #1 at:
+1618CE7C
+
+Start Address to write to:
+16190EA4
+=> 16190EA4 - 1618CE7C = 4028
+
+-----------------------
+-----------------------
+ALL REGIONS UNLOCK CODE
+SAVE SLOT 1 ONLY ------
+-----------------------
+-----------------------
+
+(All Regions:)
+[(L+R+Up+X) Unlock All Worlds & Levels (Save Slot #1)]
+DD000000 00000740	// When button combination is pressed:
+D3000000 00000000	// Start.
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000	// At World Map only. (TODO: Test if needed)
+DC000000 0003AAB4	// Start checking selected save slot.
+50000000 00000000	// If Save Slot #1: (f.e.) Current offset for USA - Save Slot #1 at 1618CE7C.
+00002C40 0FFF0000	// Unlock all Pictures.
+00002C68 00000163	// Write #Star Coins.
+00002D58 3FFFFFFF	// Unlock all Worlds.
+DC000000 00002F20	// Move offset to start address for first loop.
+C0000000 00000087	// Start first loop.
+20000000 00000002	// Write value 02. (Meaning: see above.)
+2000000C 00000064	// Write value 64. (Meaning: see above.)
+DC000000 00000020	// Move offset to address for next level.
+D1000000 00000000	// Decrease loop counter by 0x1, jumping back to the previous 0xC0 code.
+D3000000 00000000	// RESET. (Note: could be shortened a lot when using DC type with negative offset, although I'd like to skip that for now, since it would require some more calculations (where first loop ends after last write - where second loop needs to start writing).
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000	// At World Map only. (TODO: Test if needed)
+DC000000 0003AAB4	// Start checking selected save slot.
+50000000 00000000	// If Save Slot #1: (f.e.) Current offset for USA - Save Slot #1 at 1618CE7C.
+DC000000 00004028	// Move offset to start address for second loop.
+C0000000 00000087	// Start second loop.
+20000000 0000003F	// Write value 3F. (Meaning: see above.)
+DC000000 0000001C	// Move offset to address for next level.
+D1000000 00000000	// Decrease loop counter by 0x1, jumping back to the previous 0xC0 code.
+D2000000 00000000	// End.
+-> Works. Full 5 Shiny Star unlock for Save Slot #1.
+
+
+----------------------------------
+----------------------------------
+Conversion to all save games/slots
+----------------------------------
+----------------------------------
+
+Note:
+~~~~~
+Depending on the selected save slot,
+the addresses of
+- Unlock Pictures,
+- # Star Coins,
+- Unlock Worlds,
+- Unlock Levels First Loop &
+- Unlock Levels Second Loop
+all have different offsets compared to the
+Save Slot Check address.
+
+The all region pointer already leads to the Save Slot Check address.
+To know how much offset needs to be added for each of the above:
+
+- For Save Game/Slot 2:
+  I'll be calculating the offset between the address(es)
+  found for Save Game 1 & Save Game 2.
+
+- For Save Game/Slot 3:
+  Found offset for Save Game/Slot 2 times two.
+  
+Search Note (update after having found all offsets):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- I used CTRPF to find the address for # Star Coins in Save Game/Slot 2.
+  Already had the Unlock Worlds address for each slot (see above)
+  and assumed the Unlock Pictures address for each slot would follow the
+  offsets of # Star Coins, since those addresses to write to
+  where in close proximity of each other.
+- Using HxD, I manually compared RAM Dumps of Save Game/Slot 1 & Save Game/Slot 2
+  (at World Map) to find the offset of the Unlock Levels.
+  I looked for equal hex values (using Find -> Hex Values tab).
+  Both save slots had a copy of the same file (fully unlocked).
+
+~~~~~~~~~~~~~~~~~~~~~~
+Offsets for SG2 & SG3:
+~~~~~~~~~~~~~~~~~~~~~~
+
+Unlock Pictures
+~~~~~~~~~~~~~~~
+SG2: 1618FB1C
+-
+SG1: 1618FABC
+=>
+Offset SG2:
+= 60
+
+For SG3: 60 x 2
+=>
+Offset SG3:
+= C0
+
+# Star Coins
+~~~~~~~~~~~~
+SG2: 1618FB44
+-
+SG1: 1618FAE4
+=>
+Offset SG2:
+= 60
+
+For SG3:  x 2
+=>
+Offset SG3: 
+= C0
+
+Unlock Worlds
+~~~~~~~~~~~~~
+SG2: 1618FC60
+-
+SG1: 1618FBD4
+=>
+Offset SG2:
+= 8C
+
+For SG3: 8C x 2
+=>
+Offset SG3:
+= 118
+
+Unlock Levels First Loop
+~~~~~~~~~~~~~~~~~~~~~~~~
+SG2: 1619272C
+-
+SG1: 1618FD9C
+=>
+Offset SG2:
+= 2990
+
+For SG3: 2990 x 2
+=>
+Offset SG3:
+= 5320
+
+Unlock Levels Second Loop
+~~~~~~~~~~~~~~~~~~~~~~~~~
+SG2: 16193834
+-
+SG1: 16190EA4
+=>
+Offset SG2:
+= 2990
+
+For SG3: 2974 x 2
+=>
+Offset SG3:
+= 5320 (same as first loop)
+
+-----------------------
+-----------------------
+ALL REGIONS UNLOCK CODE
+ALL SAVE SLOTS --------
+-----------------------
+-----------------------
+
+(All Regions)
+[(L+R+Up+X) Unlock All Worlds & Levels]
+DD000000 00000740
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+00002C40 0FFF0000
+00002C68 00000163
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 0000008C
+D0000000 00000000
+50000000 00000002
+DC000000 00000118
+D0000000 00000000
+00002D58 3FFFFFFF
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00002F20
+C0000000 00000087
+20000000 00000002
+2000000C 00000064
+DC000000 00000020
+D1000000 00000000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00004028
+C0000000 00000087
+20000000 0000003F
+DC000000 0000001C
+D1000000 00000000
+D2000000 00000000
+-> Works for all regions
+   & all save slots.
+-> Note: When World Map check is dropped, works everywhere:
+	- At Main Menu:
+		- The last played save game/slot.
+	- At World Map:
+		- Current save game/slot.
+	- In Level:
+		- Current save game/slot.
+	-> No crashes when WM check dropped, so if used correctly => safe to use.
+-> Update: Added checks to not run this code:
+		   - when at main menu or
+		   - when at file select screen.
+-> Important issue fixing update: see below:
+
+~~~~~~~~~~~~~~~~~~
+UPDATE (ISSUE FIX)
+~~~~~~~~~~~~~~~~~~
+
+Fix:
+~~~~
+The second loop needs to loop one less time.
+So instead of looping x times:
+=> Decimal: 135. => Hex: 87. (// DEPRECATED)
+it only needs to loop x times:
+=> Decimal: 134. => Hex: 86.
+
+Reason:
+~~~~~~~
+When setting the value to 3F to a world's last level,
+it opens the path to the next world. This all runs fine,
+except for Special World - Castle (very last level).
+When a game is saved with the value 3F stored
+for that very last level and even when no cheat code is applied,
+having M/L run to the right on world map (towards next world),
+straight up crashes the game simply because
+there is no next world to load.
+
+The value to be set individually after the second loop for
+USA address = 16191D4C	// Address with a value to be set for Special World 8 - Castle.
+is
+(hex) 37				// Not 3F! => Crashes game, since no next World to load.
+
+(Note: value found in 100% save, completed without cheat codes.)
+
+Not much needs to be changed in the code however,
+since the last loop (loop 134 of 134) sets the correct offset
+for the individual value to be written to.
+(Previously nothing was written after the last loop.)
+
+-----------------------
+-----------------------
+ALL REGIONS UNLOCK CODE
+ALL SAVE SLOTS + FIX --
+-----------------------
+-----------------------
+
+(All Regions)
+[(L+R+Up+X) Unlock All Worlds & Levels]
+DD000000 00000740
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+00002C40 0FFF0000
+00002C68 00000163
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 0000008C
+D0000000 00000000
+50000000 00000002
+DC000000 00000118
+D0000000 00000000
+00002D58 3FFFFFFF
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00002F20
+C0000000 00000087
+20000000 00000002
+2000000C 00000064
+DC000000 00000020
+D1000000 00000000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+600465AC C3200000
+600465AC C1800000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00004028
+C0000000 00000086	// Loop one less time.
+20000000 0000003F
+DC000000 0000001C	// Last loop sets the offset correct for the individual value.
+D1000000 00000000
+20000000 00000037	// Individual value in order to avoid possible game crash (see above).
+D2000000 00000000
+-> Works for all regions
+   & all save slots.
+
+
+Additional compatibility notes:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-> Works when using Luma~Rosalina's cheat engine.
+-> Crashes when using older version of CTRPluginFramework (.plg version).
+-> Works in latest version of CTRPluginFramework (.3gx version).
+
+
+===========================================
+(KEEP) OPEN ALL TOAD HOUSES & MYSTERY BOXES
+===========================================
+
+=========================
+(KEEP) OPEN MYSTERY BOXES
+=========================
+
+Mystery Boxes can be found in:
+- World 1
+- World 2
+- World 4
+- World 6
+- Special World 1
+- Special World 3
+- Special World 5
+- Special World 7
+
+(As searched before:)
+
+16191DC8	00000001 // W1 Mystery Box Start value.
+					 // When Mystery Box is closed, reads 0100000X.
+					 // Value X differs after each Mystery Box re-enter.
+
+Possible values:
+~~~~~~~~~~~~~~~~
+			00000000	// Tutorial level.
+			00000001	// First non-tutorial Mystery Box level.
+			...
+			00000014	// Next level will be the first Gold level.
+			...
+			0000001E	// Next level will be a Gold level.
+			0000001D	// Next level will be a Gold level.
+			...
+			00000022	// Next level will be a Gold level.
+			^^-> 00 means open, 01 means closed.
+
+Note:		00000023	// Any value bigger than 22 crashes game
+						   when entering Mystery Box.
+						 
+Additional Find:
+16191DD0	00000000 // W1 Mystery Box Start value.
+					 // When Mystery Box is closed for the first time,
+					    is set to a 4 byte non zero value.
+						This goes for all Mystery Boxes compared.
+					 // Good for a check (when not at new game value being zero = reopen).
+
+----------------
+STATIC CODE TEST
+----------------
+[(USA SG1) (Re)Open All Mystery Boxes]
+D3000000 16191DC8
+00000000 00000001
+00000008 00000000	// See 'Additional Find'.
+00000120 00000007
+00000128 00000000	// See 'Additional Find'.
+00000240 0000000B
+00000248 00000000	// See 'Additional Find'.
+00000360 0000000D
+00000368 00000000	// See 'Additional Find'.
+00000520 00000002
+00000528 00000000	// See 'Additional Find'.
+00000640 00000005
+00000648 00000000	// See 'Additional Find'.
+00000760 00000011
+00000768 00000000	// See 'Additional Find'.
+00000880 0000000C
+00000888 00000000	// See 'Additional Find'.
+D2000000 00000000
+-> Works.
+	  
+-------------------
+-------------------
+ALL REGIONS MB CODE
+ALL SAVE SLOTS ----
+-------------------
+-------------------
+
+Calculating offsets:
+~~~~~~~~~~~~~~~~~~~~
+
+Reference:
+USA - Save Slot Check Address:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1618CE7C (= base address to calculate from)
+
+First address to write to:
+16191DC8
+=>
+16191DC8 - 1618CE7C				= 4F4C
+(for SG1, offsets of other save slots will be added using the Save Game Check code.)
+
+Save Slot Offsets:
+~~~~~~~~~~~~~~~~~~
+SG1:
+16191DC8
+Offset							= 0
+
+SG2:
+16194758
+Offset = 16194758 - 16191DC8	= 2990
+
+SG3:
+1619XXXX
+Offset = 2990 x 2				= 5320
+
+(All Regions + All Save Slots)
+[(Keep) Open Closed Mystery Boxes]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000
+DC000000 0003AAB4	// Move to Save Game Check address
+50000000 00000000	// & add save game/slot offset if necessary.
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00004F4C	// Move to first address to write to.
+60000008 00000000
+00000000 00000001
+00000008 00000000
+D0000000 00000000
+D0000000 00000000
+60000128 00000000
+00000120 00000007
+00000128 00000000
+D0000000 00000000
+D0000000 00000000
+60000248 00000000
+00000240 0000000B
+00000248 00000000
+D0000000 00000000
+D0000000 00000000
+60000368 00000000
+00000360 0000000D
+00000368 00000000
+D0000000 00000000
+D0000000 00000000
+60000528 00000000
+00000520 00000002
+00000528 00000000
+D0000000 00000000
+D0000000 00000000
+60000648 00000000
+00000640 00000005
+00000648 00000000
+D0000000 00000000
+D0000000 00000000
+60000768 00000000
+00000760 00000011
+00000768 00000000
+D0000000 00000000
+D0000000 00000000
+60000888 00000000
+00000880 0000000C
+00000888 00000000
+D2000000 00000000
+-> Works for all regions
+   & all save slots.
+-> Note: With World Map check.
+
+~~~~~~
+UPDATE
+~~~~~~
+
+What I initially did (see above), was setting the values
+to default new game values.
+However, I noticed (although different throughout worlds)
+I always entered the same mystery box again without the ability
+to grab extra Star Coins.
+When re-entering, the Star Coin was always grayed out.
+I remembered by having done some quick initial research, there are people
+who have used Street Pass to grab up to 999 Star Coins (= max).
+So, since I do not have a second 2DS/3DS to use Street Pass for reopening,
+I did some additional digging to know how the Mystery Boxes function:
+https://www.mariowiki.com/Mystery_Box
+
+Regarding the code, I then took some guesses
+by comparing a RAM Dump of the 100% save
+(the one I found before I wrote the unlock code based on it)
+with RAM Dumps I took with a 100% save using the unlock code:
+- usa_sg1_wm_1-1_complete &
+- usa_sg1_wm_1-1_complete_noMB (all mystery boxes closed).
+
+At address 16191DC8 in the 100% save
+(the one I found, not unlocked using unlock cheat),
+I noticed the value was 00000003.
+
+Comparing with what I wrote before
+(being // When Mystery Box is closed, reads 0100000X.)
+I decided
+0100000X	// Closed.
+needed to be changed to
+0000000X	// Opened.
+
+So, for the first Mystery Box (World 1), I changed:
+
+...
+60000008 00000000	// If Check Address is not zero (meaning already closed at least once):
+00000000 00000001
+00000008 00000000
+D0000000 00000000
+D0000000 00000000
+...
+
+to:
+
+...
+60000008 00000000	// If Check Address is not zero (meaning already closed at least once):
+90000002 00000100	// When Mystery Box is closed:
+20000003 00000000	// Only change specific byte (from 1->0). (Note: 10000002 00000000 is valid too.)
+D0000000 00000000	// I dropped resetting the Check Address to zero,
+...					   since this crashed the game.
+
+and did this for each Mystery Box.
+
+Updated code:
+-------------
+
+(All Regions + All Save Slots)
+[(Keep) Open Closed Mystery Boxes]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00004F4C
+60000008 00000000
+90000002 00000100
+20000003 00000000
+D0000000 00000000
+D0000000 00000000
+60000128 00000000
+90000122 00000100
+20000123 00000000
+D0000000 00000000
+D0000000 00000000
+60000248 00000000
+90000242 00000100
+20000243 00000000
+D0000000 00000000
+D0000000 00000000
+60000368 00000000
+90000362 00000100
+20000363 00000000
+D0000000 00000000
+D0000000 00000000
+60000528 00000000
+90000522 00000100
+20000523 00000000
+D0000000 00000000
+D0000000 00000000
+60000648 00000000
+90000642 00000100
+20000643 00000000
+D0000000 00000000
+D0000000 00000000
+60000768 00000000
+90000762 00000100
+20000763 00000000
+D0000000 00000000
+D0000000 00000000
+60000888 00000000
+90000882 00000100
+20000883 00000000
+D2000000 00000000
+
+Although it's still not the same as when using Street Pass
+(where a Mii face of the StreetPassed person appears),
+I think it's pretty close to its behavior (as taken from the Wiki):
+- There are a total of 20 unique normal Mystery Box contents
+  and 15 unique golden-sided Mystery Boxes contents.
+  Golden-sided Mystery Boxes are less likely to appear than normal ones.
+  Each normal Mystery Box can be found in two different Worlds,
+  while each golden-sided one can only be found in a single World.
+- After completing a Mystery Box, it turns gray on the overworld map,
+  "falls asleep", and becomes inaccessible. It may be accessed again 20 hours later.
+  The contents of each Mystery Box changes each time it is re-entered.
+
+Testing with the above code,
+once a Star Coin is grabbed in a Mystery Box, it's still grayed out.
+Perhaps it resets after 20 hours or so (wasn't able to test yet)?
+Researching how to get more Star Coins seems to yield different answers,
+so I'm not quite sure if it's possible to get to 999 Star Coins.
+At the time of writing, the Unlock All Worlds & Levels code sets the number
+of Star Coins to 355. Perhaps I might change it to 999 for fun
+(although i.m.o. that's ...well... a bit tóó much...).
+
+According to the Wiki:
+- The only difference in a StreetPass Mystery Box is
+  that it is guaranteed to have a Star Medal or two,
+  unless of course all Star Medals have been collected.
+
+Perhaps I'll pick this up later on. For now, at time of writing, I'm quite content.
+
+~~~~~~
+UPDATE
+~~~~~~
+
+The above code runs well, although occasionally,
+when f.e. repeatedly switching between opened worlds,
+the game crashes with this code turned on.
+This comes in unexpectedly and happens at irregular intervals.
+
+I tested a lot of variations for a very long time
+that still didn't fix the issue.
+Eventually, I came up with replacing the World Map check
+with a transition check (which however also counts for
+when at Main Menu: Press Start to Play Screen).
+
+Altered code:
+~~~~~~~~~~~~~
+...
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000 => 500465AC C3200000
+...
+{
+Load any save file, switch between worlds or enter any level\n
+in order for code to take effect.
+}
+
+A minor downside to this, is that the player does need to f.e. switch worlds
+and can no longer enter directly when returning to WM (the game didn't seem
+to like this anyway).
+However, on the bright side: the game no longer crashes when the altered
+code is turned on.
+
+(!)Update#2:
+(Easter Egg:)
+Mashing the enter level button (even when grayed out),
+does eventually make M/L enter anyway, although using it this way,
+makes the code prone again to crashes.
+Hence keeping the above {cheat code note}.
+In other words: if I'm not mistaken, the altered code
+could still crash the game, although the chances of it
+happening should be greatly reduced.
+
+
+=======================
+(KEEP) OPEN TOAD HOUSES
+=======================
+
+Toad Houses can be found in:
+- World 1
+- World 2
+- World 3
+- World 5
+- World 7
+- Special World 1
+- Special World 2
+- Special World 4
+- Special World 6
+- Special World 8
+
+(As searched before:)
+
+16191DE8	00000000 // W1 Toad House new game value (= Opened).
+					 // Unlocks Toad House in World 1.
+					 // 00000001 closes Toad House in World 1.
+			 
+Additional Find:
+16191DF0	00000000 // W1 Toad House new game value (= Opened).
+					 // When Toad House is closed, is set to a 4 byte non zero value.
+						This goes for all Toad Houses compared.
+					 // Good for a check. Resetting to zero when reopening,
+						otherwise reopening an already reopened Toad House won't work.
+					 // Update: Dropped this check & address. Above address will do.
+						(At least for as far as I could test without Street Pass.)
+
+Note: Similar behavior as Mystery Boxes, although code can be simplified a lot.
+	  Since it only gives a powerup (with the exception of World 3),
+	  I'm not going to dig further into this (yet?) and use the new game values.
+	  
+Note: Couldn't test with Street Pass to find values for better powerup gifts.
+
+Comparing RAM Dumps:
+- usa_sg1_wm_1-1_complete &
+- usa_sg1_wm_1-1_complete_noMH (all Toad Houses closed)
+
+-------------------
+-------------------
+ALL REGIONS MH CODE
+ALL SAVE SLOTS ----
+-------------------
+-------------------
+
+Calculating offsets:
+~~~~~~~~~~~~~~~~~~~~
+
+Reference:
+USA - Save Slot Check Address:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1618CE7C (= base address to calculate from)
+
+First address to write to:
+16191DE8
+=>
+16191DE8 - 1618CE7C				= 4F6C
+(for SG1, offsets of other save slots will be added using the Save Game Check code.)
+
+Save Slot Offsets:
+~~~~~~~~~~~~~~~~~~
+SG1:
+16191DE8
+Offset							= 0
+
+SG2:
+16194778
+Offset = 16194758 - 16191DE8	= 2990
+
+SG3:
+1619XXXX
+Offset = 2990 x 2				= 5320
+
+(All Regions + All Save Slots)
+[(Keep) Open Closed Toad Houses]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000
+DC000000 0003AAB4	// Move to Save Game Check address
+50000000 00000000	// & add save game/slot offset if necessary.
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00002990
+D0000000 00000000
+50000000 00000002
+DC000000 00005320
+D0000000 00000000
+DC000000 00004F6C	// Move to first address to write to.
+50000000 00000001	// W1
+20000000 00000000
+D0000000 00000000
+50000120 00000001	// W2
+20000120 00000000
+D0000000 00000000
+50000240 00000001	// W5	// Note: No W3 since always open (blue house).
+20000240 00000000
+D0000000 00000000
+50000360 00000001	// W7
+20000360 00000000
+D0000000 00000000
+50000400 00000001	// SW1
+20000400 00000000
+D0000000 00000000
+50000520 00000001	// SW2
+20000520 00000000
+D0000000 00000000
+50000640 00000001	// SW4
+20000640 00000000
+D0000000 00000000
+50000760 00000001	// SW6
+20000760 00000000
+D0000000 00000000
+50000880 00000001	// SW8
+20000880 00000000
+D2000000 00000000
+
+~~~~~~
+UPDATE
+~~~~~~
+
+The above code runs well, although occasionally,
+when f.e. repeatedly switching between opened worlds,
+the game crashes with this code turned on.
+This comes in unexpectedly and happens at irregular intervals.
+
+I tested a lot of variations for a very long time
+that still didn't fix the issue.
+Eventually, I came up with replacing the World Map check
+with a transition check (which however also counts for
+when at Main Menu: Press Start to Play Screen).
+
+Altered code:
+~~~~~~~~~~~~~
+...
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000 => 500465AC C3200000
+...
+{
+Load any save file, switch between worlds or enter any level\n
+in order for code to take effect.
+}
+
+A minor downside to this, is that the player does need to f.e. switch worlds
+and can no longer enter directly when returning to WM (the game didn't seem
+to like this anyway).
+However, on the bright side: the game no longer crashes when the altered
+code is turned on.
+
+(!)Update#2:
+(Easter Egg:)
+Mashing the enter level button (even when grayed out),
+does eventually make M/L enter anyway, although using it this way,
+makes the code prone again to crashes.
+Hence keeping the above {cheat code note}.
+In other words: if I'm not mistaken, the altered code
+could still crash the game, although the chances of it
+happening should be greatly reduced.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+================
+CODE PORTS (ASM)
+================
+
+
+General Port notes:
+- Ports to other region done by comparing RAM Dumps from both regions in HxD.
+	- Searched for similar hex values.
+
+----------------
+
+https://www.maxconsole.com/threads/help-with-super-mario-3d-land-aree.54363/
+Have Flutter With Any Powerup (Action Replay original version by nolberto82)
+03FD270C E3A00001
+
+[Have Flutter With Any Powerup (GS port by buzzmaster1980)]
+D3000000 00000000
+002D270C E3A00001
+D2000000 00000000
+
+Renamed & optimized (ability to restore default when not in level):
+
+USA
+[Always Flutter (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+002D270C 13A00000
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+002D270C E3A00001
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore powerup defaults,\n
+disable this cheat code when not in a level.
+}
+
+EUR
+[Always Flutter (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+002D2714 13A00000
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+002D2714 E3A00001
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore powerup defaults,\n
+disable this cheat code when not in a level.
+}
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+(See section "Lower Based Address Pointer".)
+
+(All Regions:)
+[Always Flutter (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0016F484 13A00000
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0016F484 E3A00001
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore powerup defaults,\n
+disable this cheat code when not in a level.
+}
+
+-----------------
+
+Based on buzzmaster1980's findings to convert AR to GS:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
+AR to GS port -> -3D00000
+~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Note: not sure if this is always the case.
+
+-----------------
+
+Have Tail Attack With Any Powerup (Action Replay original version by nolberto82)
+03F6EAB4 EA000003
+
+=>
+
+USA
+[Always Tail Attack (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+0026EAB4 0A000003
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+0026EAB4 EA000003
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore powerup defaults,\n
+disable this cheat code when not in a level.
+}
+
+EUR
+[Always Tail Attack (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+0026EABC 0A000003
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+0026EABC EA000003
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore powerup defaults,\n
+disable this cheat code when not in a level.
+}
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+(See section "Lower Based Address Pointer".)
+
+(All Regions:)
+[Always Tail Attack (Any Powerup)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0010B82C 0A000003
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0010B82C EA000003
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore powerup defaults,\n
+disable this cheat code when not in a level.
+}
+
+-----------------
+
+One Coin Gives An Extra Life (Action Replay original version by nolberto82)
+03E76A10 E3510000
+
+=>
+
+For both (& all?) regions:
+
+USA & EUR:
+(All Regions:)
+[Coins Give An Extra Life]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+00176A10 E3510063
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+00176A10 E3510000
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore game default,\n
+disable this cheat code when not in a level.
+}
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+-> Seems to be no need, already working for EUR & USA (& other?) regions.
+
+-----------------
+
+Skip Story Intro (Action Replay original version by nolberto82)
+03D7038C E1A00000
+
+=>
+
+[Skip Story Intro]
+D3000000 00000000
+0007038C E1A00000
+D2000000 00000000
+-> Doesn't seem to work for both regions.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+=============
+INFINITE TIME
+=============
+
+Ported to USA and, for both regions, enhanced the infinite time code found at:
+https://github.com/JourneyOver/CTRPF-AR-CHEAT-CODES/blob/master/Cheats/Super%20Mario%203D%20Land%20(EUR)/0004000000053F00.txt
+
+Original EUR code (by optantic):
+[Max Infinite Time Rev02]
+D3000000 00000000
+00176AEC E5802018
+
+Enhancements:
+- Added possibility to disable code (when not in a level):
+	- When in level, the enabled code overwrites the default game values
+	 (using above address/value).
+	- When not in a level, the (still) enabled code writes the default game values
+	 (used HxD to find default).
+		- When cheat is disabled at f.e. World Map, the game will use
+		  the default game values when (re)starting a level.
+
+EUR
+[Infinite Time]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+00176AEC E5801018
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+00176AEC E5802018
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore level timer default,\n
+disable this cheat code when not in a level.
+}
+
+-----------------
+
+USA PORT
+[Infinite Time]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+00176AE4 E5801018
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+00176AE4 E5802018
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore level timer default,\n
+disable this cheat code when not in a level.
+}
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+(See section "Lower Based Address Pointer".)
+
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+...					// For EUR: current offset is at 163290
+...					// For USA: current offset is at 163288
+DC000000 XXXXXXXX	// Add offset to reach address to write to.
+					// Or write using f.e. 20XXXXXX 000000YY.
+D2000000 00000000
+
+(All Regions:)
+[Infinite Time]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+60000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0001385C E5801018
+D2000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+601007B0 00000000
+B01007B0 00000000
+B0006E0C 00000000
+0001385C E5802018
+D2000000 00000000
+{
+In effect when playing a level.\n
+In order to restore level timer default,\n
+disable this cheat code when not in a level.
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+====================
+#LIVES (AT WORLD MAP)
+====================
+
+EUR (SAVE GAME 1):
+D3000000 16000000
+10190662 00000XXX
+D2000000 00000000
+
+EUR (SAVE GAME 2):
+D3000000 16000000
+101906C2 00000XXX
+D2000000 00000000
+
+EUR (SAVE GAME 3):
+D3000000 16000000
+10190722 00000XXX
+D2000000 00000000
+
+-----------------
+
+USA (SAVE GAME 1):
+D3000000 16000000
+1018FAE2 00000XXX
+D2000000 00000000
+
+USA (SAVE GAME 2):
+D3000000 16000000
+1018FB42 00000XXX
+D2000000 00000000
+
+USA (SAVE GAME 3):
+D3000000 16000000
+1018FBA2 00000XXX
+D2000000 00000000
+
+------------------
+Pointer Version
+For All Save Games
+------------------
+
+SM3DL_USA_SG1_WM_1-1
+1618FAE2
+
+SM3DL_USA_SG3_WM_1-1
+1618FBA2
+
+-> Couldn't find a valid pointer.
+-> Looking online for an already found pointer didn't work out either.
+-> Looking manually didn't work out immediately either.
+-> Trying to find an address using CTRPF didn't work out immediately either.
+
+So... Alternative:
+Creating an offset for the 3 save games and checking in which save file player is.
+-> Update: region free pointer found afterwards. Updated below.
+
+------------------
+Address containing
+Current And/Or
+Last Played
+Save File ID.
+(Fixed Address)
+------------------
+
+EUR:
+1618D9FC 0000000X	// 0=Save Game 1 *** 1=Save Game 2 *** 2=Save Game 3
+
+USA:
+1618CE7C 0000000X	// 0=Save Game 1 *** 1=Save Game 2 *** 2=Save Game 3
+
+So:
+
+EUR
+[Max Lives (Three Crowns)]
+D3000000 16000000
+5018D9FC 00000000
+10190662 00000456
+D0000000 00000000
+5018D9FC 00000001
+101906C2 00000456
+D0000000 00000000
+5018D9FC 00000002
+10190722 00000456
+D2000000 00000000
+
+-----------------
+
+USA
+[Max Lives (Three Crowns)]
+D3000000 16000000
+5018CE7C 00000000
+1018FAE2 00000456
+D0000000 00000000
+5018CE7C 00000001
+1018FB42 00000456
+D0000000 00000000
+5018CE7C 00000002
+1018FBA2 00000456
+D2000000 00000000
+
+-----------------
+
+-> Update:
+Added check for World Map only (& provided a 5 Lives alternative):
+
+EUR
+[Max Lives (Three Crowns)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018D9FC 00000000
+10190662 00000456
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018D9FC 00000001
+101906C2 00000456
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018D9FC 00000002
+10190722 00000456
+D2000000 00000000
+
+&
+
+USA
+[Max Lives (Three Crowns)]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018CE7C 00000000
+1018FAE2 00000456
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018CE7C 00000001
+1018FB42 00000456
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018CE7C 00000002
+1018FBA2 00000456
+D2000000 00000000
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+(See section "World Map Pointer".)
+
+(All Regions:)
+[Max Lives (Three Crowns)]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+10002C66 00000456
+D2000000 00000000
+-> Works for EUR & USA region (& possibly for other regions too, untested).
+-> Without WM Check => Also works when in level
+  (dying in level doesn't substract lives).
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+===================
+PLAY AS MARIO/LUIGI
+===================
+
+Tip:
+Looked for #Lives (At World Map) first,
+knowing that values like Mario or Luigi
+(and other characteristics) are often
+stored close. Therefore I could limit
+the address range in Search Options.
+
+Searched within a fully completed save file:
+- At World Map only, switching between Mario/Luigi:
+- 1 BYTE
+- UNKNOWN SEARCH
+- DIFFERENT BY (hex) 1
+
+-----------------
+
+EUR (SAVE GAME 1):
+[Play As Luigi]
+D3000000 16000000
+20190634 00000001
+D2000000 00000000
+
+EUR (SAVE GAME 2):
+[Play As Luigi]
+D3000000 16000000
+20190694 00000001
+D2000000 00000000
+
+EUR (SAVE GAME 3):
+[Play As Luigi]
+D3000000 16000000
+201906F4 00000001
+D2000000 00000000
+
+-----------------
+
+USA (SAVE GAME 1):
+[Play As Luigi]
+D3000000 16000000
+2018FAB4 00000001
+D2000000 00000000
+
+USA (SAVE GAME 2):
+[Play As Luigi]
+D3000000 16000000
+2018FB14 00000001
+D2000000 00000000
+
+USA (SAVE GAME 3):
+[Play As Luigi]
+D3000000 16000000
+2018FB74 00000001
+D2000000 00000000
+
+=>
+
+EUR
+[Play As Mario (Select Save File)]
+D3000000 16000000
+20190634 00000000
+20190694 00000000
+201906F4 00000000
+D2000000 00000000
+
+[Play As Luigi (Select Save File)]
+D3000000 16000000
+20190634 00000001
+20190694 00000001
+201906F4 00000001
+D2000000 00000000
+{
+Even when game not beaten.
+}
+
+USA
+[Play As Mario (Select Save File)]
+D3000000 16000000
+2018FAB4 00000000
+2018FB14 00000000
+2018FB74 00000000
+D2000000 00000000
+
+[Play As Luigi (Select Save File)]
+D3000000 16000000
+2018FAB4 00000001
+2018FB14 00000001
+2018FB74 00000001
+D2000000 00000000
+{
+Even when game not beaten.
+}
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+(See section "World Map Pointer".)
+
+(All Regions:)
+[Play As Mario/Luigi]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+20002C38 0000000X	// 0=Mario, 1=Luigi
+D2000000 00000000
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+============================
+INSTANT POWERUP CHANGE CODES
+============================
+
+Setup:
+~~~~~~
+- For quicker searching:
+	- Have a save file where the following applies:
+		- (f.e.) Start as Tanooki Mario/Luigi.
+		- (f.e.) Have a Fire Flower stocked in Item Box.
+	- Use stocked item in Item Box to quickly switch powerups.
+
+Search Options:
+~~~~~~~~~~~~~~~
+	- 4 BYTES
+	- Specific value
+		- Small:			1	(note: strangely enough, small & big pup are switched around)
+		- Big:				0	(note: strangely enough, small & big pup are switched around)
+		- Fire:				2
+		- Tanooki:			3
+		- Boomerang:		4
+		- Statue Tanooki:	5
+		- White Tanooki:	6
+	- Refine with:
+		- EQUAL TO (hex) X
+		- DIFFERENT BY (hex) 1 (for f.e. switch between X=2 & X=3)
+		
+Remark about Search Options:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-> 2 BYTES & 1 BYTE work as well, in fact 1 byte makes more sense here,
+   although I often find 4 bytes easier to compare current & previous results.
+-> Nevertheless: in order to find the addresses/values for these codes: 1 BYTE will do,
+   4 BYTES is for better "readability".
+-> Note this advice doesn't always work. In this case it does.
+   F.e. IF the address/value combination of f.e.
+   171451C4 00000002 // Fire Mario &
+   171451C4 00000003 // Tanooki Mario
+   would have looked like this:
+   171451C4 ABCD0002 // Fire Mario &
+   171451C4 DCBA0003 // Tanooki Mario
+   -> A combination of 4 BYTES and f.e. DIFFERENT BY 1 wouldn't yield a result!
+		
+Search Notes:
+~~~~~~~~~~~~~
+- When 6 addresses found:
+	- Ignore first address (it gets character stuck on screen,
+	  while a ghost character with new powerup is able to walk around).
+	- Address 5/6 can be safely ignored for code to work (found out after a while).
+	- Last address changes the texture.
+	
+	
+Search Results:
+~~~~~~~~~~~~~~~
+
+USA - SG1 - Level 1-1:
+----------------------
+170671BC 0000000X	// Ignore.
+17145470 0000000X
+17145474 0000000X
+17145604 0000000X
+171451C0 0000000X	// Can be ignored for code to work.
+171451C4 0000000X
+
+-> RAM Dump: usa_sg1_ig_1-1
+
+USA - SG1 - Level 1-2:
+----------------------
+16D9BD80 0000000X	// Ignore.
+16E7A030 0000000X
+16E7A034 0000000X
+16E7A1C4 0000000X
+16E88D80 0000000X	// Can be ignored for code to work.
+16E88D84 0000000X
+
+-> RAM Dump: usa_sg1_ig_1-2
+
+~~~
+Non Pointer examples:
+---------------------
+
+[USA 1-1 Pup Small]
+DD000000 00000280
+D3000000 17000000
+D0000000 00000000
+60145474 00000001
+20145474 00000001
+D0000000 00000000
+60145604 00000001
+20145604 00000001
+D0000000 00000000
+601541C4 00000001
+201541C4 00000001
+D0000000 00000000
+60145470 00000001
+20145470 00000001
+D2000000 00000000
+
+[USA 1-1 Pup Boomerang]
+DD000000 00000110
+D3000000 17000000
+60145474 00000004
+20145474 00000004
+D0000000 00000000
+60145604 00000004
+20145604 00000004
+D0000000 00000000
+601541C4 00000004
+201541C4 00000004
+D0000000 00000000
+60145470 00000004
+20145470 00000004
+D2000000 00000000
+
+-> Will do. Has issue of (sometimes) double or no powerup/powerdown sound,
+   depending on cheat engine used.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+--UPDATE--
+----------
+
+Converted using pointers:
+
+[Instant Powerup X (Simplified)]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+20000194 0000000X
+20000198 0000000X
+20000328 0000000X
+2000EEE8 0000000X
+D2000000 00000000
+
+-> With additional checks:
+[Instant Powerup X (Simplified)]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 0000000X	// Not already that powerup.
+30000194 00000007	// Smaller than 7 (X=6 is max powerup).
+20000194 0000000X
+60000198 0000000X
+30000198 00000007
+20000198 0000000X
+60000328 0000000X
+30000328 00000007
+20000328 0000000X
+6000EEE8 0000000X
+3000EEE8 00000007
+2000EEE8 0000000X
+D2000000 00000000
+
+-> All codes work using this setup,
+   although they do need an in level check
+   to avoid crashes.
+
+Instant Powerups (In Any Level, Pointer Edition):
+~~~~~~~~~~~~~~~----------------------------------
+-> With in level check to avoid crashes.
+
+[(L+Down) Small Mario/Luigi]
+DD000000 00000280
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000001
+30000194 00000007
+20000194 00000001
+60000198 00000001
+30000198 00000007
+20000198 00000001
+60000328 00000001
+30000328 00000007
+20000328 00000001
+6000EEE8 00000001
+3000EEE8 00000007
+2000EEE8 00000001
+D2000000 00000000
+
+[(L+Left) Super Mario/Luigi]
+DD000000 00000220
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000000
+30000194 00000007
+20000194 00000000
+60000198 00000000
+30000198 00000007
+20000198 00000000
+60000328 00000000
+30000328 00000007
+20000328 00000000
+6000EEE8 00000000
+3000EEE8 00000007
+2000EEE8 00000000
+D2000000 00000000
+
+[(L+Right) Fire Mario/Luigi]
+DD000000 00000210
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000002
+30000194 00000007
+20000194 00000002
+60000198 00000002
+30000198 00000007
+20000198 00000002
+60000328 00000002
+30000328 00000007
+20000328 00000002
+6000EEE8 00000002
+3000EEE8 00000007
+2000EEE8 00000002
+D2000000 00000000
+
+[(L+Up) Tanooki Mario/Luigi]
+DD000000 00000240
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000003
+30000194 00000007
+20000194 00000003
+60000198 00000003
+30000198 00000007
+20000198 00000003
+60000328 00000003
+30000328 00000007
+20000328 00000003
+6000EEE8 00000003
+3000EEE8 00000007
+2000EEE8 00000003
+D2000000 00000000
+
+[(R+Down) Tanooki Statue Mario/Luigi]
+DD000000 00000180
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000005
+30000194 00000007
+20000194 00000005
+60000198 00000005
+30000198 00000007
+20000198 00000005
+60000328 00000005
+30000328 00000007
+20000328 00000005
+6000EEE8 00000005
+3000EEE8 00000007
+2000EEE8 00000005
+D2000000 00000000
+
+[(R+Right) Boomerang Mario/Luigi]
+DD000000 00000110
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000004
+30000194 00000007
+20000194 00000004
+60000198 00000004
+30000198 00000007
+20000198 00000004
+60000328 00000004
+30000328 00000007
+20000328 00000004
+6000EEE8 00000004
+3000EEE8 00000007
+2000EEE8 00000004
+D2000000 00000000
+
+[(R+Up) White Tanooki Mario/Luigi]
+DD000000 00000140
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C2800000
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+60000194 00000006
+30000194 00000007
+20000194 00000006
+60000198 00000006
+30000198 00000007
+20000198 00000006
+60000328 00000006
+30000328 00000007
+20000328 00000006
+6000EEE8 00000006
+3000EEE8 00000007
+2000EEE8 00000006
+D2000000 00000000
+
+====================
+POWERUP AT WORLD MAP
+====================
+
+USA
+---
+SAVEGAME 1
+----------
+Three addresses:
+1618FAAA 0000000X
+	-> Only one that affects powerup at WM.
+	-> Possibilities:
+		- X=1 : Small Mario/Luigi
+		- X=0 : Big Mario/Luigi
+		- X=2 : Fire Mario/Luigi
+		- X=3 : Tanooki Mario/Luigi
+		- X=4 : Boomerang Mario/Luigi
+		- X=5 : Tanooki Statue Mario/Luigi
+		- X=6 : Not Possible, reverts to X=5
+		
+EUR = 1619062A
+
+USA
+---
+SAVEGAME 2
+----------
+Three addresses:
+1618FB0A 0000000X
+	-> Same as above.
+		
+EUR = 1619068A
+
+USA
+---
+SAVEGAME 3
+----------
+Three addresses:
+1618FB6A 0000000X
+	-> Same as above.
+		
+EUR = 161906EA
+
+
+->
+
+Likewise the code for Max Lives, I couldn't find a World Map pointer (yet)
+(including one that works for all save games).
+-> Update: region free pointer found afterwards. Updated below.
+
+So (including a WM only check):
+
+USA
+[Powerup X at World Map]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018CE7C 00000000
+2018FAAA 0000000X
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018CE7C 00000001
+2018FB0A 0000000X
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018CE7C 00000002
+2018FB6A 0000000X
+D2000000 00000000
+
+EUR
+[Powerup X at World Map]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018D9FC 00000000
+2019062A 0000000X
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018D9FC 00000001
+2019068A 0000000X
+D0000000 00000000
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 C1000000
+D3000000 16000000
+5018D9FC 00000002
+201906EA 0000000X
+D2000000 00000000
+
+-> Merged with the Instant Powerup codes.
+   + Added an additional button check between merged codes
+     because CTRPF ends the DD type code after a D2 type code.
+	 (It would run indefinitely in CTRPF.)
+	 -> Note: Concerns old version of CTRPF (.plg version),
+			  untested on latest version of CTRPF (.3gx version).
+
+Note:
+---------------------------------
+FOR A POWERUP CHECK AT WORLD MAP:
+---------------------------------
+-> Side note: dropped this check eventually, since it wasn't needed.
+
+How it looks in Hex Editor:
+1618FAA8	(<- Address)
+01020045	(<- Values for f.e. Fire Mario)
+
+1618FAA8	(<- Address)
+01000045	(<- Values for f.e. Super Mario)
+
+1618FAA8	(<- Address)
+01010045	(<- Values for f.e. Small Mario)
+
+=>
+
+[USA - SG 1 WM PUP CHECK]
+D3000000 16000000
+9018FAAA 0000010X
+									 
+[USA - SG 2 WM PUP CHECK]
+D3000000 16000000
+9018FB0A 0000010X
+
+[USA - SG 3 WM PUP CHECK]
+D3000000 16000000
+9018FB6A 0000010X
+
+&
+
+[EUR - SG 1 WM PUP CHECK]
+D3000000 16000000
+9019062A 0000010X
+									 
+[EUR - SG 2 WM PUP CHECK]
+D3000000 16000000
+9019068A 0000010X
+
+[EUR - SG 3 WM PUP CHECK]
+D3000000 16000000
+901906EA 0000010X
+
+----------------------------------
+REGION FREE POINTER EDITION UPDATE
+----------------------------------
+(See section "World Map Pointer".)
+
+Notes:
+EUR Fixed address for IG/WM/... check: 0x 161994F4
+USA Fixed address for IG/WM/... check: 0x 16198974
+DC000000 0003AAB4 sets current offset at (for EUR:) 1618D9FC or (for USA:) 1618CE7C.
+
+// Calculation: f.e. (EUR) 1619062A - 1618D9FC = 2C2E
+                     (only offset for 1st save game will do,
+					  since code adds additional offset when
+					  another save slot is loaded.)
+
+(All Regions:)
+[Powerup X at World Map]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC C1000000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+20002C2E 0000000X
+D2000000 00000000
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+=============
+LOWER SLOT: X
+=============
+
+EUR:
+	World Map:
+		SG1: 1619062C
+		SG2: No need to look for, will be calculated using region free pointer.
+		SG3: No need to look for, will be calculated using region free pointer.
+
+USA:
+	World Map:
+		SG1: No need to look for, will be calculated using region free pointer.
+		SG2: No need to look for, will be calculated using region free pointer.
+		SG3: No need to look for, will be calculated using region free pointer.
+
+---------------------------
+REGION FREE POINTER EDITION
+---------------------------
+(See section "World Map Pointer".)
+
+// Calculation: f.e. (EUR) 1619062C - 1618D9FC = 2C30
+                     (only offset for 1st save game will do,
+					  since code adds additional offset when
+					  another save slot is loaded.)
+
+(All Regions:)
+[Start Level With Lower Slot: X]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+DC000000 0003AAB4
+50000000 00000000
+DC000000 00000000
+D0000000 00000000
+50000000 00000001
+DC000000 00000060
+D0000000 00000000
+50000000 00000002
+DC000000 000000C0
+D0000000 00000000
+20002C30 0000000X
+D2000000 00000000
+{
+Values:
+0 = Nothing (Empty)
+1 = Mushroom
+2 = Fire Flower
+3 = Tanooki Leaf
+4 = Tanooki/Statue Leaf
+5 = Boomerang
+6 = P-Wing
+}
+
+Notes:
+- A World Map Only check (500465AC C1000000) isn't needed,
+  since the address that is written to is for World Map only.
+- An In Level code could be found too,
+  although I prefer the default behavior when in level,
+  so in my opinion there is no need for an In Level code
+  to edit lower slot items.

@@ -1,0 +1,91 @@
+**********************************************
+Super Mario 3D Land (All Regions & Revisions)
+https://github.com/KimDebroye/N3DS-Cheat-Codes
+Version 1.0.0 (Stable)
+**********************************************
+
+General Notes:
+~~~~~~~~~~~~~~
+* All cheat codes should be optimized for all regions & revisions.
+* In order for enabled cheat codes to take effect,
+  depending on the code enabled,
+  some codes require you to:
+	* Use a button combination.
+		* These codes are marked with a * and
+		  list the button combination to be used
+		  between (parentheses).
+	* Trigger a screen transition.
+	  Accomplishable by, for example:
+		* Switching between worlds on World Map
+		  (if more then one world opened).
+	* Entering and exiting a level.
+		* For exiting a level,
+		  any of the following options are valid:
+			* Pause and return to map (level select).
+			* Finish a level.
+* In order to be successfully disabled,
+  the following cheat codes need to be disabled
+  when not in a level:
+	* Always Tail Attack (Any Powerup)
+	* Always Flutter (Any Powerup)
+	* Infinite Time
+
+**********************************************
+
+Cheat Codes Overview:
+~~~~~~~~~~~~~~~~~~~~~
++ [ Play as Mario ]
++ [ Play as Luigi ]
+	* Even when game not beaten.
++ [ (L+Down) Small Mario/Luigi ]
++ [ (L+Left) Super Mario/Luigi ]
++ [ (L+Right) Fire Mario/Luigi ]
++ [ (L+Up) Tanooki Mario/Luigi ]
++ [ (R+Down) Tanooki Statue Mario/Luigi ]
++ [ (R+Right) Boomerang Mario/Luigi ]
++ [ (R+Up) White Tanooki Mario/Luigi ]
++ [ Always Star Power ]
++ [ Always Tail Attack (Any Powerup) ]
+	* In effect when playing a level.
+	* In order to restore powerup defaults,
+	  disable this cheat code when not in a level.
++ [ Always Flutter (Any Powerup) ]
+	* In effect when playing a level.
+	* In order to restore powerup defaults,
+	  disable this cheat code when not in a level.
++ [ Moon Jump ]
+	* Makes Mario/Luigi jump higher.
+	* Code optimized for use with Luma~Rosalina's cheat engine.
+	* Read cheat code note for use with CTRPluginFramework.
++ [ (B) Infinite Jump ]
+	* Allows Mario/Luigi to infinitely jump multiple times in mid-air.
+	* Hold button to jump as high as desired.
++ [ Max Lives (Three Crowns) ]
++ [ 5 Lives ]
++ [ Infinite Time ]
+	* In effect when playing a level.
+	* In order to restore level timer default,
+	  disable this cheat code when not in a level.
++ [ Start Level With P-Wing ]
+	* Does not affect Shiny Stars (if any) when saving game.
+Unlock Codes:
++ [ (L+R+Up+X) Unlock All (5 Shiny Stars) ]
+	* For currently opened save file:
+		* All Normal & Special Worlds unlocked.
+		* All Normal & Special Levels unlocked.
+		* All Pictures collected.
+		* All Star Coins collected.
+		* Star Coin counter set to a reasonable number.
+		* All requirements met for a 5 Shiny Stars save.
+	* This code does not:
+		* Reopen already closed Mystery Boxes or Toad Houses.
+		* Overwrite best level times (if any).
+		* Change any character attributes, like number of lives,
+		  current powerup, current level, etcetera.
++ [ (Keep) Open Closed Mystery Boxes ]
+	* Load any save file, switch between worlds or enter any level
+	  in order for code to take effect.
++ [ (Keep) Open Closed Toad Houses ]
+	* Load any save file, switch between worlds or enter any level
+	  in order for code to take effect.
+

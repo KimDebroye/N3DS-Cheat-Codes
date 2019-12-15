@@ -6,4 +6,4 @@
 
 **************************************************
 
-Follow the links for more information about cheats for each game listed above.
+*Follow the links for more information about cheats for each game listed above.*

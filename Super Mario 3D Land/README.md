@@ -151,7 +151,7 @@
   	- *Optimized (ability to restore default when not in level) & converted to All-Region by me.*
 
 ### Developer Notes
-I added my [developer notes](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/New%20Super%20Mario%20Bros.%202%20-%20Special%20%26%20Gold%20Edition/_Findings%20%26%20Thoughts/(NSMB2%20-%20SE%2BGE)%20Findings%20%26%20Thoughts.txt) to this repository for those interested in reading about how these codes came to be.
+I added my [developer notes](https://github.com/KimDebroye/N3DS-Cheat-Codes/blob/master/Super%20Mario%203D%20Land/_DevNotes/SM3DL_DevNotes.txt) to this repository for those interested in reading about how these codes came to be.
 
 ### Personal Notes
 I did this out of pure fun and interest to find out about how a cheating process works, not necessarily to play a game.

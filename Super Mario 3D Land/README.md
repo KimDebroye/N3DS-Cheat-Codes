@@ -38,8 +38,8 @@
   - *In order to restore level timer default, disable this cheat code when not in a level.*
 - `Start Level With P-Wing`
   - *Does not affect Shiny Stars (if any) when saving game.*
-> Unlocks Codes
-> -------------
+> Unlock Codes
+> ------------
   - `(L+R+Up+X) Unlock All (5 Shiny Stars)`
     - *For currently opened save file:*
       - *All Normal & Special Worlds unlocked.*

@@ -129,7 +129,7 @@
   - *Consulted for information/findings about converting a non shiny (1->5) star save to a shiny (1->5) save.<br />Thanks a bunch!*
 - [Super Mario Wiki](https://www.mariowiki.com/Mystery_Box)
   - *Among other resources, consulted for information about f.e. Mystery Boxes.*
-- [GBATemp](https://gbatemp.net/threads/guide-how-to-create-gateway-cheat-codes.410926/)
+- [Gateway Cheat Codes Guide](https://gbatemp.net/threads/guide-how-to-create-gateway-cheat-codes.410926/)
   - *Among other resources, consulted as a quick cheat sheet in case I forgot or <br />wanted to double check a certain code type.*
 - [GSH Guide](http://viper.shadowflareindustries.com/?file=hackv500c.html&cat=hax0r#hax0r_mj)
   - *Among other resources, consulted for information about how to search values for f.e. a Moon Jump code.*

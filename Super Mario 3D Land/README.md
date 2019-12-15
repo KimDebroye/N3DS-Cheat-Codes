@@ -111,7 +111,7 @@
 
 ### Bugs/Issues/Feedback
 - No notable crashes/issues.
-  - **I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).**
+  - **I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock codes, ...).**
 - Should you have feedback or do encounter any issues, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/).
 
 ### Software/Tools/Resources Used

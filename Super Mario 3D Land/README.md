@@ -70,10 +70,10 @@
     - **Trigger a screen transition.** Accomplishable by, for example:
       - *Switching between Worlds on World Map (if more then one World opened).*
       - *Entering and exiting a level.*
-	- *For exiting a level, any of the following options are valid:*
-	  - *Pause and return to map (level select)*
-	  - *Finish a level.*
-  - In order to be successfully disabled, <br />**the following cheat codes need to be disabled when not in a level:**
+        - *For exiting a level, any of the following options are valid:*
+          - *Pause and return to map (level select)*
+          - *Finish a level.*
+ - In order to be successfully disabled, <br />**the following cheat codes need to be disabled when not in a level:**
 	  - *Always Tail Attack (Any Powerup)*
 	  - *Always Flutter (Any Powerup)*
 	  - *Infinite Time*

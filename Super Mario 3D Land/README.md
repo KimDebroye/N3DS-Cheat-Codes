@@ -112,7 +112,7 @@
 ### Bugs/Issues/Feedback
 - No notable crashes/issues.
   - **I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock/set/reset codes, ...).**
-- Should you have feedback or do encounter any issues, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/forums/3ds-rom-hacking-translations-and-utilities.276/).
+- Should you have feedback or do encounter any issues, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/).
 
 ### Software/Tools/Resources Used
 - [CTRPluginFramework (by Nanquitas)](https://github.com/Nanquitas/CTRPluginFramework-BlankTemplate)

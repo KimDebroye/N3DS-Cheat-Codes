@@ -110,9 +110,14 @@
     - Luma3DS 9.1 (with/without CTRPF plugin loader).
 
 ### Bugs/Issues/Feedback
-- No notable crashes/issues.
-  - **I do however strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock codes, ...).**
-- Should you have feedback or do encounter any issues, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/).
+- (Minor) Issues still present in current release:
+  - `(Keep) Open Closed Mystery Boxes` & `(Keep) Open Closed Toad Houses` are prone to occasional crashes.
+    - *An occasional crash won't harm save file.*
+    - *Despite some intensive checking rounds, reason still to be found.*
+  - Turning on certain cheat codes, could lead to a(n understandable) crash when exiting game.
+    - *An occasional crash won't harm save file.*
+- **I strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock codes, ...).**
+- Should you have feedback or do encounter any issues that aren't listed here, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/).
 
 ### Software/Tools/Resources Used
 - [CTRPluginFramework (by Nanquitas)](https://github.com/Nanquitas/CTRPluginFramework-BlankTemplate)

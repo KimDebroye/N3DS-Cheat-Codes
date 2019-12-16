@@ -1,7 +1,7 @@
 **********************************************
 Super Mario 3D Land (All Regions & Revisions)
 https://github.com/KimDebroye/N3DS-Cheat-Codes
-Version 1.0.0 (Stable)
+Version 1.0.2
 **********************************************
 
 General Notes:

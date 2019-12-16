@@ -1,7 +1,7 @@
 **************************************************
 Super Mario 3D Land (All Regions & Revisions)
 https://github.com/KimDebroye/N3DS-Cheat-Codes
-Version 1.0.0 (Stable)
+Version 1.0.2
 **************************************************
 
 ~~~~~~~~~~~~~~~~~
@@ -12,13 +12,12 @@ General Dev Notes
 	-> Codes tested on USA & EUR region at time of writing.
 	-> Other regions untested at time of writing.
 		-> Should theoretically work, unless proven wrong.
-- When mentioning 'All Regions', this would also mean '& All Revisions'.
+- When mentioning 'All Regions',
+  this would also mean '& All Revisions'
 	-> Subject to change.
 	-> Tested with latest revision (as far as I know).
 	-> Other revisions untested at time of writing.
 		-> Should theoretically work, unless proven wrong.
-- Based on own testing rounds, current version marked as Stable.
-	-> Subject to change.
 - Below findings are subject to change.
 	-> As in: no guarantee all information is 100% correct.
 		-> Feel free to correct if any information is wrong or misleading.
@@ -27,6 +26,345 @@ General Dev Notes
 	-> Sometimes fine-tuned directly in there.
 - Below findings not listed in a particular order,
   though kept structured.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  
+=======================================
+REPORTED and/or FOUND BUGS/ISSUES/FIXES
+=======================================
+
+=====================
+BUGS/ISSUES FOUND IN
+Initial Release 1.0.0
+=====================
+
+--------------
+ISSUE #1 + FIX
+--------------
+
+Description
+-----------
+- Reported by GBATemp user.
+ (Reference: https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/#post-8891168)
+	- Same CFW.
+	- Same region.
+	- Same game version.
+	- Other language than I used to test with.
+		-> Not sure if this could be the reason.
+- Cheat codes that are working:
+	- All unlock cheats.
+	- All cheats that do not use a main menu/world map/ingame/... check.
+- Cheat codes that are NOT working:
+	- All in-level cheats that do an ingame (=in-level) check.
+
+
+[f.e. Instant Powerup X]
+// Part 1)
+// ~~~~~~~~~~~~
+// Ingame Check
+// ~~~~~~~~~~~~
+D3000000 00000000								// User RAM Dump	// My RAM Dump
+603EF834 00000000								// EUR				// EUR
+B03EF834 00000000	-> 3EF834 Leads to: 		16198C0C			1619860C
+50000EE8 C2800000	-> Prev. address + EE8 = 	16199AF4 (!)		161994F4 (!) Not equal
+												||					||
+											(!)	Wrong address.		OK.
+												Should be @
+												16199B08
+												(compared/found
+												 using HxD Hex
+												 string search)
+// Part 2)
+// ~~~~~~~~~~~~~~~~~~
+// 2nd pointer setup
+// to go to addresses
+// to be edited.
+// ~~~~~~~~~~~~~~~~~~
+D3000000 00000000								// User RAM Dump	// My RAM Dump
+603E1300 00000000								// EUR				// EUR
+B03E1300 00000000	-> 3E1300 Leads to:			140244F0			140244F0		
+B0000274 00000000	-> Prev. address + 274 =
+					   14024764 Leads to:		1706AA18			17066F38
+B0000074 00000000	-> Prev. address + 74 =
+					   (Sum) Leads to:			171490DC			171455BC
+60000194 00000002
+30000194 00000007
+20000194 00000002	-> Prev. address + 194 =
+					   (Sum) sets offset @:		17149270 (!)		17145750 (!)
+												||					||
+												Although not being equal addresses,
+												2nd pointer does point to the correct
+												address to be edited.
+...
+
+Conclusion:
+-----------
+-> The pointer leading to the address that checks
+   if player is at main menu/world map/ingame/...
+   is wrong for some European (and
+   probably other non USA) regions.
+   By accident, it did work for me when comparing
+   my EUR RAM Dumps with my USA RAM Dumps,
+   although my EUR RAM Dumps don't appear to be
+   the same as other EUR RAM Dumps, even when
+   coming from the exact same game version.
+   I'm thinking this could be (not sure) due
+   to a different ingame language being used.
+-> All codes of Initial Release 1.0.0 should
+   therefore work for all USA users & EUR users
+   using Dutch as their language (provided my
+   above theory is correct).
+
+Fix:
+----
+-> For in-level cheat codes:
+   replacing the first pointer leading
+   to the check address entirely, while
+   making sure it works for:
+   - EUR region (using my RAM Dumps & the one provided from user)
+   - USA region
+   - Other regions? (no reference)
+
+- I also realized that it may be
+  the initial 1.0.0 release check
+  could incorrectly be flagged as being true,
+  resulting in code being executed where
+  it is not desired, resulting in
+  rare occasional crashes.
+  (TODO) To be investigated some more.
+- Trying to make sure check works at least both at world map & when in-level
+  & preferably even when at main menu/file select screen/during transition/...
+  Also trying to make sure check is consistent and doesn't result in crashes.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+Testing with WM Pointer:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+[In-level cheat codes that use a MM/WM/IG/... check]
+D3000000 00000000
+603EF834 00000000
+B03EF834 00000000
+50000EE8 XXXXXXXX	// Check if player is at MM/WM/IG/...
+D3000000 00000000	// If true, continue with code...
+...
+
+=>
+
+[In-level cheat that use a MM/WM/IG/... check]
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+500465AC XXXXXXXX	// Check if player is at MM/WM/IG/...
+D3000000 00000000	// If true, continue with code...
+...
+
+(Checking destination address:)
+EUR RAM Dump (User): 16199AF4	=> Wrong address. Should be @ 16199B08.
+EUR RAM Dump (Mine): 161994F4	=> OK.
+-> No good for use with an all-region pointer.
+-> Needs other pointer.
+
+~~~~~~~~~~~~~~~~~~~~~~~~
+Testing with IG Pointer:
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+MM/WM/IG/... check address (static):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+EUR RAM Dump (User): 16199B08
+EUR RAM Dump (Mine): 161994F4
+
+Pointer setup:
+~~~~~~~~~~~~~~
+D3000000 00000000								// User RAM Dump	// My RAM Dump
+603E1300 00000000								// EUR				// EUR
+B03E1300 00000000	-> 3E1300 Leads to:			140244F0			140244F0		
+B0000274 00000000	-> Prev. address + 274 =
+					   14024764 Leads to:		1706AA18			17066F38
+
+(From current offset, checking if negative offset to check address is equal:)
+EUR RAM Dump (User): 16199B08 - 1706AA18 = FF12F0F0
+EUR RAM Dump (Mine): 161994F4 - 17066F38 = FF1325BC
+-> Not equal, not good for use with an all-region pointer.
+-> Continuing to test with subpointer:
+
+B0000074 00000000	-> Prev. address + 74 =
+					   (Sum) Leads to:			171490DC			171455BC
+
+(From current offset, checking if negative offset to check address is equal:)
+EUR RAM Dump (User): 16199B08 - 171490DC = FF050A2C
+EUR RAM Dump (Mine): 161994F4 - 171455BC = FF053F38
+-> Not equal, not good for use with an all-region pointer.
+-> Needs other pointer.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Using GatewayRAMTools:
+~~~~~~~~~~~~~~~~~~~~~~
+- Searched for USA & both EUR fixed addresses,
+  when at world map & when ingame
+  (=> total of 5 RAM Dumps checked at the same time).
+
+[First option]
+D3000000 0FFFFDD0
+60000000 00000000
+B0000000 00000000
+5000046C XXXXXXXX
+-> Works partially, often results in
+   crashes that didn't occur before
+   (especially during transitions).
+-> Needs other pointer.
+
+[Second option]
+D3000000 0FFFF9E4
+60000000 00000000
+B0000000 00000000
+50000984 XXXXXXXX
+-> Works partially,
+   no crashes yet although
+   check doesn't work
+   for Moon Jump code,
+   while it does work for f.e.
+   Infinite Jump & Always Star Power.
+   -> No idea why at moment of writing.
+   -> Continuing trying to find other pointer.
+
+~~~~~~~~~~~~~
+Using TempAR:
+~~~~~~~~~~~~~
+Note:
+With TempAR, only possible to look for pointers
+within 2 RAM Dumps at the same time.
+
+MM/WM/IG/... check address (static):
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+- EUR RAM Dump INGAME LEVEL 1-1 (User): 16199B08
+- EUR RAM Dump AT WORLDMAP  1-1 (Mine): 161994F4
+
+- USA REFERENCE: 						16198974
+
+TempAR pointer results:
+~~~~~~~~~~~~~~~~~~~~~~~
+Besides the ones also found when using GatewayRAMTools,
+I additionaly found some other green valid addresses
+that do need additional checking for USA region.
+
+Picking first valid green address (different than the results
+also found when using GatewayRAMTools):
+
+[TempAR Pick#1]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C XXXXXXXX
+...
+
+Pointer following:
+~~~~~~~~~~~~~~~~~~
+
+> EUR RAM Dump INGAME LEVEL 1-1 (User):
+[TempAR Pick#1]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000	-> 177D5484 Leads to 161992AC
+5000085C XXXXXXXX	-> 161992AC + 85C = 16199B08
+...
+-> Successfully leading to static EUR MM/WM/IG/... check address.
+
+> EUR RAM Dump AT WORLDMAP  1-1 (Mine):
+[TempAR Pick#1]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000	-> 177D5484 Leads to 16198C98
+5000085C XXXXXXXX	-> 16198C98 + 85C = 161994F4
+...
+-> Successfully leading to static EUR MM/WM/IG/... check address.
+
++
+Need to find out the USA region equivalent
+of the above address 177D5484.
+When comparing with a USA RAM Dump (IG level 1-1)
+using HxD,
+it turns out the address is exactly the same (which is good news).
+Checking if it also leads to the static check address:
+
+> USA RAM Dump AT WORLDMAP  1-1 (Mine):
+[TempAR Pick#1]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000	-> 177D5484 Leads to 16198118
+5000085C XXXXXXXX	-> 16198C98 + 85C = 16198974
+...
+-> Successfully leading to static USA MM/WM/IG/... check address.
+
+Testing cheats:
+~~~~~~~~~~~~~~~
+
+[TempAR Pick#1]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C XXXXXXXX
+...
+-> Tested & seems to be working fine.
+   Does resulted in a crash when exiting game, although
+   I consider this to be a minor (understandable) issue.
+   (Could have been coincidence. Doesn't seem to happen all the time.)
+
+-> All in-level cheat codes updated with above pointer for in-level check.
+	-> Changed version to v1.0.1
+	
+-> All other USA MM/WM/IG/... checks updated with above pointer.
+	-> Changed version to v1.0.2
+
+
+Additional testing using EUR RAM Dump provided by user:
+-------------------------------------------------------
+	
+[Always Flutter (Any Powerup)]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000	// Check should work,
+6000085C C2800000	// see above.
+D3000000 00000000
+601007B0 00000000	// Additional 'lower based address pointer' test:
+B01007B0 00000000	// -> Leads to: 003A2014
+B0006E0C 00000000	// -> 003A2014 + 6E0C = 3A8E20 Leads to: 00163290
+0016F484 13A00000	// -> 00163290 + 16F484 => current offset: 2D2714 (correct EUR address)
+...
+-> Should also work for user that reported the issue.
+
+
+-------------------
+ISSUE #1 CONCLUSION
+-------------------
+Current version: v1.0.2
+
+Point(er) Fix Release Version 1.0.2 | Release Notes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Overall, not much has changed compared to the initial release.
+However, Point(er) Fix Release v1.0.2 should make
+all codes work for all regions/versions/languages(?)
+(and thus also for the user reporting the issue).
+~ Side notes:
+	- Compatibility yet to be tested/confirmed for regions
+	  other than EUR/USA.
+	- Not sure if it was the EUR console/game set to a different language
+	  than mine initially causing in-level codes not to work for the user
+	  that reported the issue. I can't think of any other option though.
+
+Remaining (minor) issues in Point(er) Fix Release v1.0.2:
+- [(Keep) Open Closed Mystery Boxes] & [(Keep) Open Closed Toad Houses]
+  are prone to occasional crashes. An occasional crash won't harm save file.
+	- Despite some intensive checking rounds, reason still to be found.
+- Turning on certain cheat codes, could lead to a(n understandable) crash
+  when exiting game. An occasional crash won't harm save file.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -563,24 +901,9 @@ D2000000 00000000
 	... // Editing addresses/values here
 	       with offset calculated from 171452DC (=> ADDRESSX - 171452DC = offset).
 
-Template With In Level (a.k.a. IG=In Game) check:
--------------------------------------------------
-[(All Regions) Level Pointer + IG Check]
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C2800000
-D3000000 00000000
-603E1300 00000000
-B03E1300 00000000
-B0000274 00000000
-B0000074 00000000	// Current offset.
-...					// Edit values here. Offset(s) to be calculated from current offset.
-D2000000 00000000
-
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-In case address location change
+In case address location changes
 between level (re)start &
 dying (at least once) in level
 (having to go negative offset
@@ -756,36 +1079,6 @@ D2000000 00000000
 	  (dying in level keeps lives at set number).
 
 
-Template With WM check:
------------------------
--> Note: Regions EUR & USA tested, others untested.
-
-EUR Fixed address for IG/WM/... check: 0x 161994F4
-USA Fixed address for IG/WM/... check: 0x 16198974
-
-DC000000 0003AAB4 sets current offset at (for EUR:) 1618D9FC or (for USA:) 1618CE7C.
-
-[(All Regions) WM Pointer + WM Check]
-D3000000 00000000
-603E1300 00000000
-B03E1300 00000000
-B0000270 00000000
-500465AC C1000000
-...
-DC000000 0003AAB4
-50000000 00000000
-DC000000 00000000
-D0000000 00000000
-50000000 00000001
-DC000000 00000060
-D0000000 00000000
-50000000 00000002
-DC000000 000000C0
-D0000000 00000000
-...
-D2000000 00000000
-
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -827,56 +1120,6 @@ B0006E0C 00000000
 ...
 D2000000 00000000
 
-Optional:
----------
-An ingame/world map/... check can be added
-using the following region free pointer code:
-
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C2800000	// When at World Map:
-...
-
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C1000000	// When in any level:
-...
-
-Note:
-~~~~~
-The Level & World Map check code contains
-a different pointer setup,
-although it leads to the same address.
-Basically: this is a shorter way of providing a check
-for lower based address codes.
-
-Example:
---------
-
-[Always Flutter (Any Powerup)]
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-60000EE8 C2800000
-D3000000 00000000
-601007B0 00000000
-B01007B0 00000000
-B0006E0C 00000000
-0016F484 13A00000
-D2000000 00000000
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C2800000
-D3000000 00000000
-601007B0 00000000
-B01007B0 00000000
-B0006E0C 00000000
-0016F484 E3A00001
-D2000000 00000000
-
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -895,61 +1138,66 @@ I'll be needing this:
 - to control where a cheat is applied and thus
 - to avoid running a cheat code where it is not needed.
 
-----------------------------------
+-------------------------------------------------
 The chosen one (at least for now):
-EUR Fixed address: 0x 161994F4
+EUR Fixed address: 0x 161994F4 (*)
 USA Fixed address: 0x 16198974
 
-Used a EUR and a USA RAM Dump
-in order to find a pointer address:
-----------------------------------
+(*) IMPORTANT NOTE:
+-------------------
+The fixed address can be different for EUR users.
+(I assume depending on selected language.)
+Refer to 'REPORTED and/or FOUND BUGS/ISSUES/FIXES'
+for more information about how the below pointer
+for all regions was updated:
+-------------------------------------------------
 
 // Main Menu: Press Start to Play Screen
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C3200000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C3200000
 ...
 D2000000 00000000
 -> Note: also when transitioning between worlds on World Map.
 
 // Main Menu: File Select Menu
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C1800000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C1800000
 ...
 D2000000 00000000
 
 // World Map
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C1000000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C1000000
 ...
 D2000000 00000000
 
 // World Map: When Saving Game
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C3480000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C3480000
 ...
 D2000000 00000000
 
 // In Level
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C2800000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C2800000
 ...
 D2000000 00000000
 
 // Entering Level Transition
-D3000000 00000000
-603EF834 00000000
-B03EF834 00000000
-50000EE8 C3C80000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C3C80000
 ...
 D2000000 00000000
 
@@ -1981,7 +2229,7 @@ D3000000 00000000	// Start.
 603E1300 00000000
 B03E1300 00000000
 B0000270 00000000
-500465AC C1000000	// At World Map only. (TODO: Test if needed)
+500465AC C1000000	// At World Map only.
 DC000000 0003AAB4	// Start checking selected save slot.
 50000000 00000000	// If Save Slot #1: (f.e.) Current offset for USA - Save Slot #1 at 1618CE7C.
 00002C40 0FFF0000	// Unlock all Pictures.
@@ -1997,7 +2245,7 @@ D3000000 00000000	// RESET. (Note: could be shortened a lot when using DC type w
 603E1300 00000000
 B03E1300 00000000
 B0000270 00000000
-500465AC C1000000	// At World Map only. (TODO: Test if needed)
+500465AC C1000000	// At World Map only.
 DC000000 0003AAB4	// Start checking selected save slot.
 50000000 00000000	// If Save Slot #1: (f.e.) Current offset for USA - Save Slot #1 at 1618CE7C.
 DC000000 00004028	// Move offset to start address for second loop.

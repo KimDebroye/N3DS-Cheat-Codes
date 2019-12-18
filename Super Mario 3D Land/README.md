@@ -120,8 +120,12 @@
 - Should you have feedback or do encounter any issues that aren't listed here, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/).
 
 ### Software/Tools/Resources Used
+#### 2DS/3DS Software
 - [CTRPluginFramework (by Nanquitas)](https://github.com/Nanquitas/CTRPluginFramework-BlankTemplate)
   - *Used for searching addresses/values and creating RAM dumps.*
+- [Checkpoint](https://github.com/FlagBrew/Checkpoint#checkpoint-)
+  - *Used for switching back & forth save files.*
+#### PC Software
 - [Gateway RAM Tools](https://www.maxconsole.com/threads/tool-gateway-ram-tools.40776/)
   - *Used for converting RAM dumps to raw RAM dumps.*
 - [TempAR](https://raing3.gshi.org/files/psp/tools/pointer_searcher.zip)
@@ -130,8 +134,9 @@
   - *Used for manually searching addresses/values/pointers by comparing and reading raw RAM dumps.*
 - [SM3DL Save Editor](https://github.com/yonaikerlol/Super-Mario-3D-Land-SGE)
   - *Used for partially unlocking a save file in order to compare RAM dumps.*
+#### Online Resources
 - [SM3DL Shiny Star Fix](https://gbatemp.net/threads/how-to-get-5-sparkly-stars-savefile-back-on-super-mario-3d-land.542645/)
-  - *Consulted for information/findings about converting a non shiny (1->5) star save to a shiny (1->5) save.<br />Thanks a bunch!*
+  - *Consulted for information/findings about converting a non shiny (1->5) star save to a shiny (1->5) star save.<br />Thanks a bunch!*
 - [Super Mario Wiki](https://www.mariowiki.com/Mystery_Box)
   - *Among other resources, consulted for information about f.e. Mystery Boxes.*
 - [Gateway Cheat Codes Guide](https://gbatemp.net/threads/guide-how-to-create-gateway-cheat-codes.410926/)

@@ -88,6 +88,10 @@
  - In order to be successfully disabled, <br />**the following cheat codes need to be disabled when not in a level:**
 	  - *Always Tail Attack (Any Powerup)*
 	  - *Always Flutter (Any Powerup)*
+	  - *Increased Speed (Land)*
+	    - *Can also be disabled when in level, <br />standing still on land.*
+	  - *Increased Speed (Underwater)*
+	    - *Can also be disabled when in level, <br />standing still on land.*
 	  - *Infinite Time*
 
 ### Installation

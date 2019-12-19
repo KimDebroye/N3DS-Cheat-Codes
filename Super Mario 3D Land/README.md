@@ -47,7 +47,7 @@
 - `5 Lives`
 - `Infinite Time`
   - *In effect when playing a level.*
-  - *In order to restore level timer default, disable this cheat code when not in a level.*
+  - *In order to restore level timer default, <br />disable this cheat code when not in a level.*
 - `Start Level With P-Wing`
   - *Does not affect Shiny Stars (if any) when saving game.*
 > Unlock Codes

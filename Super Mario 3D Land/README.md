@@ -29,13 +29,13 @@
     - *+25% max walk speed.*
     - *+35% max run speed.*
     - *+50% max run speed with star power.*
-  - In order to restore speed defaults, <br />disable this cheat code when not in a level <br />or when standing still on land when in level.
+  - *In order to restore speed defaults, <br />disable this cheat code when not in a level <br />or when standing still on land when in level.*
 - `Increased Speed (Underwater)`
   - *Modifies Mario/Luigi's movement speed when underwater.*
     - *+25% max walk speed.*
     - *+35% max run speed (with or without star power).*
     - *+50% max swim speed.*
-  - In order to restore speed defaults, <br />disable this cheat code when not in a level <br />or when standing still on land when in level.
+  - *In order to restore speed defaults, <br />disable this cheat code when not in a level <br />or when standing still on land when in level.*
 - `Moon Jump`
   - *Makes Mario/Luigi jump higher.*
   - *Code optimized for use with Luma~Rosalina's cheat engine.*

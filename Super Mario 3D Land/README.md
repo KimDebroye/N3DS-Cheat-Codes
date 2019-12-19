@@ -20,10 +20,22 @@
 - `Always Star Power`
 - `Always Tail Attack (Any Powerup)`
   - *In effect when playing a level.*
-  - *In order to restore powerup defaults, disable this cheat code when not in a level.*
+  - *In order to restore powerup defaults, <br />disable this cheat code when not in a level.*
 - `Always Flutter (Any Powerup)`
   - *In effect when playing a level.*
-  - *In order to restore powerup defaults, disable this cheat code when not in a level.*
+  - *In order to restore powerup defaults, <br />disable this cheat code when not in a level.*
+- `Increased Speed (Land)`
+  - *Modifies Mario/Luigi's movement speed when on land.*
+    - + *25% max walk speed.*
+    - + *35% max run speed.*
+    - + *50% max run speed with star power.*
+  - In order to restore speed defaults, <br />disable this cheat code when not in a level <br />or when standing still on land when in level.
+- `Increased Speed (Underwater)`
+  - *Modifies Mario/Luigi's movement speed when underwater.*
+    - + *25% max walk speed.*
+    - + *35% max run speed (with or without star power).*
+    - + *50% max swim speed.*
+  - In order to restore speed defaults, <br />disable this cheat code when not in a level <br />or when standing still on land when in level.
 - `Moon Jump`
   - *Makes Mario/Luigi jump higher.*
   - *Code optimized for use with Luma~Rosalina's cheat engine.*
@@ -114,7 +126,7 @@
   - `(Keep) Open Closed Mystery Boxes` & `(Keep) Open Closed Toad Houses` are prone to occasional crashes.
     - *An occasional crash won't harm save file.*
     - *Despite some intensive checking rounds, reason still to be found.*
-  - Turning on certain cheat codes, could lead to a(n understandable) crash when exiting game.
+  - Turning on certain cheat codes, could possibly lead to a(n understandable) crash when exiting game.
     - *An occasional crash won't harm save file.*
 - **I strongly recommend not to enable all cheat codes at once and occasionally disable any cheat codes that aren't of use anymore (f.e. unlock codes, ...).**
 - Should you have feedback or do encounter any issues that aren't listed here, feel free to drop a comment in [the GBAtemp release thread](https://gbatemp.net/threads/release-super-mario-3d-land-cheat-codes.554275/).

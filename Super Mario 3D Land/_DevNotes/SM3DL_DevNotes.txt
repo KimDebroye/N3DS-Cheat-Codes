@@ -1,7 +1,7 @@
 **************************************************
 Super Mario 3D Land (All Regions & Revisions)
 https://github.com/KimDebroye/N3DS-Cheat-Codes
-Version 1.0.2
+Version 1.1.0
 **************************************************
 
 ~~~~~~~~~~~~~~~~~
@@ -38,6 +38,49 @@ General Dev Notes
 =======================================
 REPORTED and/or FOUND BUGS/ISSUES/FIXES
 =======================================
+
+=====================
+BUGS/ISSUES FOUND IN
+Initial Release 1.0.2
+=====================
+
+--------------
+ISSUE #1 + FIX
+--------------
+
+Description
+-----------
+- When 'Always Star Power' cheat code is enabled,
+  combining with 'White Tanooki Mario/Luigi' cheat code
+  keeps the powerup sound going.
+  
+Fix
+---
+-> Added a 'When not White Tanooki Mario/Luigi' check
+   in 'Always Star Power' cheat code.
+   	-> Changed version from v1.0.2 to v1.1.0 (1.1 bump due to having added new speed codes).
+
+--------------
+ISSUE #2 + FIX
+--------------
+
+Description
+-----------
+- '(Keep) Open Closed Toad Houses' didn't work anymore in v1.0.2.
+
+Solution
+--------
+When updating code to v.1.0.2,
+somehow the following code got missing:
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000270 00000000
+  
+Fix
+---
+-> Re-added missing code.
+
 
 =====================
 BUGS/ISSUES FOUND IN
@@ -1093,13 +1136,19 @@ LOWER BASED ADDRESS POINTER
 -> Optimal for addresses in region 00100000
    to about 00432000 (?-> not sure, didn't have to go that high).
    - In this case: Used for ASM (assembly) codes.
--> Not sure if every 'lower based address' works with this pointer,
+-> (!) Not every 'lower based address' needs or works with this pointer,
    though it does for the ported ASM codes.
-   Found exception:
-   F.e. the 'Coins Give An Extra Life' code doesn't need a pointer:
-   Same address works for both EUR & USA region (& perhaps all regions).
-   (Should/Could also work when converted to the pointer edition, didn't test.)
+   Tip: Test lower based addresses on 2 or more regions first,
+   then convert if necessary.
+   F.e. found exceptions:
+   - 'Coins Give An Extra Life' code doesn't need a pointer:
+	 Same address works for both EUR & USA region (& perhaps all regions).
+	(Should/Could also work when converted to the pointer edition, didn't test.)
+   - Speed modifier codes don't need a pointer.
+    (Found that out after having converted them anyway
+	 without testing on other region first.)
 
+D3000000 00000000
 601007B0 00000000
 B01007B0 00000000
 B0006E0C 00000000
@@ -1114,6 +1163,7 @@ Template:
 -> Note: Regions EUR & USA tested, others untested.
 
 [(All Regions) ASM Pointer]
+D3000000 00000000
 601007B0 00000000
 B01007B0 00000000
 B0006E0C 00000000
@@ -1319,6 +1369,16 @@ Allows Mario/Luigi to infinitely jump multiple times in mid-air.\n
 Hold button to jump as high as desired.
 }
 
+(!)~~~~~~~~~~~~~~~~~~~~~~~
+Refer to
+"BUGS/ISSUES FOUND IN
+Initial Release 1.0.0"
+or check cheat code files
+in latest release
+for updated check pointer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1491,7 +1551,15 @@ D2000000 00000000
 -> With Star Power sparkles.
 -> No previously described issues
    when using with Luma~Rosalina's cheat engine.
-
+   
+(!)~~~~~~~~~~~~~~~~~~~~~~~
+Refer to
+"BUGS/ISSUES FOUND IN
+Initial Release 1.0.0"
+or check cheat code files
+in latest release
+for updated check pointer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3384,6 +3452,15 @@ D3000000 00000000
 D2000000 00000000
 -> Doesn't seem to work for both regions.
 
+(!)~~~~~~~~~~~~~~~~~~~~~~~
+Refer to
+"BUGS/ISSUES FOUND IN
+Initial Release 1.0.0"
+or check cheat code files
+in latest release
+for updated check pointer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3500,6 +3577,15 @@ In effect when playing a level.\n
 In order to restore level timer default,\n
 disable this cheat code when not in a level.
 }
+
+(!)~~~~~~~~~~~~~~~~~~~~~~~
+Refer to
+"BUGS/ISSUES FOUND IN
+Initial Release 1.0.0"
+or check cheat code files
+in latest release
+for updated check pointer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4170,6 +4256,16 @@ B0000074 00000000
 2000EEE8 00000006
 D2000000 00000000
 
+(!)~~~~~~~~~~~~~~~~~~~~~~~
+Refer to
+"BUGS/ISSUES FOUND IN
+Initial Release 1.0.0"
+or check cheat code files
+in latest release
+for updated check pointer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 ====================
 POWERUP AT WORLD MAP
 ====================
@@ -4361,6 +4457,16 @@ D0000000 00000000
 20002C2E 0000000X
 D2000000 00000000
 
+(!)~~~~~~~~~~~~~~~~~~~~~~~
+Refer to
+"BUGS/ISSUES FOUND IN
+Initial Release 1.0.0"
+or check cheat code files
+in latest release
+for updated check pointer.
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -4424,9 +4530,323 @@ Values:
 }
 
 Notes:
-- A World Map Only check (500465AC C1000000) isn't needed,
+- A World Map Only check (?= C1000000) isn't needed,
   since the address that is written to is for World Map only.
 - An In Level code could be found too,
   although I prefer the default behavior when in level,
   so in my opinion there is no need for an In Level code
   to edit lower slot items.
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+==============
+SPEED MODIFIER
+==============
+
+I used a slightly different searching method here.
+By doing some online research, I learned that, most of the time,
+the speed address(es) can be found near the position addresses.
+
+Sources:
+~~~~~~~~
+https://forum.cheatengine.org/viewtopic.php?p=5644156#5644156
+https://forum.cheatengine.org/viewtopic.php?p=5462748#5462748
+
+------------------
+Character Position
+------------------
+
+USA Level 1-1
+~~~~~~~~~~~~~
+
+171453D6 XXXXXXXX	// Position addresses calculated from an already exisiting cheat code.
+...		 XXXXXXXX	// Could have found it myself, although...
+...		 XXXXXXXX	// well ... I wasn't planning on inventing hot water.
+
+-----
+Speed
+-----
+
+From here, I went solo, not knowing what to expect,
+since SM3DL being a 3D game with an X and Y axis (& Z for height)
+and not a 2D game with only an X axis (& Y or Z for height,
+depending on how one wants to picture it).
+
+In CTRPF Hex Editor, I looked around the Character Position addresses
+& quickly found the following addresses,
+a) on which I performed some quick tests,
+b) and calculated the offset from the level pointer:
+
+171453F8 XXXXXXXX	// Changes depending on standing still (zero),
+					// walking, running (with/without Star Power).
+					// Additionally, changes depending on direction
+					// (left, right, up, down).
+					// Offset: 11C
+171453FC XXXXXXXX	// Jump address (already found before).
+					// Offset: 120
+17145400 XXXXXXXX	// Changes depending on standing still (zero),
+					// walking, running (with/without Star Power).
+					// Additionally, changes depending on direction
+					// (left, right, up, down). (If I'm not mistaken
+					// about direction, written after testing).
+					// Offset: 124
+
+To test above addresses, I then set up some pointer codes
+using different code type variations/approaches including different checks:
+- 00 & 01
+- D9, D4 & D6
+- F0 & F2
+
+Either way I approached it, I couldn't get it to work as I expected.
+(f.e. character would keep on walking/running diagonally
+ or even flipping upside down, just to name a few.)
+ 
+I then did the following, which turned out to work fine:
+- Position character, standing still.
+- Make character run, from left to right (in a straight line).
+In CTRPF Hex Editor:
+I read and noted the values at address(es):
+(USA W1-1) 171453F8 &
+(USA W3-2) 1704A478
+for each possible movement type
+	- walk,
+	- run,
+	- run with star power,
+	- walk underwater,
+	- run underwater (with & without star power)
+	- swim underwater;
+	- both Mario & Luigi.
+& searched for each value separately
+(4 BYTES, Specific (Hex) Value).
+
+For each possibility, I found quite a few (though not too many) lower based addresses.
+By testing each address individually, I found lower based addresses that changed
+the movement speed for each possible movement type.
+Funnily enough & somewhat unexpected, these even work for all directions.
+I assume the game does additional calculations with those values
+in order to calculate coordinates for all directions.
+I didn't test running from right to left for example,
+which would have given different values (and perhaps no working results?).
+So somehow, I made a lucky guess by using the values from running left to right.
+
+Anyway, these are the addresses/values I found
+for USA region:
+
+Speed Modifiers
+~~~~~~~~~~~~~~~
+
+~~~~~~~~~~
+(USA W1-1)
+~~~~~~~~~~
+Reference address/values:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+171453F8 00000000	// When standing still (both M&L).
+171453F8 41600000	// When walking at max speed from left to right (both M&L).
+171453F8 41B00000	// When running at max speed from left to right (both M&L).
+171453F8 41D00000	// When running at max speed from left to right with Star Power (both M&L).
+
+Working USA lower based addresses:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(found by doing a Specific (Hex) Value search & testing results:)
+003EFB18 41600000	// When walking at max speed from left to right (both M&L).
+					   ~ Default value:
+					     (hex) 41600000 = (float) 14
+					   ~ Suggested modified value:
+					     (hex) 418C0000 = (float) 17.5	// => 25% increase.
+003EFB1C 41B00000	// When running at max speed from left to right (both M&L).
+					   ~ Default value:
+					     (hex) 41B00000 = (float) 22
+					   ~ Suggested modified value:
+					     (hex) 41ED999A = (float) 29.7	// => 35% increase.
+003EFDBC 41D00000	// When running at max speed from left to right with Star Power (both M&L).
+					   ~ Default value:
+					     (hex) 41D00000 = (float) 26
+					   ~ Suggested modified value:
+					     (hex) 421C0000 = (float) 39	// => 50% increase.
+
+~~~~~~~~~~
+(USA W3-2)
+~~~~~~~~~~
+Reference address/values:
+~~~~~~~~~~~~~~~~~~~~~~~~~
+1704A478 XXXXXXXX	// Underwater. When standing still (both M&L). (Never zero when under water.)
+1704A478 40E00000	// Underwater. When walking at max speed from left to right (both M&L).
+1704A478 41200000	// Underwater. When running at max speed from left to right (both M&L).
+								  (Same with & without Star Power.)
+								  
+1704A478 41400000	// Underwater. When swimming (both M&L).
+								  (Same with or without B/A button &
+								   with or without Star Power.)
+
+Working USA lower based addresses:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+(found by doing a Specific (Hex) Value search & testing results:)
+003EFDF8 40E00000	// Underwater. When walking at max speed from left to right (both M&L).
+					   ~ Default value:
+					     (hex) 40E00000 = (float) 7
+					   ~ Suggested modified value:
+					     (hex) 410C0000 = (float) 8.75	// => 25% increase.
+003EFDF0 41200000	// Underwater. When running at max speed from left to right (both M&L).
+								  (Same with & without Star Power.)
+					   ~ Default value:
+					     (hex) 41200000 = (float) 10
+					   ~ Suggested modified value:
+					     (hex) 41580000 = (float) 13.5	// => 35% increase.
+								  
+003EFE00 41400000	// Underwater. When swimming (both M&L).
+								  (Same with or without B/A button &
+								   with or without Star Power.)
+					   ~ Default value:
+					     (hex) 41400000 = (float) 12
+					   ~ Suggested modified value:
+					     (hex) 41900000 = (float) 18	// => 50% increase.
+
+Notes:
+~~~~~~
+Overall, lower based addresses are good addresses for editing values,
+since these addresses/values are set at game launch and usually don't change.
+However, when a cheat code does change a lower address based value,
+the game (at least in my experience:) does not restore the default
+when turning off that particular cheat code (until game is restarted).
+Hence, in order for the cheat codes to be user-friendly,
+I wrapped a check around each notable address I found,
+restoring the default game value when character is standing still on land
+(a player would normally always stand still when activating/deactivating
+ a cheat code since he only has a maximum of 2 hands to push buttons).
+However, when underwater, the check address is never zero and since
+its value still depends on direction, the cheat code always needs
+to be disabled on land, where its value does equal zero when standing still.
+Additionally, I added a 'when not in level' check,
+also restoring the default speed
+(for when a player turns off cheat at f.e. World Map or Main Menu).
+
+In short:
+- When not in level or when standing still: default speed.
+- When in level and moving: modified speed.
+
+----------------
+Pointer Edition:
+----------------
+(!) NO CONVERSION OF LOWER BASED ADDRESSES TO POINTERS NEEDED.
+	-> Figured that out after wondering why it didn't work for EUR region
+	   after having converted all lower based addresses to pointer versions
+	   in the first place. -> Reverted codes:
+
+[Increased Speed (Land)]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+6000085C C2800000	// When not in level:
+D3000000 00000000
+603EFB18 41600000	// If not already set to default:
+003EFB18 41600000	// Default value for when walking.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFB1C 41B00000	// If not already set to default:
+003EFB1C 41B00000	// Default value for when running.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFDBC 41D00000	// If not already set to default:
+003EFDBC 41D00000	// Default value for when running with star power.
+D2000000 00000000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C2800000	// When in level:
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+5000011C 00000000	// When standing still:
+D3000000 00000000
+603EFB18 41600000	// If not already set to default:
+003EFB18 41600000	// Default value for when walking.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFB1C 41B00000	// If not already set to default:
+003EFB1C 41B00000	// Default value for when running.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFDBC 41D00000	// If not already set to default:
+003EFDBC 41D00000	// Default value for when running with star power.
+D2000000 00000000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C2800000	// When in level:
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+6000011C 00000000	// When moving:
+D3000000 00000000
+603EFB18 418C0000	// If not already modified:
+003EFB18 418C0000	// Modified value for when walking.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFB1C 41ED999A	// If not already modified:
+003EFB1C 41ED999A	// Modified value for when running.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFDBC 421C0000	// If not already modified:
+003EFDBC 421C0000	// Modified value for when running with star power.
+D2000000 00000000
+
+[Increased Speed (Underwater)]
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+6000085C C2800000	// When not in level:
+D3000000 00000000
+603EFDF8 40E00000	// If not already set to default:
+003EFDF8 40E00000	// Default value for when walking underwater.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFDF0 41200000	// If not already set to default:
+003EFDF0 41200000	// Default value for when running underwater.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFE00 41400000	// If not already set to default:
+003EFE00 41400000	// Default value for when swimming.
+D2000000 00000000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C2800000	// When in level:
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+5000011C 00000000	// When standing still on ground (not underwater!):
+D3000000 00000000
+603EFDF8 40E00000	// If not already set to default:
+003EFDF8 40E00000	// Default value for when walking underwater.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFDF0 41200000	// If not already set to default:
+003EFDF0 41200000	// Default value for when running underwater.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFE00 41400000	// If not already set to default:
+003EFE00 41400000	// Default value for when swimming.
+D2000000 00000000
+D3000000 17000000
+607D5484 00000000
+B07D5484 00000000
+5000085C C2800000	// When in level:
+D3000000 00000000
+603E1300 00000000
+B03E1300 00000000
+B0000274 00000000
+B0000074 00000000
+6000011C 00000000	// When underwater:
+D3000000 00000000
+603EFDF8 410C0000	// If not already modified:
+003EFDF8 410C0000	// Modified value for when walking underwater.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFDF0 41580000	// If not already modified:
+003EFDF0 41580000	// Modified value for when running underwater.
+D0000000 00000000	// (End If condition, just to be sure.)
+603EFE00 41900000	// If not already modified:
+003EFE00 41900000	// Modified value for when swimming.
+D2000000 00000000
+

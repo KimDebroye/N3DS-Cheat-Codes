@@ -95,7 +95,7 @@
 	  - *Infinite Time*
 
 ### Installation
-- [Download the latest version of the SM3DL cheat files](https://github.com/KimDebroye/N3DS-Cheat-Codes/releases/tag/SM3DL_v1.0.0).
+- [Download the latest version of the SM3DL cheat files](https://github.com/KimDebroye/N3DS-Cheat-Codes/releases/tag/SM3DL_v1.1.0).
 - Running **Custom Firmware Luma3DS 9.1 or higher**:
   - Insert the SD/MicroSD card into your computer/phone.
     - *You can also use FTP if you are familiar with that.*
